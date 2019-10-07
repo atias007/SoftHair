@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4b55b693-84b4-40eb-9800-f856c28c326f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://smsfactoryservice.cloudapp.net/services/commonservices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CommonServices11.xsd" MetadataType="Schema" ID="84ba319d-76f4-4814-aff2-eed14e07bae1" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd6" />
+    <MetadataFile FileName="CommonServices1.wsdl" MetadataType="Wsdl" ID="9c15e4a5-365d-4cc3-bdc3-2249b7c6f10a" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?wsdl" />
+    <MetadataFile FileName="CommonServices111.xsd" MetadataType="Schema" ID="92e79518-fb51-4c7a-9ce2-eb09b53d96c2" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd3" />
+    <MetadataFile FileName="CommonServices112.xsd" MetadataType="Schema" ID="7d92fac6-bc00-4614-93f2-b5c36e887999" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd7" />
+    <MetadataFile FileName="CommonServices113.xsd" MetadataType="Schema" ID="469f31d0-8e5e-40d2-81fb-9084cf9b1eeb" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd11" />
+    <MetadataFile FileName="CommonServices114.xsd" MetadataType="Schema" ID="4b84754d-104f-4221-b5fb-4b069d869ac5" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd12" />
+    <MetadataFile FileName="CommonServices115.xsd" MetadataType="Schema" ID="18cca46e-1cf1-432e-81da-4dc5c2c902ce" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd10" />
+    <MetadataFile FileName="CommonServices116.xsd" MetadataType="Schema" ID="8482e066-e306-4e19-ac66-ff7d4d6b1ea6" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd8" />
+    <MetadataFile FileName="CommonServices117.xsd" MetadataType="Schema" ID="19d84690-a363-4aa1-929f-78582eaec658" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="CommonServices118.xsd" MetadataType="Schema" ID="8fbb8809-06da-4dbd-9a48-3693217200d8" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd4" />
+    <MetadataFile FileName="CommonServices119.xsd" MetadataType="Schema" ID="fafd04be-c119-4928-851e-29b538595c53" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd9" />
+    <MetadataFile FileName="CommonServices1110.xsd" MetadataType="Schema" ID="3747f9dc-0534-42c8-8381-d1f8e2e30cfd" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="CommonServices1111.xsd" MetadataType="Schema" ID="04c07c7b-ef71-47eb-9cdf-0acc365299f3" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd5" />
+    <MetadataFile FileName="CommonServices1.disco" MetadataType="Disco" ID="6389b870-1a63-45a3-803a-51481737ac8a" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?disco" />
+    <MetadataFile FileName="CommonServices1112.xsd" MetadataType="Schema" ID="7dbed935-d3c8-4d80-906c-6889ad4dd203" SourceId="1" SourceUrl="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

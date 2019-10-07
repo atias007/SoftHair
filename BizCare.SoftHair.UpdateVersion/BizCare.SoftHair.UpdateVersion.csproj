@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3D10D92-F7B8-48C9-B4F6-E4034968D699}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizCare.SoftHair.UpdateVersion</RootNamespace>
+    <AssemblyName>UpdateVersion</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>ftp://dor-comp.co.il/softhair/UpdateVersion/</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.softhair.co.il/UpdateVersion/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>61F3B60B2C133D04691706CD1D4CCBC7F494C1C5</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>BizCare.SoftHair.UpdateVersion_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionItems\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Library\ActionBase.cs" />
+    <Compile Include="Library\BackupFactory.cs" />
+    <Compile Include="Library\FileRunOver.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\LogEntry.cs" />
+    <Compile Include="Library\Parameters.cs" />
+    <Compile Include="Library\PersonalClientAction.cs" />
+    <Compile Include="Library\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SmsFactoryCommon\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="BizCare.SoftHair.UpdateVersion_1_TemporaryKey.pfx" />
+    <None Include="BizCare.SoftHair.UpdateVersion_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\dsConfig.xsc">
+      <DependentUpon>dsConfig.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\dsConfig.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsConfig.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\dsConfig.xss">
+      <DependentUpon>dsConfig.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_2.sql" />
+    <EmbeddedResource Include="Scripts\Ver_0_0_0_0.sql" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Schemas\dsConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsConfig.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Library\ScriptExecuter.cs" />
+    <Compile Include="Library\SqlRunner.cs" />
+    <Compile Include="Library\UpdateEventArgs.cs" />
+    <Compile Include="Library\Utils.cs" />
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.AnonymousContactUs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.CustomerException.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.CustomerLicense.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.CustomerServiceCall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.UpdateVersionQuery.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\BizCare.SoftHair.UpdateVersion.SmsFactoryCommon.Voucher.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1.wsdl" />
+    <None Include="Service References\SmsFactoryCommon\CommonServices11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices111.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1110.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1111.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1112.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices112.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices113.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices114.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices115.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices116.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices117.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices118.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices119.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sn.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportTemplate.htm" />
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_3.sql" />
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_4.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_5.sql" />
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_6.sql" />
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_8.sql" />
+    <EmbeddedResource Include="Scripts\Ver_NoScript.sql" />
+    <EmbeddedResource Include="Scripts\Ver_3_5_2_14.sql" />
+    <None Include="Report.htm" />
+    <EmbeddedResource Include="Schemas\VersionsMap.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientManage.Interface\ClientManage.Interface.csproj">
+      <Project>{BF04ACB6-4618-4AE7-B1FE-6517FF5557A4}</Project>
+      <Name>ClientManage.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_6_0_0.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_6_0_2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_0.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_4.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SmsFactoryCommon\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsFactoryCommon\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsFactoryCommon\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsFactoryCommon\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_5.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_6.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_8.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_9.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_11.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_13.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_14.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Ver_3_7_0_18.sql">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>DEL "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*"
+DEL "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\bin\release\Files\*.*"
+
+XCOPY "$(TargetDir)..\..\..\ClientManage\bin\Release\SoftHair.exe" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*" /D /V /R /Y /F
+XCOPY "$(TargetDir)..\..\..\ClientManage\bin\Release\QuickLaunch.exe" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*" /D /V /R /Y /F
+XCOPY "$(TargetDir)..\..\..\ClientManage\bin\Release\QuickLaunch.exe.config" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*" /D /V /R /Y /F
+XCOPY "$(TargetDir)..\..\..\ClientManage\bin\Release\*.dll" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.dll" /D /V /R /Y /F
+COPY "$(TargetDir)..\..\..\ClientManage\bin\Release\SoftHair.exe.config" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*"
+DEL "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\rescue.app"
+COPY "$(TargetDir)..\..\..\ClientManage\bin\Release\SoftHair.exe.config" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\rescue.app"
+
+XCOPY "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\Files\*.*" "$(TargetDir)..\..\..\BizCare.SoftHair.UpdateVersion\bin\release\Files\*.*" /D /V /R /Y /F</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BF04ACB6-4618-4AE7-B1FE-6517FF5557A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientManage.Interfaces</RootNamespace>
+    <AssemblyName>ClientManage.Interface</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SolutionItems\key.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>Migrated rules for ClientManage.Interface.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionItems\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AutoSMSParams.cs" />
+    <Compile Include="Calendar\BizCareAppointment.cs" />
+    <Compile Include="Calendar\CaresDescriptionRequestEventArgs.cs" />
+    <Compile Include="Calendar\ClientNameRequestEventArgs.cs" />
+    <Compile Include="CallerIdPerson.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ClientPhoto.cs" />
+    <Compile Include="AutoCALSMSParams.cs" />
+    <Compile Include="CommandLineArguments.cs" />
+    <Compile Include="DateUtils.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ImageResizer.cs" />
+    <Compile Include="KeyPressPipe.cs" />
+    <Compile Include="LogInfo.cs" />
+    <Compile Include="PhoneBookContact.cs" />
+    <Compile Include="Crypt.cs" />
+    <Compile Include="EventArguments.cs" />
+    <Compile Include="PostAddressee.cs" />
+    <Compile Include="ProcProgress.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RegistryFactory.cs" />
+    <Compile Include="Schemas\ArchiveCalendar.cs">
+      <DependentUpon>ArchiveCalendar.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\ArchiveCalendar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveCalendar.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPhotoCollection.cs" />
+    <Compile Include="Schemas\dsStickers.cs">
+      <DependentUpon>dsStickers.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\dsStickers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsStickers.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\ProductLicense.cs">
+      <DependentUpon>ProductLicense.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\ProductLicense.Designer.cs">
+      <DependentUpon>ProductLicense.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Schemas\ReportSchema.cs">
+      <DependentUpon>ReportSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\ReportSchema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Security.cs" />
+    <Compile Include="SqlExecute.cs" />
+    <Compile Include="Subscriber.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="ValidationResult.cs" />
+    <Compile Include="Worker.cs" />
+    <Compile Include="WorkerTraffic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SolutionItems\key.snk">
+      <Link>key.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="Migrated rules for ClientManage.Interface.ruleset" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\ArchiveCalendar.xsc">
+      <DependentUpon>ArchiveCalendar.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ArchiveCalendar.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArchiveCalendar.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\ArchiveCalendar.xss">
+      <DependentUpon>ArchiveCalendar.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ArchiveCalendar.xsx">
+      <DependentUpon>ArchiveCalendar.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\dsStickers.xsc">
+      <DependentUpon>dsStickers.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\dsStickers.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsStickers.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\dsStickers.xss">
+      <DependentUpon>dsStickers.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ProductLicense.xsc">
+      <DependentUpon>ProductLicense.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ProductLicense.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductLicense.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\ProductLicense.xss">
+      <DependentUpon>ProductLicense.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ReportSchema.xsc">
+      <DependentUpon>ReportSchema.xsd</DependentUpon>
+    </None>
+    <None Include="Schemas\ReportSchema.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportSchema.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Schemas\ReportSchema.xss">
+      <DependentUpon>ReportSchema.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+- check sms reports (columns, status = fail)
+- add column to day count report - as WEB columns
+- add column (approved) to history report
+- add script of SMS reports to update script
+- check service call

@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBBFFF0C-8AC1-4B69-9918-C0DC3C517E3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizCare.Calendar</RootNamespace>
+    <AssemblyName>BizCare.CalendarView</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SolutionItems\key.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>Migrated rules for BizCare.CalendarView.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionItems\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CalendarClipboard.cs" />
+    <Compile Include="CalendarView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalendarView.Designer.cs">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditEventCube.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditEventCube.Designer.cs">
+      <DependentUpon>EditEventCube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventCube.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EventCube.Designer.cs">
+      <DependentUpon>EventCube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Library\Appointment.cs" />
+    <Compile Include="Library\Appointments.cs" />
+    <Compile Include="Library\AttendeesCollection.cs" />
+    <Compile Include="Library\CalendarWorker.cs" />
+    <Compile Include="Library\CalendarWorkersCollection.cs" />
+    <Compile Include="Library\CubeColorSet.cs" />
+    <Compile Include="Library\EventDefinition.cs" />
+    <Compile Include="Library\Serializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkerPanel.Designer.cs">
+      <DependentUpon>WorkerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalFlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CalFlatButton.Designer.cs">
+      <DependentUpon>CalFlatButton.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalendarView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditEventCube.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditEventCube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventCube.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EventCube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorkerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalFlatButton.resx">
+      <DependentUpon>CalFlatButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SolutionItems\key.snk">
+      <Link>key.snk</Link>
+    </None>
+    <None Include="Migrated rules for BizCare.CalendarView.ruleset" />
+    <None Include="Resources\prev_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bgEx.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg_ex.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg_sn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tb_edit_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\t_man.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\worker_tiny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move_to.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move_to.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg_sn_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg_ex_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cal_worker_bg_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor9.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mnuColor8.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

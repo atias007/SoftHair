@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities.EntitiesDTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities.EntitiesDTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd8" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ContactsSyncInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerUniqueId" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DeletedContactsId" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="ModifiedContacts" nillable="true" type="tns:ArrayOfContactSyncDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactsSyncInfo" nillable="true" type="tns:ContactsSyncInfo" />
+  <xs:complexType name="ArrayOfContactSyncDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactSyncDetails" nillable="true" type="tns:ContactSyncDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContactSyncDetails" nillable="true" type="tns:ArrayOfContactSyncDetails" />
+  <xs:complexType name="ContactSyncDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MarriedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactSyncDetails" nillable="true" type="tns:ContactSyncDetails" />
+</xs:schema>

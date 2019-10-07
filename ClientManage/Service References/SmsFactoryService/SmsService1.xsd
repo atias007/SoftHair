@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://smsfactory.co.il/services/SmsService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://smsfactory.co.il/services/SmsService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="SmsPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlternativeEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Credentials" nillable="true" type="tns:CustomerCredentials" />
+      <xs:element minOccurs="0" name="DefaultMessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpireDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsDemo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfSmsMessage" />
+      <xs:element minOccurs="0" name="NotifyUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paging" nillable="true" type="tns:SmsPackagePaging" />
+      <xs:element minOccurs="0" name="ReferenceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SmsPackage" nillable="true" type="tns:SmsPackage" />
+  <xs:complexType name="CustomerCredentials">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseCredentials">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApplicationId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerCredentials" nillable="true" type="tns:CustomerCredentials" />
+  <xs:complexType name="BaseCredentials">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseCredentials" nillable="true" type="tns:BaseCredentials" />
+  <xs:complexType name="ArrayOfSmsMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SmsMessage" nillable="true" type="tns:SmsMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSmsMessage" nillable="true" type="tns:ArrayOfSmsMessage" />
+  <xs:complexType name="SmsMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseSmsMessage">
+        <xs:sequence>
+          <xs:element name="ToPhone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SmsMessage" nillable="true" type="tns:SmsMessage" />
+  <xs:complexType name="BaseSmsMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlternativeEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EntityId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EntityType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FromName" nillable="true" type="xs:string" />
+      <xs:element name="FromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReferenceId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseSmsMessage" nillable="true" type="tns:BaseSmsMessage" />
+  <xs:complexType name="SmsPackagePaging">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DelayBetweenPages" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="EndTimeOfDay" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="PageSize" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StartTimeOfDay" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="TotalPages" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SmsPackagePaging" nillable="true" type="tns:SmsPackagePaging" />
+  <xs:complexType name="BulkSmsMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseSmsMessage">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ToPhones" nillable="true" type="q1:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BulkSmsMessage" nillable="true" type="tns:BulkSmsMessage" />
+  <xs:complexType name="ArrayOfTotalMessagesPerDay">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TotalMessagesPerDay" nillable="true" type="tns:TotalMessagesPerDay" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTotalMessagesPerDay" nillable="true" type="tns:ArrayOfTotalMessagesPerDay" />
+  <xs:complexType name="TotalMessagesPerDay">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TotalMessagesBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+          <xs:element minOccurs="0" name="CustomerTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerUniqueId" type="ser:guid" />
+          <xs:element minOccurs="0" name="DateSend" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TotalMessagesPerDay" nillable="true" type="tns:TotalMessagesPerDay" />
+  <xs:complexType name="TotalMessagesBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TotalFail" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalMessages" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalSuccess" type="xs:int" />
+      <xs:element minOccurs="0" name="UsedCredit" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TotalMessagesBase" nillable="true" type="tns:TotalMessagesBase" />
+</xs:schema>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<QuickLaunchSettings>
+  <Location>
+    <X>NAV</X>
+    <Y>NAV</Y>
+  </Location>
+  <Support>
+    <ID></ID>
+    <PhoneNo></PhoneNo>
+    <ClientID></ClientID>
+    <ClientName></ClientName>
+    <LastCall></LastCall>
+    <SMS_UNIQUEID></SMS_UNIQUEID>
+  </Support>
+</QuickLaunchSettings>

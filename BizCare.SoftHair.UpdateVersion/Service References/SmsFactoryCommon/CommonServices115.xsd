@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SmsFactory.Common.CommonServices.Filters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.CommonServices.Filters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Filters" />
+  <xs:complexType name="CustomerServiceCallFilter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Filters" base="q1:BaseFilterOfCustomerServiceCallFdYOpOQC">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DateCreatedFrom" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateCreatedTo" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerServiceCallFilter" nillable="true" type="tns:CustomerServiceCallFilter" />
+  <xs:complexType name="CustomerExceptionFilter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Filters" base="q2:BaseFilterOfCustomerExceptionFdYOpOQC">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DateCreatedFrom" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateCreatedTo" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerExceptionFilter" nillable="true" type="tns:CustomerExceptionFilter" />
+  <xs:complexType name="CustomerContactUsFilter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Filters" base="q3:BaseFilterOfAnonymousContactUsFdYOpOQC">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DateCreatedFrom" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateCreatedTo" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="UserId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerContactUsFilter" nillable="true" type="tns:CustomerContactUsFilter" />
+</xs:schema>

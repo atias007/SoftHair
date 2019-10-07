@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CommonServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities.CommonServices" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Text" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System.Globalization" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd8" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.CommonServices" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.CommonServices.Filters" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Filters" />
+      <xsd:import schemaLocation="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/SmsFactory.Common.Entities.EntitiesDTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICommonServices_IsAlive_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsAlive" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_IsAlive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_WarmUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:WarmUp" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_WarmUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WarmUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerUniqueId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerUniqueId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerUniqueId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerUniqueIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SendEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmail" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SendEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SendEmailAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailAsync" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SendEmailAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailAsyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CheckForUpdateVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckForUpdateVersion" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CheckForUpdateVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckForUpdateVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerVersion" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerUpToDateVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerUpToDateVersion" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerUpToDateVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerUpToDateVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CheckCustomerLicense_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCustomerLicense" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CheckCustomerLicense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCustomerLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ReportCustomerServiceCall_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportCustomerServiceCall" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ReportCustomerServiceCall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportCustomerServiceCallResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_UpdateCustomerServiceCall_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerServiceCall" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_UpdateCustomerServiceCall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerServiceCallResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerServiceCallStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerServiceCallStatus" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetCustomerServiceCallStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCustomerServiceCallStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerServiceCalls_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerServiceCalls" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerServiceCalls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerServiceCallsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ReportCustomerException_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportCustomerException" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ReportCustomerException_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportCustomerExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerExceptionText_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerExceptionText" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerExceptionText_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerExceptionTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerExceptions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerExceptions" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetCustomerExceptions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerExceptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_AddAnonymousContactUs_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAnonymousContactUs" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_AddAnonymousContactUs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAnonymousContactUsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetAnonymousContactUs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnonymousContactUs" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetAnonymousContactUs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnonymousContactUsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetAnonymousContactUsStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAnonymousContactUsStatus" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetAnonymousContactUsStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAnonymousContactUsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_AddClick_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddClick" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_AddClick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddClickResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ResetCounter_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetCounter" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_ResetCounter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetCounterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetClickCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClickCount" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetClickCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClickCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CreateVouchers_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVouchers" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CreateVouchers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVouchersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CreateVouchersWithMetadata_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVouchersWithMetadata" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_CreateVouchersWithMetadata_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVouchersWithMetadataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetVoucher_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVoucher" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetVoucher_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVoucherResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetVouchers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVouchers" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_GetVouchers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVouchersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_IsVoucherExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsVoucherExist" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_IsVoucherExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsVoucherExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetVoucherUsed_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetVoucherUsed" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SetVoucherUsed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetVoucherUsedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SyncContacts_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncContacts" />
+  </wsdl:message>
+  <wsdl:message name="ICommonServices_SyncContacts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncContactsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICommonServices">
+    <wsdl:operation name="IsAlive">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/IsAlive" message="tns:ICommonServices_IsAlive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/IsAliveResponse" message="tns:ICommonServices_IsAlive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WarmUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/WarmUp" message="tns:ICommonServices_WarmUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/WarmUpResponse" message="tns:ICommonServices_WarmUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerUniqueId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerUniqueId" message="tns:ICommonServices_GetCustomerUniqueId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerUniqueIdResponse" message="tns:ICommonServices_GetCustomerUniqueId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SendEmail" message="tns:ICommonServices_SendEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SendEmailResponse" message="tns:ICommonServices_SendEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailAsync">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SendEmailAsync" message="tns:ICommonServices_SendEmailAsync_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SendEmailAsyncResponse" message="tns:ICommonServices_SendEmailAsync_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckForUpdateVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/CheckForUpdateVersion" message="tns:ICommonServices_CheckForUpdateVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/CheckForUpdateVersionResponse" message="tns:ICommonServices_CheckForUpdateVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerVersion" message="tns:ICommonServices_SetCustomerVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerVersionResponse" message="tns:ICommonServices_SetCustomerVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerUpToDateVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerUpToDateVersion" message="tns:ICommonServices_SetCustomerUpToDateVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerUpToDateVersionResponse" message="tns:ICommonServices_SetCustomerUpToDateVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCustomerLicense">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/CheckCustomerLicense" message="tns:ICommonServices_CheckCustomerLicense_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/CheckCustomerLicenseResponse" message="tns:ICommonServices_CheckCustomerLicense_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportCustomerServiceCall">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/ReportCustomerServiceCall" message="tns:ICommonServices_ReportCustomerServiceCall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/ReportCustomerServiceCallResponse" message="tns:ICommonServices_ReportCustomerServiceCall_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerServiceCall">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/UpdateCustomerServiceCall" message="tns:ICommonServices_UpdateCustomerServiceCall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/UpdateCustomerServiceCallResponse" message="tns:ICommonServices_UpdateCustomerServiceCall_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerServiceCallStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerServiceCallStatus" message="tns:ICommonServices_SetCustomerServiceCallStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SetCustomerServiceCallStatusResponse" message="tns:ICommonServices_SetCustomerServiceCallStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerServiceCalls">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerServiceCalls" message="tns:ICommonServices_GetCustomerServiceCalls_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerServiceCallsResponse" message="tns:ICommonServices_GetCustomerServiceCalls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportCustomerException">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/ReportCustomerException" message="tns:ICommonServices_ReportCustomerException_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/ReportCustomerExceptionResponse" message="tns:ICommonServices_ReportCustomerException_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerExceptionText">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerExceptionText" message="tns:ICommonServices_GetCustomerExceptionText_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerExceptionTextResponse" message="tns:ICommonServices_GetCustomerExceptionText_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerExceptions">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerExceptions" message="tns:ICommonServices_GetCustomerExceptions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetCustomerExceptionsResponse" message="tns:ICommonServices_GetCustomerExceptions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAnonymousContactUs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/AddAnonymousContactUs" message="tns:ICommonServices_AddAnonymousContactUs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/AddAnonymousContactUsResponse" message="tns:ICommonServices_AddAnonymousContactUs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnonymousContactUs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetAnonymousContactUs" message="tns:ICommonServices_GetAnonymousContactUs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetAnonymousContactUsResponse" message="tns:ICommonServices_GetAnonymousContactUs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAnonymousContactUsStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SetAnonymousContactUsStatus" message="tns:ICommonServices_SetAnonymousContactUsStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SetAnonymousContactUsStatusResponse" message="tns:ICommonServices_SetAnonymousContactUsStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddClick">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/AddClick" message="tns:ICommonServices_AddClick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/AddClickResponse" message="tns:ICommonServices_AddClick_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetCounter">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/ResetCounter" message="tns:ICommonServices_ResetCounter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/ResetCounterResponse" message="tns:ICommonServices_ResetCounter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClickCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetClickCount" message="tns:ICommonServices_GetClickCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetClickCountResponse" message="tns:ICommonServices_GetClickCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVouchers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/CreateVouchers" message="tns:ICommonServices_CreateVouchers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/CreateVouchersResponse" message="tns:ICommonServices_CreateVouchers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVouchersWithMetadata">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/CreateVouchersWithMetadata" message="tns:ICommonServices_CreateVouchersWithMetadata_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/CreateVouchersWithMetadataResponse" message="tns:ICommonServices_CreateVouchersWithMetadata_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVoucher">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetVoucher" message="tns:ICommonServices_GetVoucher_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetVoucherResponse" message="tns:ICommonServices_GetVoucher_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVouchers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/GetVouchers" message="tns:ICommonServices_GetVouchers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/GetVouchersResponse" message="tns:ICommonServices_GetVouchers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsVoucherExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/IsVoucherExist" message="tns:ICommonServices_IsVoucherExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/IsVoucherExistResponse" message="tns:ICommonServices_IsVoucherExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetVoucherUsed">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SetVoucherUsed" message="tns:ICommonServices_SetVoucherUsed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SetVoucherUsedResponse" message="tns:ICommonServices_SetVoucherUsed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncContacts">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonServices/SyncContacts" message="tns:ICommonServices_SyncContacts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonServices/SyncContactsResponse" message="tns:ICommonServices_SyncContacts_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICommonServices" type="tns:ICommonServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsAlive">
+      <soap:operation soapAction="http://tempuri.org/IBaseService/IsAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WarmUp">
+      <soap:operation soapAction="http://tempuri.org/IBaseService/WarmUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerUniqueId">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetCustomerUniqueId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SendEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailAsync">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SendEmailAsync" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckForUpdateVersion">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/CheckForUpdateVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerVersion">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SetCustomerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerUpToDateVersion">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SetCustomerUpToDateVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCustomerLicense">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/CheckCustomerLicense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportCustomerServiceCall">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/ReportCustomerServiceCall" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerServiceCall">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/UpdateCustomerServiceCall" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerServiceCallStatus">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SetCustomerServiceCallStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerServiceCalls">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetCustomerServiceCalls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportCustomerException">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/ReportCustomerException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerExceptionText">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetCustomerExceptionText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerExceptions">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetCustomerExceptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAnonymousContactUs">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/AddAnonymousContactUs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnonymousContactUs">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetAnonymousContactUs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAnonymousContactUsStatus">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SetAnonymousContactUsStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddClick">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/AddClick" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetCounter">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/ResetCounter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClickCount">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetClickCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVouchers">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/CreateVouchers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVouchersWithMetadata">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/CreateVouchersWithMetadata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVoucher">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetVoucher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVouchers">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/GetVouchers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsVoucherExist">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/IsVoucherExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetVoucherUsed">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SetVoucherUsed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncContacts">
+      <soap:operation soapAction="http://tempuri.org/ICommonServices/SyncContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonServices">
+    <wsdl:port name="BasicHttpBinding_ICommonServices" binding="tns:BasicHttpBinding_ICommonServices">
+      <soap:address location="http://smsfactoryservice.cloudapp.net/Services/CommonServices.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

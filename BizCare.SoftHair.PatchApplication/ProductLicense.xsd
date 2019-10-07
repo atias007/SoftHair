@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="ProductLicense" targetNamespace="http://tempuri.org/ProductLicense.xsd" xmlns:mstns="http://tempuri.org/ProductLicense.xsd" xmlns="http://tempuri.org/ProductLicense.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections></Connections>
+        <Tables></Tables>
+        <Sources></Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProductLicense" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ProductLicense" msprop:Generator_DataSetName="ProductLicense">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="License" msprop:Generator_UserTableName="License" msprop:Generator_RowDeletedName="LicenseRowDeleted" msprop:Generator_RowChangedName="LicenseRowChanged" msprop:Generator_RowClassName="LicenseRow" msprop:Generator_RowChangingName="LicenseRowChanging" msprop:Generator_RowEvArgName="LicenseRowChangeEvent" msprop:Generator_RowEvHandlerName="LicenseRowChangeEventHandler" msprop:Generator_TableClassName="LicenseDataTable" msprop:Generator_TableVarName="tableLicense" msprop:Generator_RowDeletingName="LicenseRowDeleting" msprop:Generator_TablePropName="License">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cpu_id" msprop:Generator_UserColumnName="cpu_id" msprop:Generator_ColumnPropNameInRow="cpu_id" msprop:Generator_ColumnVarNameInTable="columncpu_id" msprop:Generator_ColumnPropNameInTable="cpu_idColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="from_date" msprop:Generator_UserColumnName="from_date" msprop:Generator_ColumnPropNameInRow="from_date" msprop:Generator_ColumnVarNameInTable="columnfrom_date" msprop:Generator_ColumnPropNameInTable="from_dateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="to_date" msprop:Generator_UserColumnName="to_date" msprop:Generator_ColumnPropNameInRow="to_date" msprop:Generator_ColumnVarNameInTable="columnto_date" msprop:Generator_ColumnPropNameInTable="to_dateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="last_used" msprop:Generator_UserColumnName="last_used" msprop:Generator_ColumnPropNameInRow="last_used" msprop:Generator_ColumnVarNameInTable="columnlast_used" msprop:Generator_ColumnPropNameInTable="last_usedColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="type" msprop:Generator_UserColumnName="type" msprop:nullValue="_empty" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_ColumnPropNameInRow="type" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="key" msprop:Generator_UserColumnName="key" msprop:nullValue="_empty" msprop:Generator_ColumnVarNameInTable="columnkey" msprop:Generator_ColumnPropNameInTable="keyColumn" msprop:Generator_ColumnPropNameInRow="key" type="xs:string" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LicenseFeatures" msprop:Generator_UserTableName="LicenseFeatures" msprop:Generator_RowDeletedName="LicenseFeaturesRowDeleted" msprop:Generator_RowChangedName="LicenseFeaturesRowChanged" msprop:Generator_RowClassName="LicenseFeaturesRow" msprop:Generator_RowChangingName="LicenseFeaturesRowChanging" msprop:Generator_RowEvArgName="LicenseFeaturesRowChangeEvent" msprop:Generator_RowEvHandlerName="LicenseFeaturesRowChangeEventHandler" msprop:Generator_TableClassName="LicenseFeaturesDataTable" msprop:Generator_TableVarName="tableLicenseFeatures" msprop:Generator_RowDeletingName="LicenseFeaturesRowDeleting" msprop:Generator_TablePropName="LicenseFeatures">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="description" msprop:Generator_UserColumnName="description" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" msprop:Generator_ColumnVarNameInTable="columndescription" type="xs:string" default="" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

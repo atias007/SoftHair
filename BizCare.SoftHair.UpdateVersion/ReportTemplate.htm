@@ -1,0 +1,69 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+	    <style type="text/css">
+	        body
+	        {
+	        	font-family: Tahoma; 
+	        	font-size: 8pt;
+	        }
+            .style1
+            {
+            	font-size: 21pt;
+                font-weight: bold;
+                color: #555555;
+            }
+            .style2
+            {
+                font-family:Tahoma; 
+                font-size: 8pt; 
+                width:100%;
+                border-collapse:collapse;
+            }
+            .style2 th
+            {
+            	font-size: 9pt;
+	            font-family: Arial;
+	            font-weight: bold;
+	            direction: ltr;
+	            text-align: left;
+            }
+            .style3
+            {
+            	color: White;
+	            background-color:#5D7B9D;
+            }
+            .style4
+            {
+	            background-color:#cccccc;
+            }
+            </style>
+	</head>
+	<body>
+	    <div class="style1">Update version report No. {0}</div>
+	    
+	    <hr />
+	    <div style="font-size: 10pt;">
+            Client: {1} - {2}<br />
+            Start at: {3}<br />
+            End at: {4}<br />
+        </div>   
+	    <hr />
+	    <div style=" height: 25px; padding: 5px 5px 0px 5px; background-color: #f7f6f3; margin-top: 5px; margin-bottom: 5px; border: solid 2px #9796b3;">
+	        <table width="100%" cellpadding="0" cellspacing="0">
+	            <tr>
+	                <td style="width: 24px;"><img alt="" width="16px" height="16px" src="{5}" /></td>
+	                <td>{6}</td>
+	            </tr>
+	        </table>
+	    </div>
+	    <table class="style2" cellpadding="2" cellspacing="0">
+            <tr class="style3">
+                <th style="width: 24px;"><div style="width: 24px;"></div></th>
+                <th style="width: 100%;">Message</th>
+            </tr>
+            {7}
+        </table>
+	</body>
+</html>

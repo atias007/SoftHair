@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{713FA5BF-2BBD-4856-AD56-C31B3539EA23}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientManage</RootNamespace>
+    <AssemblyName>SoftHair</AssemblyName>
+    <ApplicationIcon>SoftHairLogo.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SolutionItems\key.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>Migrated rules for ClientManage.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>Migrated rules for ClientManage.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Apis, Version=1.9.0.26011, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.9.0\lib\net40\Google.Apis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.9.0.26011, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.9.0\lib\net40\Google.Apis.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.9.0.26016, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.9.0\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.9.0.128, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Calendar.v3.1.9.0.1280\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Calendar.v3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.9.0.26010, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.9.0\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.9.0.26013, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.9.0\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HardwareHelperLib">
+      <HintPath>..\SolutionItems\HardwareHelperLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.v12.12.0.0.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.8.1.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnofficialAzure.StorageClient.1.0.0\lib\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="VDialog">
+      <HintPath>..\SolutionItems\VDialog.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.1.10.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionItems\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Forms\BaseMDIChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseMDIChild.Designer.cs">
+      <DependentUpon>BaseMDIChild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseMDIOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseMDIOptionForm.Designer.cs">
+      <DependentUpon>BaseMDIOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BasePopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BasePopUpForm.Designer.cs">
+      <DependentUpon>BasePopUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddressList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddressList.Designer.cs">
+      <DependentUpon>frmAddressList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBackup.Designer.cs">
+      <DependentUpon>frmBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCard.Designer.cs">
+      <DependentUpon>frmCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLogViewer.designer.cs">
+      <DependentUpon>frmLogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSubscriptionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSubscriptionDetails.Designer.cs">
+      <DependentUpon>frmSubscriptionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOptions.Designer.cs">
+      <DependentUpon>frmOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAttachMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAttachMessage.Designer.cs">
+      <DependentUpon>frmAttachMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBirthday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBirthday.Designer.cs">
+      <DependentUpon>frmBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCalArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCalArchive.Designer.cs">
+      <DependentUpon>frmCalArchive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCalArchiveInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCalArchiveInfo.Designer.cs">
+      <DependentUpon>frmCalArchiveInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCalendar.Designer.cs">
+      <DependentUpon>frmCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCalendarPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCalendarPreview.Designer.cs">
+      <DependentUpon>frmCalendarPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCarePick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCarePick.Designer.cs">
+      <DependentUpon>frmCarePick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmClientQuickSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientQuickSearch.Designer.cs">
+      <DependentUpon>frmClientQuickSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmClientsPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientsPopUp.Designer.cs">
+      <DependentUpon>frmClientsPopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmContactDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmContactDetails.Designer.cs">
+      <DependentUpon>frmContactDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDialForm.Designer.cs">
+      <DependentUpon>frmDialForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDynamicReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDynamicReport.Designer.cs">
+      <DependentUpon>frmDynamicReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEventDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEventDetails.Designer.cs">
+      <DependentUpon>frmEventDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLicense.Designer.cs">
+      <DependentUpon>frmLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMailCampaign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMailCampaign.Designer.cs">
+      <DependentUpon>frmMailCampaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPassword.Designer.cs">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPhoneBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPhoneBook.Designer.cs">
+      <DependentUpon>frmPhoneBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPhotoDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPhotoDetails.Designer.cs">
+      <DependentUpon>frmPhotoDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRemainder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRemainder.Designer.cs">
+      <DependentUpon>frmRemainder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSMS.Designer.cs">
+      <DependentUpon>frmSMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPhotoAlbum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPhotoAlbum.Designer.cs">
+      <DependentUpon>frmPhotoAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSplash.Designer.cs">
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmStickers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmStickers.Designer.cs">
+      <DependentUpon>frmStickers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSubscription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSubscription.Designer.cs">
+      <DependentUpon>frmSubscription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWorkerDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWorkerDetails.Designer.cs">
+      <DependentUpon>frmWorkerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWorkersManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWorkersManage.Designer.cs">
+      <DependentUpon>frmWorkersManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSearchClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSearchClient.Designer.cs">
+      <DependentUpon>frmSearchClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMailPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMailPreview.Designer.cs">
+      <DependentUpon>frmMailPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSticker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSticker.designer.cs">
+      <DependentUpon>frmOptSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptBackup.Designer.cs">
+      <DependentUpon>frmOptBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptEmail.Designer.cs">
+      <DependentUpon>frmOptEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptHistory.Designer.cs">
+      <DependentUpon>frmOptHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar1.Designer.cs">
+      <DependentUpon>frmOptCalendar1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar2.Designer.cs">
+      <DependentUpon>frmOptCalendar2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptCalendar3.Designer.cs">
+      <DependentUpon>frmOptCalendar3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptClients1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptClients1.Designer.cs">
+      <DependentUpon>frmOptClients1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptClients2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptClients2.Designer.cs">
+      <DependentUpon>frmOptClients2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptContact.Designer.cs">
+      <DependentUpon>frmOptContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptLicense.Designer.cs">
+      <DependentUpon>frmOptLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptModem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptModem.Designer.cs">
+      <DependentUpon>frmOptModem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptOnlineUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptOnlineUpdate.Designer.cs">
+      <DependentUpon>frmOptOnlineUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptReports.Designer.cs">
+      <DependentUpon>frmOptReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSMS1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSMS1.Designer.cs">
+      <DependentUpon>frmOptSMS1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSystem1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSystem1.Designer.cs">
+      <DependentUpon>frmOptSystem1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSystem2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptSystem2.Designer.cs">
+      <DependentUpon>frmOptSystem2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptWorkers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionForms\frmOptWorkers.Designer.cs">
+      <DependentUpon>frmOptWorkers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Library\AutoCompleteAppointment.cs" />
+    <Compile Include="Library\BlobStorage.cs" />
+    <Compile Include="Library\ContactSyncDetails.cs" />
+    <Compile Include="Library\EventSyncDetails.cs" />
+    <Compile Include="Library\DataGridViewCalendarColumn.cs" />
+    <Compile Include="Library\EmailHelper.cs" />
+    <Compile Include="Library\General.cs" />
+    <Compile Include="Library\DataGridViewCellStyleParser.cs" />
+    <Compile Include="Library\DGVExcelExport.cs" />
+    <Compile Include="Library\DGVLoadImages.cs" />
+    <Compile Include="Library\EventLogManager.cs" />
+    <Compile Include="Library\HasAlertQueue.cs" />
+    <Compile Include="Library\HookKeyPress.cs" />
+    <Compile Include="Library\HTMLPrinter.cs" />
+    <Compile Include="Library\LicenseManager.cs" />
+    <Compile Include="Library\LocalReportPrinter.cs" />
+    <Compile Include="Library\LocalReportRenderer.cs" />
+    <Compile Include="Library\MyMessageBox.cs" />
+    <Compile Include="Library\DataGridViewPrinter.cs" />
+    <Compile Include="Forms\frmIncomingCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmIncomingCall.Designer.cs">
+      <DependentUpon>frmIncomingCall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClients.Designer.cs">
+      <DependentUpon>frmClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\ScheduleTasks.cs" />
+    <Compile Include="Library\SearchEngine.cs" />
+    <Compile Include="Library\SettingsFileHelper.cs" />
+    <Compile Include="Library\SingleApplication.cs" />
+    <Compile Include="Library\SmsEngine.cs" />
+    <Compile Include="Library\StickerClient.cs" />
+    <Compile Include="Library\TBSavedWords.cs" />
+    <Compile Include="Library\WebServices.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SmsFactoryCommon\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SmsFactoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CarePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CarePicker.designer.cs">
+      <DependentUpon>CarePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contact.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contact.Designer.cs">
+      <DependentUpon>Contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DelayTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\DelayTextBox.Designer.cs">
+      <DependentUpon>DelayTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DigitalClock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DigitalClock.Designer.cs">
+      <DependentUpon>DigitalClock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DigitalDisplay.cs" />
+    <Compile Include="UserControls\DropDownButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DropDownButton.Designer.cs">
+      <DependentUpon>DropDownButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FilmStripPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FilmStripPreview.Designer.cs">
+      <DependentUpon>FilmStripPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FormControlBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FormControlBox.Designer.cs">
+      <DependentUpon>FormControlBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImageComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\IncomeCallerId.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\IncomeCallerId.Designer.cs">
+      <DependentUpon>IncomeCallerId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InformationBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\InformationBar.Designer.cs">
+      <DependentUpon>InformationBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LicenseInfo.Designer.cs">
+      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainTabStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MainTabStrip.Designer.cs">
+      <DependentUpon>MainTabStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\BaseMDIChild.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BaseMDIChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseMDIOptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BaseMDIOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BasePopUpForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BasePopUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddressList.resx">
+      <DependentUpon>frmAddressList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAttachMessage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAttachMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBackup.resx">
+      <DependentUpon>frmBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBirthday.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCalArchive.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCalArchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCalArchiveInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCalArchiveInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCalendar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCalendarPreview.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCalendarPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCarePick.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCarePick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientQuickSearch.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmClientQuickSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientsPopUp.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmClientsPopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContactDetails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmContactDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDialForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDynamicReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDynamicReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEventDetails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmEventDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmIncomingCall.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmIncomingCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLicense.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLogViewer.resx">
+      <DependentUpon>frmLogViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMailCampaign.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMailCampaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClients.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMessage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOptions.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPassword.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPhoneBook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPhoneBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPhotoDetails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPhotoDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRemainder.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmRemainder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSMS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSearchClient.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSearchClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMailPreview.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMailPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPhotoAlbum.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPhotoAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSplash.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmStickers.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmStickers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSubscription.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSubscription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSubscriptionDetails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSubscriptionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWorkerDetails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmWorkerDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWorkersManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmWorkersManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptSticker.resx">
+      <DependentUpon>frmOptSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptBackup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptCalendar1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptCalendar1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptCalendar2.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptCalendar2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptCalendar3.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptCalendar3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptClients1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptClients1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptClients2.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptClients2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptContact.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptEmail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptHistory.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptLicense.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptModem.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptModem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptOnlineUpdate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptOnlineUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptReports.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptSMS1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptSMS1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptSystem1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptSystem1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptSystem2.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptSystem2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionForms\frmOptWorkers.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOptWorkers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CarePicker.resx">
+      <DependentUpon>CarePicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contact.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DelayTextBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DelayTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DigitalClock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DigitalClock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DropDownButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DropDownButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FilmStripPreview.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FilmStripPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FormControlBox.resx">
+      <DependentUpon>FormControlBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\IncomeCallerId.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IncomeCallerId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\InformationBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InformationBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LicenseInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MainTabStrip.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainTabStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PhoneBookButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PhoneBookButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PhotoPreview.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PhotoPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ReportParametersPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReportParametersPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ReportParamField.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReportParamField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SearchPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SearchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SoftHairDateSelector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SoftHairDateSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SoftHairDTPicker.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SoftHairDTPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SoftHairDTRange.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SoftHairDTRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TrafficButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrafficButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\XPFlatButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>XPFlatButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="..\SolutionItems\key.snk">
+      <Link>key.snk</Link>
+    </None>
+    <None Include="client_secret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Migrated rules for ClientManage.ruleset" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UserControls\PhoneBookButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PhoneBookButton.Designer.cs">
+      <DependentUpon>PhoneBookButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PhotoPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PhotoPreview.Designer.cs">
+      <DependentUpon>PhotoPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportParametersPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportParametersPanel.Designer.cs">
+      <DependentUpon>ReportParametersPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportParamField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportParamField.Designer.cs">
+      <DependentUpon>ReportParamField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchPanel.Designer.cs">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDateSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDateSelector.Designer.cs">
+      <DependentUpon>SoftHairDateSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDTPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDTPicker.Designer.cs">
+      <DependentUpon>SoftHairDTPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDTRange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SoftHairDTRange.Designer.cs">
+      <DependentUpon>SoftHairDTRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrafficButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TrafficButton.Designer.cs">
+      <DependentUpon>TrafficButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\XPFlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\XPFlatButton.Designer.cs">
+      <DependentUpon>XPFlatButton.cs</DependentUpon>
+    </Compile>
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.Voucher.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices.wsdl" />
+    <None Include="Service References\SmsFactoryCommon\CommonServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\CommonServices9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService.wsdl" />
+    <None Include="Service References\SmsFactoryService\SmsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizCare.CalendarView\BizCare.CalendarView.csproj">
+      <Project>{BBBFFF0C-8AC1-4B69-9918-C0DC3C517E3C}</Project>
+      <Name>BizCare.CalendarView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizCare.SoftHair.MonthCalendar\BizCare.SoftHair.MonthCalendar.csproj">
+      <Project>{F6773550-16D0-411B-AA66-7EFAF0AD3391}</Project>
+      <Name>BizCare.SoftHair.MonthCalendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizCare.WebCam\BizCare.WebCam.csproj">
+      <Project>{4B354057-42EB-428C-A59C-4D568819F80B}</Project>
+      <Name>BizCare.WebCam</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClientManage.BL\ClientManage.BL.csproj">
+      <Project>{42386F1E-779D-4AE0-973A-4C21DE710B84}</Project>
+      <Name>ClientManage.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClientManage.Interface\ClientManage.Interface.csproj">
+      <Project>{BF04ACB6-4618-4AE7-B1FE-6517FF5557A4}</Project>
+      <Name>ClientManage.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImagePicker\BizCare.ImagePicker.csproj">
+      <Project>{C193F3E6-1493-409A-A969-89C38DC77E9D}</Project>
+      <Name>BizCare.ImagePicker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SolutionItems\Content.dat">
+      <Link>Content.dat</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="..\LicenseGenerator\Script_Hair.txt">
+      <Link>Forms\OptionForms\Script_Hair.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\LicenseGenerator\Script_Nail.txt">
+      <Link>Forms\OptionForms\Script_Nail.txt</Link>
+    </EmbeddedResource>
+    <Content Include="Documents\Reports_3_5_2.txt" />
+    <Content Include="rescue.app">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\DataSources\ClientManage.Interface.Schemas.dsStickers.datasource" />
+    <None Include="Resources\caller_id.gif" />
+    <None Include="Resources\btn_clear_orange.gif" />
+    <None Include="Resources\btn_clear_blue.gif" />
+    <None Include="Resources\ccard_ru_corner.gif" />
+    <None Include="Resources\ccard_lb_corner.gif" />
+    <None Include="Resources\ccard_rb_corner.gif" />
+    <None Include="Resources\ccard_right_shaddow.gif" />
+    <None Include="Resources\ccard_botom_shaddow.gif" />
+    <None Include="Resources\ccard_logo.gif" />
+    <None Include="Resources\attach_client.gif" />
+    <None Include="Resources\add_client.png" />
+    <None Include="Resources\add_client_small.png" />
+    <None Include="Resources\button_reg.gif" />
+    <None Include="Resources\button_reg1.gif" />
+    <None Include="Resources\btn_close_light.gif" />
+    <None Include="Resources\btn_close.gif" />
+    <None Include="Resources\btn_close_dis.gif" />
+    <None Include="Resources\btn_minimize_light.gif" />
+    <None Include="Resources\btn_maximize.gif" />
+    <None Include="Resources\btn_maximize_light.gif" />
+    <None Include="Resources\btn_minimize.gif" />
+    <None Include="Resources\btn_maximize_dis.gif" />
+    <None Include="Resources\btn_minimize_dis.gif" />
+    <None Include="Resources\arr_down.png" />
+    <None Include="Resources\arr_up.png" />
+    <None Include="Resources\cancel_small.png" />
+    <None Include="Documents\Scripts.sql" />
+    <None Include="Resources\btn_calendar.gif" />
+    <None Include="Resources\marriedNbday.png" />
+    <None Include="Resources\married.png" />
+    <None Include="Resources\report_small.png" />
+    <None Include="Resources\call.png" />
+    <None Include="Resources\stickers_small.png" />
+    <None Include="Resources\mnuPrev.png" />
+    <None Include="Resources\mnuFind.png" />
+    <None Include="Resources\mnuNext.png" />
+    <None Include="Resources\cancel_small_dis.png" />
+    <None Include="Resources\status4.png" />
+    <None Include="Resources\status1.png" />
+    <None Include="Resources\status2.png" />
+    <None Include="Resources\status3.png" />
+    <None Include="Resources\reg_button.png" />
+    <None Include="Resources\snow.png" />
+    <None Include="Resources\freez.png" />
+    <None Include="Resources\button_dis.png" />
+    <None Include="Resources\save_small.png" />
+    <None Include="Resources\warn.png" />
+    <None Include="Resources\reg_button_dis.png" />
+    <None Include="Resources\card.png" />
+    <None Include="Resources\card2.png" />
+    <None Include="Resources\card_small.png" />
+    <None Include="Resources\tab_market_dis.png" />
+    <None Include="Resources\tab_market.png" />
+    <None Include="Resources\ticket.png" />
+    <None Include="Resources\ticke_smallt.png" />
+    <None Include="Resources\balloon.png" />
+    <Content Include="Documents\Setup.html" />
+    <Content Include="Documents\Versions.txt" />
+    <Content Include="HTMLTemplates\AlbumForm.htm" />
+    <Content Include="HTMLTemplates\ClientForm.htm" />
+    <Content Include="HTMLTemplates\ContactForm.htm" />
+    <Content Include="HTMLTemplates\CalendarForm.htm" />
+    <Content Include="HTMLTemplates\EventForm.htm" />
+    <Content Include="HTMLTemplates\PhoneBookForm.htm" />
+    <Content Include="HTMLTemplates\PhotoForm.htm" />
+    <Content Include="HTMLTemplates\Stylesheet.css" />
+    <Content Include="HTMLTemplates\WorkerForm.htm" />
+    <Content Include="HTMLTemplates\ReportForm.htm" />
+    <Content Include="HTMLTemplates\DefaultPrintForm.htm" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\clients_small.png" />
+    <None Include="Resources\clients_new_small.png" />
+    <None Include="Resources\client.gif" />
+    <None Include="Resources\change.png" />
+    <Content Include="Resources\close_form.gif" />
+    <None Include="Resources\test.gif" />
+    <None Include="Resources\shadow_left.gif" />
+    <None Include="Resources\shadow_right.gif" />
+    <None Include="Resources\shadow_top.gif" />
+    <None Include="Resources\shadow_bottom.gif" />
+    <None Include="Resources\no_photo.gif" />
+    <None Include="Resources\view_list.png" />
+    <None Include="Resources\view_film.png" />
+    <None Include="Resources\view_icons.png" />
+    <None Include="Resources\hourglass_big.gif" />
+    <None Include="Resources\small_tab_left.png" />
+    <None Include="Resources\small_tab_right.png" />
+    <None Include="Resources\small_tab_bg.gif" />
+    <None Include="Resources\small_tab_lt.gif" />
+    <None Include="Resources\period_reg.gif" />
+    <None Include="Resources\period_lit.gif" />
+    <None Include="Resources\tab_clr_sel.png" />
+    <None Include="Resources\tab_cal.png" />
+    <None Include="Resources\tab_clr.png" />
+    <None Include="Resources\tab_cal_sel.png" />
+    <None Include="Resources\subtab_color.png" />
+    <None Include="Resources\subtab_cal.png" />
+    <None Include="Resources\trash.png" />
+    <None Include="Resources\point.png" />
+    <None Include="Resources\stickers.png" />
+    <None Include="Resources\toolbar_bg.gif" />
+    <None Include="Resources\toolbar_bg_small.gif" />
+    <None Include="Resources\search_panel_bg_blue.gif" />
+    <None Include="Resources\search_panel_bgorange.gif" />
+    <None Include="Resources\search_panel_bgblue.gif" />
+    <None Include="Resources\teamviewer.png" />
+    <None Include="Resources\tbbRemote.Image.png" />
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.AnonymousContactUs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerException.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerLicense.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerServiceCall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.UpdateVersionQuery.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryService\ClientManage.SmsFactoryService.HistoryMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryService\ClientManage.SmsFactoryService.TotalMessagesPerDay.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsFactoryService\configuration91.svcinfo" />
+    <None Include="Service References\SmsFactoryService\configuration.svcinfo" />
+    <None Include="Service References\SmsFactoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SmsFactoryCommon\configuration91.svcinfo" />
+    <None Include="Service References\SmsFactoryCommon\configuration.svcinfo" />
+    <None Include="Service References\SmsFactoryCommon\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SmsFactoryService\SmsService.disco" />
+    <None Include="Service References\SmsFactoryCommon\CommonServices.disco" />
+    <Content Include="SoftHairLogo.ico" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\privacy.png" />
+    <None Include="Resources\no_client.png" />
+    <None Include="Resources\no_client.gif" />
+    <None Include="Resources\no_client_big.gif" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\prev.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\print_logo2.jpg" />
+    <None Include="Resources\msg_wrn_small.png" />
+    <None Include="Resources\msg_ok_small.png" />
+    <None Include="Resources\msg_ok.png" />
+    <None Include="Resources\print_logo.jpg" />
+    <None Include="Resources\send_small.png" />
+    <None Include="Resources\mail_small.png" />
+    <None Include="Resources\new_small.png" />
+    <None Include="Resources\print_small.png" />
+    <None Include="Resources\tb_edit_small.png" />
+    <None Include="Resources\ok1.png" />
+    <None Include="Resources\page.png" />
+    <None Include="Resources\play2.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\worker.jpg" />
+    <None Include="Resources\msg_wrn.png" />
+    <None Include="Resources\msg_qst.png" />
+    <None Include="Resources\msg_inf.png" />
+    <None Include="Resources\msg_err.png" />
+    <None Include="Resources\msg_att.png" />
+    <None Include="Resources\traffic_enter.gif" />
+    <None Include="Resources\traffic_enter_light.gif" />
+    <None Include="Resources\traffic_leave.gif" />
+    <None Include="Resources\traffic_leave_light.gif" />
+    <None Include="Resources\traffic_button_light.gif" />
+    <None Include="Resources\traffic_button_normal.gif" />
+    <None Include="Resources\traffic_button_1.gif" />
+    <None Include="Resources\traffic_button_2.gif" />
+    <None Include="Resources\leave_caption.png" />
+    <None Include="Resources\enter_caption.png" />
+    <None Include="Resources\worker_small.jpg" />
+    <None Include="Resources\tab_opt.png" />
+    <None Include="Resources\tab_opt_dis.png" />
+    <None Include="Resources\tab_bo.png" />
+    <None Include="Resources\tab_phone_book_dis.png" />
+    <None Include="Resources\tab_phone_book.png" />
+    <None Include="Resources\tab_bo_dis.png" />
+    <None Include="Resources\tab_exit.png" />
+    <None Include="Resources\tab_exit_dis.png" />
+    <None Include="Resources\tab_workers.png" />
+    <None Include="Resources\tab_workers_dis.png" />
+    <None Include="Resources\tab_calendar.png" />
+    <None Include="Resources\tab_calendar_dis.png" />
+    <None Include="Resources\tab phone_book.png" />
+    <None Include="Resources\tab phone_book_dis.png" />
+    <None Include="Resources\tab_reports.png" />
+    <None Include="Resources\tab_reports_dis.png" />
+    <None Include="Resources\tab_client.png" />
+    <None Include="Resources\tab_client_dis.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\close_form_small2.png" />
+    <None Include="Resources\close_form2.png" />
+    <None Include="Resources\close_form_small.png" />
+    <None Include="Resources\close_form.png" />
+    <None Include="Resources\close_small.png" />
+    <None Include="Resources\pen.png" />
+    <None Include="Resources\mail.png" />
+    <None Include="Resources\tb_edit3.png" />
+    <None Include="Resources\tb_edit2.png" />
+    <None Include="Resources\client_card.gif" />
+    <None Include="Resources\search_panel_icon.gif" />
+    <None Include="Resources\search_panel_icon_light.gif" />
+    <None Include="Resources\search_panel_logo.gif" />
+    <None Include="Resources\ddl_light.gif" />
+    <None Include="Resources\ddl_dark.gif" />
+    <None Include="Resources\ddl_reg.gif" />
+    <None Include="Resources\hide_params.png" />
+    <None Include="Resources\show_params.png" />
+    <None Include="Resources\show_params.gif" />
+    <None Include="Resources\hide_params.gif" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\no_calendar_client.jpg" />
+    <None Include="Resources\no_image_medium.jpg" />
+    <None Include="Resources\no_image_small.jpg" />
+    <None Include="Resources\no_image_big.jpg" />
+    <None Include="Resources\worker_nopic.jpg" />
+    <None Include="Resources\tb_phone2.png" />
+    <None Include="Resources\tb_phone1.png" />
+    <None Include="Resources\tb_edit_small.gif" />
+    <None Include="Resources\tb_delete_small.png" />
+    <None Include="Resources\tb_delete.png" />
+    <None Include="Resources\tb_edit.gif" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\edit2.png" />
+    <None Include="Resources\delete_small.png" />
+    <None Include="Resources\open_file.png" />
+    <None Include="Resources\ok_small.gif" />
+    <None Include="Resources\phone_book_header3.gif" />
+    <None Include="Resources\phone_book_header2.gif" />
+    <None Include="Resources\contact_search_panel_orange.jpg" />
+    <None Include="Resources\contact_search_panel_blue.jpg" />
+    <None Include="Resources\contact_search_panel_5.jpg" />
+    <None Include="Resources\contact_search_panel_6.jpg" />
+    <None Include="Resources\ph_button1.gif" />
+    <None Include="Resources\ph_button2.gif" />
+    <None Include="Resources\contact_search_panel 6.jpg" />
+    <None Include="Resources\contact_search_panel 5.jpg" />
+    <None Include="Resources\findButton 4.gif" />
+    <None Include="Resources\findButton 5.gif" />
+    <None Include="Resources\field_error.gif" />
+    <None Include="Resources\field_error.bmp" />
+    <None Include="Resources\hourglass.gif" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\remove.gif" />
+    <None Include="Resources\someone_small.gif" />
+    <None Include="Resources\someone.gif" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\Floppy.png" />
+    <None Include="Resources\client_nophone_small.gif" />
+    <None Include="Resources\client_error_small.gif" />
+    <None Include="Resources\client_ok_small.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SmsFactoryCommon\" />
+    <WCFMetadataStorage Include="Service References\SmsFactoryService\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>
