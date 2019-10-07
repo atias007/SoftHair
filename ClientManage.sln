@@ -89,11 +89,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Administration", "Administr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GmailSoftHairSync", "GmailSoftHairSync\GmailSoftHairSync.csproj", "{CBEAA732-66B6-4A11-9138-DBCD65E53FE5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packages", "packages", "{351AA077-5BAF-4FD8-8E90-7283E604C932}"
-	ProjectSection(SolutionItems) = preProject
-		packages\Google.Apis.1.9.0\Google.Apis.1.9.0.nupkg = packages\Google.Apis.1.9.0\Google.Apis.1.9.0.nupkg
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,7 +232,6 @@ Global
 		{4B354057-42EB-428C-A59C-4D568819F80B} = {85A1426D-D286-49C5-B928-34D2880411F8}
 		{E3D10D92-F7B8-48C9-B4F6-E4034968D699} = {00D5EBD5-F9D4-4AAF-A1C6-8585D4057D7E}
 		{5CE6B472-5DDC-4BE2-974F-E8199E4CECB9} = {00D5EBD5-F9D4-4AAF-A1C6-8585D4057D7E}
-		{351AA077-5BAF-4FD8-8E90-7283E604C932} = {EA4F0246-AB80-4658-948C-44FAE98E989F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62BA2910-8C0F-4995-9A02-F4780432CCA7}
