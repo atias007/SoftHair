@@ -3,7 +3,6 @@ using ClientManage.BL;
 using ClientManage.BL.Library;
 using ClientManage.Interfaces;
 using ClientManage.Library;
-using ClientManage.SmsFactoryService;
 using LukeSw.Windows.Forms;
 using System;
 using System.Collections.Generic;
@@ -143,22 +142,9 @@ namespace ClientManage.Forms
             _fClients.RequestForUpdateClient += FClientsRequestForUpdateClient;
             _fClients.DialRequest += FormDialRequest;
             _fClients.ClientAdded += FClientsClientAdded;
-            _fClients.SyncClients += FClientsSyncClients;
             ShowFormInPanel(_fClients);
             TabStrip.SelectTab(0);
-
-            //CalendarHelper.SyncEvents += SyncEvents;
         }
-
-        private static void FClientsSyncClients(object sender, EventArgs e)
-        {
-            BeginSyncContacts();
-        }
-
-        //private static void SyncEvents(object sender, EventArgs e)
-        //{
-        //    BeginSyncEvents();
-        //}
 
         internal void EndLicense()
         {
@@ -1169,9 +1155,6 @@ namespace ClientManage.Forms
         // initialize components & to some startup tasks
         private void Form1Load(object sender, EventArgs e)
         {
-            var task = new System.Threading.Tasks.Task(CheckCustomerUniqueId);
-            task.Start();
-
             if (_tapiException != null)
             {
                 InitializeTapi();
@@ -1872,7 +1855,6 @@ namespace ClientManage.Forms
                         _fClients.RequestForUpdateClient += FClientsRequestForUpdateClient;
                         _fClients.DialRequest += FormDialRequest;
                         _fClients.ClientAdded += FClientsClientAdded;
-                        _fClients.SyncClients += FClientsSyncClients;
                     }
                     ShowFormInPanel(_fClients);
                     break;
@@ -2196,7 +2178,6 @@ namespace ClientManage.Forms
                     break;
 
                 case "SyncClients":
-                    BeginSyncContacts();
                     break;
 
                 //case "SyncEvents":
@@ -2327,7 +2308,7 @@ namespace ClientManage.Forms
             }
 
             var endTime = DateTime.Parse(AppSettingsHelper.GetParamValue("CALENDAR_END_TIME"));
-            var package = new SmsPackage { Messages = new List<SmsMessage>(), ExpireDate = DateTime.Now.Date.AddHours(endTime.Hour).AddMinutes(endTime.Minute) };
+            var package = new SmsPackage { Messages = new List<SmsMessage>() };
             DataTable table;
             try
             {
@@ -2373,7 +2354,6 @@ namespace ClientManage.Forms
                     EntityType = (int)SmsEngine.SmsMessageType.AutoCalendarRemaind,
                     MessageText = msg,
                     ReferenceId = string.Format("id {0}, date {1:dd/MM/yyyy HH:mm}", args.AppointmentId, dateStart),
-                    AlternativeEmail = email,
                 };
                 package.Messages.Add(sms);
             }
@@ -2417,7 +2397,7 @@ namespace ClientManage.Forms
             if (!SmsHelper.IsNowValidForAutoSms()) return;
 
             var endTime = DateTime.Parse(AppSettingsHelper.GetParamValue("CALENDAR_END_TIME"));
-            var package = new SmsPackage { Messages = new List<SmsMessage>(), ExpireDate = DateTime.Now.Date.AddHours(endTime.Hour).AddMinutes(endTime.Minute) };
+            var package = new SmsPackage { Messages = new List<SmsMessage>() };
             DataTable table;
             try
             {
@@ -2454,7 +2434,6 @@ namespace ClientManage.Forms
                         EntityType = (int)SmsEngine.SmsMessageType.AutoCalendarRemaind,
                         MessageText = msg,
                         ReferenceId = string.Format("id {0}, date {1:dd/MM/yyyy HH:mm}", appointmentId, dateStart),
-                        AlternativeEmail = email,
                     };
                     package.Messages.Clear();
                     package.Messages.Add(sms);
@@ -2498,44 +2477,8 @@ namespace ClientManage.Forms
 
         private void FormMainSizeChanged(object sender, EventArgs e)
         {
-            //if (this.WindowState == FormWindowState.Maximized)
-            //{
-            //    this.WindowState = FormWindowState.Normal;
-            //}
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
         }
-
-        /// <summary>
-        /// Checks the customer unique id.
-        /// </summary>
-        private static void CheckCustomerUniqueId()
-        {
-            var current = AppSettingsHelper.GetParamValue("SMS_UNIQUEID");
-            if (string.IsNullOrEmpty(current))
-            {
-                try
-                {
-                    current = General.GetCustomerUniqueId();
-                    AppSettingsHelper.SetParamValue("SMS_UNIQUEID", current);
-                    var file = new SettingsFileHelper();
-                    file.SetSettingValue("SMS_UNIQUEID", current);
-                    file.Save();
-                }
-                catch { Utils.CatchException(); }
-            }
-        }
-
-        private static void BeginSyncContacts()
-        {
-            var del = new MethodInvoker(General.SyncContacts);
-            del.BeginInvoke(null, null);
-        }
-
-        //private static void BeginSyncEvents()
-        //{
-        //    var del = new MethodInvoker(General.SyncEvents);
-        //    del.BeginInvoke(null, null);
-        //}
     }
 }

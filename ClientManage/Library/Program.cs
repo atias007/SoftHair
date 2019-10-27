@@ -22,11 +22,11 @@ namespace ClientManage.Library
             //Trace.WriteLine("2");
             General.StartupPath = Application.StartupPath;
             //Trace.WriteLine("3");
-            try
-            {
-                ModifyAppConfig();
-            }
-            catch { }
+            //try
+            //{
+            //    ModifyAppConfig();
+            //}
+            //catch { }
             //Trace.WriteLine("4");
             Application.EnableVisualStyles();
             //Trace.WriteLine("5");

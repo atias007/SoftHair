@@ -2,12 +2,17 @@
 using System.Data;
 using ClientManage.BL;
 using ClientManage.Interfaces;
-using ClientManage.SmsFactoryService;
+using System.Text;
+using System.Web;
+using System.Net;
+using System.IO;
 
 namespace ClientManage.Library
 {
     public class SmsEngine
     {
+        private const string SmsToken = "DbSzRYSDFqsT";
+
         // *** each new enum must be implemented in ReportHelper.AddCustomFieldsToDsReportDataTable *** //
         public enum SmsMessageType { None, ManualForm, AutoBirthdate, AutoMarriedDate, AutoCalendarRemaind }
 
@@ -15,9 +20,10 @@ namespace ClientManage.Library
         /// Gets or sets the last exception.
         /// </summary>
         /// <value>The last exception.</value>
-        public Exception LastException {get; private set;}
+        public Exception LastException { get; private set; }
 
         private static string _from;
+
         /// <summary>
         /// Gets from.
         /// </summary>
@@ -25,36 +31,6 @@ namespace ClientManage.Library
         public static string From
         {
             get { return _from ?? (_from = AppSettingsHelper.GetParamValue("SMS_FROM")); }
-        }
-
-        private static SmsServiceClient _sender;
-        /// <summary>
-        /// Gets the sender.
-        /// </summary>
-        /// <value>The sender.</value>
-        private static SmsServiceClient Sender
-        {
-            get { return _sender ?? (_sender = new SmsServiceClient("BasicHttpBinding_ISmsService", AppSettingsHelper.GetParamValue("SMS_WS_SEND_URL"))); }
-        }
-        
-        private static CustomerCredentials _credentials;
-        /// <summary>
-        /// Gets the credentials.
-        /// </summary>
-        /// <value>The credentials.</value>
-        public static CustomerCredentials Credentials
-        {
-            get
-            {
-                return _credentials ?? (_credentials = new CustomerCredentials
-                                                           {
-                                                               ApplicationId = 1,
-                                                               Password =
-                                                                   AppSettingsHelper.GetParamValue("SMS_PASSWORD"),
-                                                               Username =
-                                                                   AppSettingsHelper.GetParamValue("SMS_USERNAME")
-                                                           });
-            }
         }
 
         /// <summary>
@@ -67,18 +43,39 @@ namespace ClientManage.Library
             if (package == null) return;
 
             package.Title = type.ToString();
-            package.Credentials = Credentials;
+            var proxy = new SmsService.SendMessageSoapClient();
 
-            foreach (var m in package.Messages) m.FromPhone = From;
+            foreach (var m in package.Messages)
+            {
+                try
+                {
+                    m.FromPhone = From;
 
-            try
-            {
-                Sender.SendPackage(package);
-            }
-            catch (Exception ex)
-            {
-                EventLogManager.AddErrorMessage("Error sending SMS package", ex);
-                throw;
+                    var sbXml = new StringBuilder();
+                    sbXml.Append("<Inforu>");
+                    sbXml.Append("<User>");
+                    sbXml.Append("<Username>softhair</Username>");
+                    sbXml.Append("<ApiToken>" + SmsToken + "</ApiToken>");
+                    sbXml.Append("</User>");
+                    sbXml.Append("<Content Type=\"sms\">");
+                    sbXml.Append("<Message>" + m.MessageText + "</Message>");
+                    sbXml.Append("</Content>");
+                    sbXml.Append("<Recipients>");
+                    sbXml.Append("<PhoneNumber>" + m.ToPhone + "</PhoneNumber>");
+                    sbXml.Append("</Recipients>");
+                    sbXml.Append("<Settings>");
+                    sbXml.Append("<Sender>" + m.FromPhone + "</Sender>");
+                    sbXml.Append("</Settings>");
+                    sbXml.Append("</Inforu >");
+
+                    var strXML = HttpUtility.UrlEncode(sbXml.ToString(), System.Text.Encoding.UTF8);
+                    var result = proxy.SendSms("softhair", SmsToken, m.MessageText, m.ToPhone, null, m.FromPhone);
+                }
+                catch (Exception ex)
+                {
+                    EventLogManager.AddErrorMessage("Error sending SMS package", ex);
+                    throw;
+                }
             }
         }
 
@@ -99,7 +96,7 @@ namespace ClientManage.Library
                 SendSmsPackage(package, type);
                 result = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (type == SmsMessageType.ManualForm)
                 {
@@ -123,7 +120,7 @@ namespace ClientManage.Library
                 var cred = Credentials;
                 ret = Sender.GetCredit(cred);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ret = -1;
                 this.LastException = ex;
@@ -132,30 +129,6 @@ namespace ClientManage.Library
             return ret;
         }
 
-        /// <summary>
-        /// Gets the total messages per day report.
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <returns></returns>
-        public DataSet GetTotalMessagesPerDayReport(TotalMessagesPerDayFilter filter)
-        {
-            var cred = Credentials;
-            var result = Sender.GetTotalMessagesPerDay(cred, filter);
-            return result.ToDataSet();
-        }
-
-        /// <summary>
-        /// Gets the messages details report.
-        /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <returns></returns>
-        public DataSet GetMessagesDetailsReport(HistoryMessageFilter filter)
-        {
-            var cred = Credentials;
-            var result = Sender.GetHistoryMessages(cred, filter);
-            return result.ToDataSet();
-        }
-
-        #endregion
+        #endregion Methods
     }
 }

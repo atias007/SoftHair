@@ -8,7 +8,6 @@ using ClientManage.Interfaces;
 using ClientManage.BL;
 using ClientManage.Library;
 using ClientManage.BL.Library;
-using ClientManage.SmsFactoryService;
 
 namespace ClientManage.Forms
 {
@@ -97,9 +96,9 @@ namespace ClientManage.Forms
                 i = _maxSmsChars;
                 _msgCount--;
             }
-            
+
             lblTotalChars.Text = string.Format(TotalChars, i);
-            
+
             if (_msgCount > 0)
             {
                 lblTotalChars.Text += string.Format(TotalMsgFormat, _msgCount + 1);
@@ -146,17 +145,16 @@ namespace ClientManage.Forms
         {
             string name;
             _maxUserLength = 0;
-            
+
             foreach (ListViewItem item in lstClients.Items)
             {
-                    if (item.Tag.ToString() == "Active")
-                    {
-                        name = item.Text;
-                        var pos = name.IndexOf(" ");
-                        if (pos > 1) name = name.Substring(0, pos);
-                        if (name.Length > _maxUserLength) _maxUserLength = name.Length;
-                    }
-                
+                if (item.Tag.ToString() == "Active")
+                {
+                    name = item.Text;
+                    var pos = name.IndexOf(" ");
+                    if (pos > 1) name = name.Substring(0, pos);
+                    if (name.Length > _maxUserLength) _maxUserLength = name.Length;
+                }
             }
         }
 
@@ -192,7 +190,7 @@ namespace ClientManage.Forms
                     item.ImageIndex = 2;
                     p.Enable = false;
                 }
-                else if(p.CellPhone.Length == 10)
+                else if (p.CellPhone.Length == 10)
                 {
                     var nameLength = p.FirstName.Length;
                     if (nameLength > _maxUserLength) _maxUserLength = nameLength;
@@ -212,7 +210,7 @@ namespace ClientManage.Forms
             }
 
             lblTotalClients.Text = string.Format(TotalClientsFormat, _activeUsers);
-            ResumeLayout(false);            
+            ResumeLayout(false);
         }
 
         private bool ValidateForm()
@@ -221,8 +219,8 @@ namespace ClientManage.Forms
             const string msg2 = "שליחת הודעת SMS";
             var totalMsg = (_msgCount + 1) * _activeUsers;
             txtMsg.Text = txtMsg.Text.Trim();
-            
-            if(txtMsg.Text.Length == 0)
+
+            if (txtMsg.Text.Length == 0)
             {
                 msg1 = "תוכן ההודעה ריק\nאנא הזן הודעה לשליחה";
                 MyMessageBox = new MyMessageBox(msg1, msg2, MyMessageBox.MyMessageType.Warning, MyMessageBox.MyMessageButton.Ok);
@@ -330,7 +328,7 @@ namespace ClientManage.Forms
 
         private void Label8Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(127, 157, 185)), 0, 0, label8.Width-1, label8.Height-1);
+            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(127, 157, 185)), 0, 0, label8.Width - 1, label8.Height - 1);
         }
 
         private void FrmSmsFormClosing(object sender, FormClosingEventArgs e)
@@ -382,7 +380,7 @@ namespace ClientManage.Forms
         {
             btnMsgSave.Enabled = (txtNewMsg.Text.Trim().Length > 0);
         }
-        
+
         private void BtnDeleteMsgClick(object sender, EventArgs e)
         {
             string msg1;
@@ -499,8 +497,8 @@ namespace ClientManage.Forms
                 {
                     p.FirstName = name;
                     p.LastName = string.Empty;
-                }                
-                
+                }
+
                 p.CellPhone = txtPersonPhone.Text;
                 p.EntityId = -1;
                 p.EntityType = -1;
@@ -518,7 +516,6 @@ namespace ClientManage.Forms
             item.Focused = true;
             lstClients.Select();
             item.EnsureVisible();
-
 
             lblTotalClients.Text = string.Format(TotalClientsFormat, _activeUsers);
             BtnCancelPersonClick(null, null);
@@ -551,7 +548,7 @@ namespace ClientManage.Forms
             this.Cursor = Cursors.WaitCursor;
             var msg = txtMsg.Text;
             var hasParamaters = txtMsg.Text.Contains(Utils.SmsParameterIdentifier);
-            var package = new SmsPackage {Messages = new List<SmsMessage>()};
+            var package = new SmsPackage { Messages = new List<SmsMessage>() };
             if (!hasParamaters) package.DefaultMessageText = msg;
 
             PostAddressee p;
@@ -562,14 +559,14 @@ namespace ClientManage.Forms
                 if (p.Enable)
                 {
                     var sms = new SmsMessage
-                                  {
-                                      ToPhone = p.CellPhone,
-                                      EntityId = p.EntityId,
-                                      EntityType = (int)SmsEngine.SmsMessageType.ManualForm,
-                                      MessageText = (hasParamaters ? msg.Replace(Utils.AddUsername, p.FirstName) : null)
-                                  };
+                    {
+                        ToPhone = p.CellPhone,
+                        EntityId = p.EntityId,
+                        EntityType = (int)SmsEngine.SmsMessageType.ManualForm,
+                        MessageText = (hasParamaters ? msg.Replace(Utils.AddUsername, p.FirstName) : null)
+                    };
                     package.Messages.Add(sms);
-                }                    
+                }
             }
 
             if (_smsEngine.SendMessage(package, SmsEngine.SmsMessageType.ManualForm))
@@ -614,7 +611,7 @@ namespace ClientManage.Forms
             {
                 BtnCancelPersonClick(null, null);
             }
-            
+
             if (lstClients.SelectedItems.Count > 0)
             {
                 var item = lstClients.SelectedItems[0];
@@ -676,11 +673,11 @@ namespace ClientManage.Forms
             {
                 this.Cursor = Cursors.WaitCursor;
                 _fClientQuickSearch = new FormClientQuickSearch
-                                          {
-                                              VisibleItems = 6,
-                                              Left = rect.Left,
-                                              Top = rect.Bottom
-                                          };
+                {
+                    VisibleItems = 6,
+                    Left = rect.Left,
+                    Top = rect.Bottom
+                };
                 _fClientQuickSearch.ClientSelected += FClientQuickSearchClientSelected;
                 _fClientQuickSearch.Show();
                 this.Cursor = Cursors.Default;
@@ -693,7 +690,7 @@ namespace ClientManage.Forms
             _fClientQuickSearch.Select();
         }
 
-        void FClientQuickSearchClientSelected(object sender, EventArgs e)
+        private void FClientQuickSearchClientSelected(object sender, EventArgs e)
         {
             var p = new PostAddressee();
             var c = ClientHelper.GetClient(FormClientQuickSearch.SelectedClientId);

@@ -506,6 +506,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Library\AutoCompleteAppointment.cs" />
     <Compile Include="Library\ContactSyncDetails.cs" />
+    <Compile Include="Library\CustomerLicense.cs" />
     <Compile Include="Library\EventSyncDetails.cs" />
     <Compile Include="Library\DataGridViewCalendarColumn.cs" />
     <Compile Include="Library\EmailHelper.cs" />
@@ -553,12 +554,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\SmsFactoryCommon\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\SmsFactoryService\Reference.cs">
+    <Compile Include="Service References\SmsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -1032,71 +1028,16 @@
     <Compile Include="UserControls\XPFlatButton.Designer.cs">
       <DependentUpon>XPFlatButton.cs</DependentUpon>
     </Compile>
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.Voucher.datasource">
+    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsDetailedResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices.wsdl" />
-    <None Include="Service References\SmsFactoryCommon\CommonServices.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices1.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsXmlResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices10.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices11.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices12.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices13.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices7.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices8.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\CommonServices9.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService.wsdl" />
-    <None Include="Service References\SmsFactoryService\SmsService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\SmsService\SendMessage.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BizCare.CalendarView\BizCare.CalendarView.csproj">
@@ -1131,6 +1072,7 @@
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="..\LicenseGenerator\Script_Hair.txt">
       <Link>Forms\OptionForms\Script_Hair.txt</Link>
@@ -1250,41 +1192,13 @@
     <None Include="Resources\search_panel_bgblue.gif" />
     <None Include="Resources\teamviewer.png" />
     <None Include="Resources\tbbRemote.Image.png" />
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.AnonymousContactUs.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerException.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerLicense.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.CustomerServiceCall.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryCommon\ClientManage.SmsFactoryCommon.UpdateVersionQuery.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryService\ClientManage.SmsFactoryService.HistoryMessage.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryService\ClientManage.SmsFactoryService.TotalMessagesPerDay.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsFactoryService\configuration91.svcinfo" />
-    <None Include="Service References\SmsFactoryService\configuration.svcinfo" />
-    <None Include="Service References\SmsFactoryService\Reference.svcmap">
+    <None Include="Service References\SmsService\SendMessage.disco" />
+    <None Include="Service References\SmsService\configuration91.svcinfo" />
+    <None Include="Service References\SmsService\configuration.svcinfo" />
+    <None Include="Service References\SmsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SmsFactoryCommon\configuration91.svcinfo" />
-    <None Include="Service References\SmsFactoryCommon\configuration.svcinfo" />
-    <None Include="Service References\SmsFactoryCommon\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\SmsFactoryService\SmsService.disco" />
-    <None Include="Service References\SmsFactoryCommon\CommonServices.disco" />
     <Content Include="SoftHairLogo.ico" />
     <None Include="Resources\report.png" />
     <None Include="Resources\privacy.png" />
@@ -1437,10 +1351,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\SmsFactoryCommon\" />
-    <WCFMetadataStorage Include="Service References\SmsFactoryService\" />
+    <WCFMetadataStorage Include="Service References\SmsService\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

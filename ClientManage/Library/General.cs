@@ -69,20 +69,6 @@ namespace ClientManage.Library
             }
         }
 
-        private static UserCredentials _userCredentials;
-
-        public static UserCredentials UserCredentials
-        {
-            get
-            {
-                return _userCredentials ?? (_userCredentials = new UserCredentials
-                {
-                    Username = AppSettingsHelper.GetParamValue("WS_CRED_USER"),
-                    Password = AppSettingsHelper.GetParamValue("WS_CRED_PASSWORD")
-                });
-            }
-        }
-
         public enum EntityType { Client, Contact, Worker };
 
         public static DataTable GetSmsEntity(int id, EntityType entity)
@@ -464,8 +450,6 @@ namespace ClientManage.Library
                     break;
 
                 case "ContactUs":
-                    var url = WebServices.HostUrl + "/ContactUs.aspx";
-                    Process.Start(url);
                     break;
 
                 default:
@@ -516,19 +500,6 @@ namespace ClientManage.Library
                     column.Width = Convert.ToInt32(column.Width * ScreenResolutionFactorWidth);
                 }
             }
-        }
-
-        public static string GetCustomerUniqueId()
-        {
-            var credentials = new CustomerCredentials
-            {
-                ApplicationId = SmsEngine.Credentials.ApplicationId,
-                Username = SmsEngine.Credentials.Username,
-                Password = SmsEngine.Credentials.Password
-            };
-
-            var result = WebServices.CommonWs.GetCustomerUniqueId(credentials);
-            return result;
         }
 
         public static bool OnlineBackup(Form parent)
@@ -585,117 +556,6 @@ namespace ClientManage.Library
             }
             _fBackup = new frmBackup();
             _fBackup.Show(parent);
-        }
-
-        public static void SyncContacts()
-        {
-            SyncContacts(false);
-        }
-
-        //public static void SyncEvents()
-        //{
-        //    SyncEvents(false);
-        //}
-
-        /// <summary>
-        /// Syncs the contacts.
-        /// </summary>
-        /// <param name="throwExceptions">if set to <c>true</c> [throw exceptions].</param>
-        public static void SyncContacts(bool throwExceptions)
-        {
-            var info = new ContactsSyncInfo
-            {
-                CustomerUniqueId = new Guid(AppSettingsHelper.GetParamValue("SMS_UNIQUEID")),
-                DeletedContactsId = AppSettingsHelper.GetDeletedClients(),
-                ModifiedContacts = new List<ContactSyncDetails>(),
-            };
-
-            var table = ClientHelper.GetSyncContacts();
-            foreach (DataRow row in table.Rows)
-            {
-                var contact = new ContactSyncDetails(row);
-                info.ModifiedContacts.Add(contact);
-                if (info.ModifiedContacts.Count >= 500) break;
-            }
-
-            if (info.ModifiedContacts.Count + info.DeletedContactsId.Count == 0) return;
-
-            try
-            {
-                WebServices.CommonWs.SyncContacts(UserCredentials, info);
-            }
-            catch
-            {
-                if (throwExceptions) throw;
-                return;
-            }
-
-            var ids = info.ModifiedContacts.Select(c => c.Id).ToList();
-            ClientHelper.UpdateSyncContacts(ids);
-            AppSettingsHelper.ClearDeletedClient();
-        }
-
-        /// <summary>
-        /// Syncs the contacts.
-        /// </summary>
-        /// <param name="throwExceptions">if set to <c>true</c> [throw exceptions].</param>
-        /// <param name="forceSync">if set to <c>true</c> [force sync].</param>
-        //public static void SyncEvents(bool throwExceptions, bool forceSync = false)
-        //{
-        //    if (!forceSync)
-        //    {
-        //        if (AppSettingsHelper.GetParamValue<bool>("CAL_SYNC_EVENTS") == false) return;
-        //    }
-
-        //    var info = new EventsSyncInfo
-        //    {
-        //        CustomerUniqueId = new Guid(AppSettingsHelper.GetParamValue("SMS_UNIQUEID")),
-        //        ModifiedEvents = new List<EventsSyncDetails>(),
-        //        DeletedEventsId = new List<int>(),
-        //    };
-
-        //    var table = CalendarHelper.GetSyncEvents();
-        //    foreach (DataRow row in table.Rows)
-        //    {
-        //        var ev = new EventsSyncDetails(row);
-        //        info.ModifiedEvents.Add(ev);
-        //        if (info.ModifiedEvents.Count >= 500) break;
-        //    }
-
-        //    if (info.ModifiedEvents.Count + info.DeletedEventsId.Count == 0) return;
-
-        //    try
-        //    {
-        //        WebServices.CommonWs.SyncEvents(UserCredentials, info);
-        //    }
-        //    catch
-        //    {
-        //        if (throwExceptions) throw;
-        //        return;
-        //    }
-
-        //    var ids = info.ModifiedEvents.Select(c => c.Id).ToList();
-        //    CalendarHelper.UpdateSyncEvents(ids);
-        //}
-
-        public static void OnlineUpdate()
-        {
-            // ***** change also BizCare.SoftHair.UpdateVersion\Form1.cs ******
-            var restricted = new[] { "90011", "90033", "90102", "90103" };
-            var referenceId = AppSettingsHelper.GetParamValue("APP_CLIENT_ID");
-            if (restricted.Contains(referenceId)) return;
-
-            var customerUniqueId = AppSettingsHelper.GetParamValue("SMS_UNIQUEID");
-            var version = AppSettingsHelper.GetParamValue("APP_VERSION");
-            var result = WebServices.CommonWs.CheckForUpdateVersion(UserCredentials, customerUniqueId, version);
-
-            if (result.IsUpdateNeeded)
-            {
-                var localFilename = GetUpdateLocalFilename();
-                var webClient = new WebClient();
-                webClient.DownloadFile(new Uri(result.UpdateApplicationUrl), localFilename);
-                Process.Start(localFilename);
-            }
         }
 
         public static void WriteExceptionToFile(Exception ex)

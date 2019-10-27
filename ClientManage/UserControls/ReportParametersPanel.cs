@@ -4,7 +4,6 @@ using ClientManage.Forms;
 using ClientManage.Interfaces;
 using ClientManage.Interfaces.Schemas;
 using ClientManage.Library;
-using ClientManage.SmsFactoryService;
 using System;
 using System.Collections;
 using System.Data;
@@ -547,34 +546,34 @@ namespace ClientManage.UserControls
 
         private static DataTable GetReportDataSource(string query, object[] parameters, int reportId)
         {
-            DataTable table;
-            SmsEngine smsEngine;
+            DataTable table = null;
+            //SmsEngine smsEngine;
             if (query.StartsWith("[WebMethod]"))
             {
                 var name = query.Replace("[WebMethod]", string.Empty).Trim();
                 switch (name)
                 {
                     case "GetMessagesDetailsReport":
-                        smsEngine = new SmsEngine();
-                        if (parameters[1] != null) parameters[1] = ((DateTime)parameters[1]).AddDays(1).AddSeconds(-1);
-                        table = smsEngine.GetMessagesDetailsReport(new HistoryMessageFilter
-                        {
-                            DateCreatedFrom = (DateTime)parameters[0],
-                            DateCreatedTo = (DateTime)parameters[1],
-                            StatusId = parameters[2].Equals("1") ? (int?)1 : null, // : (int?)Convert.ToUInt32(parameters[2]),
-                            EntityType = parameters[3].Equals(0) ? null : (int?)parameters[3],
-                            NotSuccessStatus = parameters[2].Equals("0"),
-                        }).Tables[0];
+                        ////smsEngine = new SmsEngine();
+                        ////if (parameters[1] != null) parameters[1] = ((DateTime)parameters[1]).AddDays(1).AddSeconds(-1);
+                        ////table = smsEngine.GetMessagesDetailsReport(new HistoryMessageFilter
+                        ////{
+                        ////    DateCreatedFrom = parameters[0],
+                        ////    DateCreatedTo = parameters[1],
+                        ////    StatusId = parameters[2].Equals("1") ? (int?)1 : null, // : (int?)Convert.ToUInt32(parameters[2]),
+                        ////    EntityType = parameters[3].Equals(0) ? null : parameters[3],
+                        ////    NotSuccessStatus = parameters[2].Equals("0"),
+                        ////}).Tables[0];
                         break;
 
                     case "GetMessagesCountReport":
-                        smsEngine = new SmsEngine();
-                        if (parameters[1] != null) parameters[1] = ((DateTime)parameters[1]).AddDays(1).AddSeconds(-1);
-                        table = smsEngine.GetTotalMessagesPerDayReport(new TotalMessagesPerDayFilter
-                        {
-                            DateCreatedFrom = (DateTime)parameters[0],
-                            DateCreatedTo = (DateTime)parameters[1]
-                        }).Tables[0];
+                        ////smsEngine = new SmsEngine();
+                        ////if (parameters[1] != null) parameters[1] = ((DateTime)parameters[1]).AddDays(1).AddSeconds(-1);
+                        ////table = smsEngine.GetTotalMessagesPerDayReport(new TotalMessagesPerDayFilter
+                        ////{
+                        ////    DateCreatedFrom = parameters[0],
+                        ////    DateCreatedTo = parameters[1]
+                        ////}).Tables[0];
                         break;
 
                     default:
@@ -586,7 +585,6 @@ namespace ClientManage.UserControls
                 {
                     ReportHelper.AttachEntityToDataTable(table);
                     ReportHelper.AddCustomFieldsToDsReportDataTable(name, table);
-                    //ReportHelper.SetCustomFilterToDsReportDataTable(name, ref table, parameters);
                 }
             }
             else if (reportId == 10008)

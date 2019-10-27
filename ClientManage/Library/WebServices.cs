@@ -1,66 +1,39 @@
-using System;
-using ClientManage.BL;
-using ClientManage.SmsFactoryCommon;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ClientManage.Library
 {
     public static class WebServices
     {
-        public static string HostUrl
+        public static CustomerLicense GetOnlineLicense(int clientId)
         {
-            get { return AppSettingsHelper.GetParamValue("WEB_HOSTNAME"); }
+            File.
+
+            return new CustomerLicense { ClientId = clientId, Allow = true }; // TODO: ***
         }
+    }
 
-        // ------------------------------------------------------------------------------------------------------//
+    public class SmsPackage
+    {
+        public string Title { get; set; }
 
-        private static CommonServicesClient _commonWs;
+        public List<SmsMessage> Messages { get; set; }
 
-        public static CommonServicesClient CommonWs
-        {
-            get
+        public string DefaultMessageText { get; set; }
+    }
 
-            {
-                if (_commonWs != null) return _commonWs;
-                _commonWs = new CommonServicesClient("BasicHttpBinding_ICommonServices",AppSettingsHelper.GetParamValue("SMS_WS_COMMON_URL"));
+    public class SmsMessage
+    {
+        public string ToPhone { get; set; }
 
-#if DEBUG
-                _commonWs = new CommonServicesClient("BasicHttpBinding_ICommonServices","http://localhost:61231/Services/CommonServices.svc");
-#endif
+        public int EntityId { get; set; }
 
-                return _commonWs;
-            }
-        }
+        public int EntityType { get; set; }
 
+        public string MessageText { get; set; }
 
+        public string ReferenceId { get; set; }
 
-        public static CustomerLicense GetOnlineLicense()
-        {
-            CustomerLicense result;
-            try
-            {
-                result = CommonWs.CheckCustomerLicense(General.UserCredentials, AppSettingsHelper.GetParamValue("SMS_UNIQUEID"));
-            }
-            catch (Exception)
-            {
-                result = null;
-            }
-
-            return result;
-        }
-
-        // ------------------------------------------------------------------------------------------------------//
-
-        public static string CommonWsUrl
-        {
-            get { return AppSettingsHelper.GetParamValue("SMS_WS_COMMON_URL"); }
-        }
-
-        // ------------------------------------------------------------------------------------------------------//
-
-        public static string OnlineUpdateUrl
-        {
-            get { return AppSettingsHelper.GetParamValue("WEB_HOSTNAME") + "/WebServices/SoftHairOnlineUpdate.asmx"; }
-        }
-
+        public string FromPhone { get; set; }
     }
 }
