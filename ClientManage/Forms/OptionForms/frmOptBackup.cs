@@ -98,16 +98,16 @@ namespace ClientManage.Forms.OptionForms
             Application.DoEvents();
             try
             {
-                AddBackupLog(null, new BlobStorageEventArgs("Copy backup files (1)... "));
+                AddBackupLog(null,  "Copy backup files (1)... ");
                 BackupPlan.DataBackup(General.StartupPath);
-                AddBackupLog(null, new BlobStorageEventArgs("done\r\n"));
-                AddBackupLog(null, new BlobStorageEventArgs("Copy backup files (2)... "));
+                AddBackupLog(null,  "done\r\n");
+                AddBackupLog(null,  "Copy backup files (2)... ");
                 BackupPlan.PicturesBackup(General.StartupPath, chkAllPictures.Checked);
-                AddBackupLog(null, new BlobStorageEventArgs("done\r\n"));
+                AddBackupLog(null,  "done\r\n");
             }
             catch (Exception ex)
             {
-                AddBackupLog(null, new BlobStorageEventArgs("Error!\r\n" + ex));
+                AddBackupLog(null, "Error!\r\n" + ex);
                 const string title = "שגיאה במסך העדפות...";
                 const string head = "גיבוי נתונים ברשת";
                 const string desc = "גיבוי הנתונים ברשת נכשל\nלא ניתן להעתיק את בסיס הנתונים ותמונות הלקוחות למחיצת הגיבוי ברשת";
@@ -115,14 +115,14 @@ namespace ClientManage.Forms.OptionForms
 
                 return;
             }
-            General.OnlineBackup(this, AddBackupLog);
+            General.OnlineBackup(this);
             SetFtpLastBackupLabel();
         }
 
-        private void AddBackupLog(object sender, BlobStorageEventArgs args)
+        private void AddBackupLog(object sender, string args)
         {
             Application.DoEvents();
-            txtLog.AppendText(args.Message);
+            txtLog.AppendText(args);
             txtLog.SelectionStart = txtLog.Text.Length;
             txtLog.ScrollToCaret();
             Application.DoEvents();

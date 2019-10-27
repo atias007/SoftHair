@@ -531,26 +531,20 @@ namespace ClientManage.Library
             return result;
         }
 
-        public static bool OnlineBackup(Form parent, EventHandler<BlobStorageEventArgs> handler = null)
+        public static bool OnlineBackup(Form parent)
         {
             var path = Path.Combine(StartupPath, "Backup\\Upload");
             var files = Directory.GetFiles(path, "*.*");
             var clientId = AppSettingsHelper.GetParamValue("APP_CLIENT_ID");
-            var storage = new BlobStorage("smsfactorystorage", "KWPzj0m/1JR6gr8Hk21P4pk0I7JxBMbTm1H8b5WfIltIMzBnhCnA4LoUb05WLENKhd9f0ns/Q0plxzSEaRdgJA==");
-            storage.UploadAction += handler;
-            storage.ThrowExceptions = false;
-
-            var list = new List<BlobUploadFile>();
+            //var storage = new BlobStorage("smsfactorystorage", "KWPzj0m/1JR6gr8Hk21P4pk0I7JxBMbTm1H8b5WfIltIMzBnhCnA4LoUb05WLENKhd9f0ns/Q0plxzSEaRdgJA==");
+            //storage.UploadAction += handler;
+            //storage.ThrowExceptions = false;
 
             foreach (var file in files)
             {
                 var fi = new FileInfo(file);
                 var name = clientId + "\\" + fi.Name;
-                list.Add(new BlobUploadFile { Name = name, Filepath = fi.FullName });
             }
-
-            var result = storage.UploadFile(list, "softhair");
-            storage.UploadAction -= handler;
 
             foreach (var f in files)
             {
@@ -565,7 +559,7 @@ namespace ClientManage.Library
                 }
             }
 
-            if (result && parent != null)
+            if (parent != null)
             {
                 if (parent.InvokeRequired)
                 {
@@ -578,7 +572,7 @@ namespace ClientManage.Library
                 }
             }
 
-            return result;
+            return true;
         }
 
         private delegate void ShowBackupFormHandler(Form parent);
