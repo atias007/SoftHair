@@ -138,10 +138,10 @@ namespace GmailSoftHairSync
                 var row = table.NewRow();
                 row["id"] = e.Id;
                 row["date_end"] = GetDateTime(e.End);
-                row["worker_name"] = e.ExtendedProperties.Private["WorkerId"];
+                row["worker_name"] = e.ExtendedProperties.Private__["WorkerId"];
                 row["date_start"] = GetDateTime(e.Start);
                 row["scope"] = string.Empty;
-                row["cares"] = e.ExtendedProperties.Private["Cares"];
+                row["cares"] = e.ExtendedProperties.Private__["Cares"];
                 table.Rows.Add(row);
             }
 
@@ -169,16 +169,16 @@ namespace GmailSoftHairSync
                 var row = table.NewRow();
                 row["id"] = e.Id;
                 row["picture"] = "[NO PICTURE]";
-                row["worker_name"] = e.ExtendedProperties.Private["WorkerId"];
+                row["worker_name"] = e.ExtendedProperties.Private__["WorkerId"];
                 row["client_name"] = "[ללא שיוך לקוח]";
-                row["client_id"] = e.ExtendedProperties.Private["ClientId"];
+                row["client_id"] = e.ExtendedProperties.Private__["ClientId"];
                 row["time_start"] = GetDateTime(e.Start);
                 row["time_end"] = GetDateTime(e.End);
-                row["cares_tofill"] = e.ExtendedProperties.Private["Cares"];
+                row["cares_tofill"] = e.ExtendedProperties.Private__["Cares"];
                 row["subject"] = e.Summary;
                 row["date_created"] = e.Created;
 
-                var clientId = e.ExtendedProperties.Private["ClientId"];
+                var clientId = e.ExtendedProperties.Private__["ClientId"];
                 if (clientId != "0" && !string.IsNullOrEmpty(clientId))
                 {
                     var client = ClientData.GetClient(int.Parse(clientId));
@@ -224,7 +224,7 @@ namespace GmailSoftHairSync
                 var diff = DateTime.Now.Subtract(e.Created.Value).TotalMinutes;
                 if (!skipValidation && diff < 30) continue;
 
-                var clientId = Convert.ToInt32(e.ExtendedProperties.Private["ClientId"]);
+                var clientId = Convert.ToInt32(e.ExtendedProperties.Private__["ClientId"]);
                 if (!skipValidation && clientId == 0) continue;
 
                 var client = ClientData.GetClient(clientId);
@@ -236,10 +236,10 @@ namespace GmailSoftHairSync
                 var smsCellPhone = Utils.GetDBValue<string>(client["cell_phone_1"]);
                 if (!skipValidation && string.IsNullOrEmpty(smsCellPhone)) continue;
 
-                var hasAlert = Convert.ToBoolean(e.ExtendedProperties.Private["HasAlert"]);
+                var hasAlert = Convert.ToBoolean(e.ExtendedProperties.Private__["HasAlert"]);
                 var alertKey =
-                    e.ExtendedProperties.Private.Keys.Contains("AlertKey") ?
-                    Convert.ToString(e.ExtendedProperties.Private["AlertKey"]) :
+                    e.ExtendedProperties.Private__.Keys.Contains("AlertKey") ?
+                    Convert.ToString(e.ExtendedProperties.Private__["AlertKey"]) :
                     string.Empty;
                 var key = e.Start.DateTime.GetValueOrDefault().ToString("ddMMyyyyHHmm");
                 var predicate = (hasAlert == true) && (alertKey == key);
@@ -251,7 +251,7 @@ namespace GmailSoftHairSync
                 row["id"] = e.Id;
                 row["client_id"] = clientId;
                 row["date_start"] = GetDateTime(e.Start);
-                row["cares"] = e.ExtendedProperties.Private["Cares"];
+                row["cares"] = e.ExtendedProperties.Private__["Cares"];
                 row["first_name"] = client["first_name"];
                 row["cell_phone"] = smsCellPhone;
                 row["email"] = client["email"];
@@ -269,9 +269,9 @@ namespace GmailSoftHairSync
             {
                 @event.ExtendedProperties = new Event.ExtendedPropertiesData();
             }
-            if (@event.ExtendedProperties.Private == null)
+            if (@event.ExtendedProperties.Private__ == null)
             {
-                @event.ExtendedProperties.Private = new Dictionary<string, string>();
+                @event.ExtendedProperties.Private__ = new Dictionary<string, string>();
             }
         }
 
@@ -281,7 +281,7 @@ namespace GmailSoftHairSync
         {
             var result = false;
             InitializeExtendedProperties(@event);
-            if (@event.ExtendedProperties.Private.Count == 0)
+            if (@event.ExtendedProperties.Private__.Count == 0)
             {
                 result = true;
                 var clientId = ImportClientId(@event);
@@ -378,42 +378,42 @@ namespace GmailSoftHairSync
 
         private static void FillAppointment(BizCareAppointment app, Event @event)
         {
-            app.ClientId = Convert.ToInt32(@event.ExtendedProperties.Private["ClientId"]);
-            app.Importance = (ImportanceLevel)Enum.Parse(typeof(ImportanceLevel), @event.ExtendedProperties.Private["Importance"]);
-            app.IsAllDayEvent = Convert.ToBoolean(@event.ExtendedProperties.Private["IsAllDayEvent"]);
-            app.RecurrenceId = Convert.ToInt32(@event.ExtendedProperties.Private["RecurrenceId"]);
+            app.ClientId = Convert.ToInt32(@event.ExtendedProperties.Private__["ClientId"]);
+            app.Importance = (ImportanceLevel)Enum.Parse(typeof(ImportanceLevel), @event.ExtendedProperties.Private__["Importance"]);
+            app.IsAllDayEvent = Convert.ToBoolean(@event.ExtendedProperties.Private__["IsAllDayEvent"]);
+            app.RecurrenceId = Convert.ToInt32(@event.ExtendedProperties.Private__["RecurrenceId"]);
             app.RemainderMinutes = GetEventRemainder(@event);
-            app.Cares = @event.ExtendedProperties.Private["Cares"];
-            app.HasAlert = Convert.ToBoolean(@event.ExtendedProperties.Private["HasAlert"]);
+            app.Cares = @event.ExtendedProperties.Private__["Cares"];
+            app.HasAlert = Convert.ToBoolean(@event.ExtendedProperties.Private__["HasAlert"]);
             app.AlertKey = SafeGetExtendedProperty(@event, "AlertKey");
-            app.ResetSmsAlert = Convert.ToBoolean(@event.ExtendedProperties.Private["ResetSmsAlert"]);
-            app.WorkerId = Convert.ToInt32(@event.ExtendedProperties.Private["WorkerId"]);
+            app.ResetSmsAlert = Convert.ToBoolean(@event.ExtendedProperties.Private__["ResetSmsAlert"]);
+            app.WorkerId = Convert.ToInt32(@event.ExtendedProperties.Private__["WorkerId"]);
 
             if (app.Cares == null) app.Cares = string.Empty;
         }
 
         private static string SafeGetExtendedProperty(Event @event, string key)
         {
-            if (@event.ExtendedProperties.Private.ContainsKey(key))
+            if (@event.ExtendedProperties.Private__.ContainsKey(key))
             {
-                return @event.ExtendedProperties.Private[key];
+                return @event.ExtendedProperties.Private__[key];
             }
             return string.Empty;
         }
 
         internal static void FillEventExtendedProperties(Event @event, BizCareAppointment appointment)
         {
-            @event.ExtendedProperties.Private.Clear();
-            @event.ExtendedProperties.Private.Add("ClientId", Convert.ToString(appointment.ClientId));
-            @event.ExtendedProperties.Private.Add("Importance", Convert.ToString(appointment.Importance));
-            @event.ExtendedProperties.Private.Add("IsAllDayEvent", Convert.ToString(appointment.IsAllDayEvent));
-            @event.ExtendedProperties.Private.Add("RecurrenceId", Convert.ToString(appointment.RecurrenceId));
-            @event.ExtendedProperties.Private.Add("Cares", appointment.Cares == null ? "-" : appointment.Cares);
-            @event.ExtendedProperties.Private.Add("HasAlert", Convert.ToString(appointment.HasAlert).ToLower());
-            @event.ExtendedProperties.Private.Add("AlertKey", appointment.AlertKey);
-            @event.ExtendedProperties.Private.Add("ResetSmsAlert", Convert.ToString(appointment.ResetSmsAlert));
-            @event.ExtendedProperties.Private.Add("WorkerId", Convert.ToString(appointment.WorkerId));
-            //@event.ExtendedProperties.Private.Add("AlertKey", appointment.AlertKey);
+            @event.ExtendedProperties.Private__.Clear();
+            @event.ExtendedProperties.Private__.Add("ClientId", Convert.ToString(appointment.ClientId));
+            @event.ExtendedProperties.Private__.Add("Importance", Convert.ToString(appointment.Importance));
+            @event.ExtendedProperties.Private__.Add("IsAllDayEvent", Convert.ToString(appointment.IsAllDayEvent));
+            @event.ExtendedProperties.Private__.Add("RecurrenceId", Convert.ToString(appointment.RecurrenceId));
+            @event.ExtendedProperties.Private__.Add("Cares", appointment.Cares == null ? "-" : appointment.Cares);
+            @event.ExtendedProperties.Private__.Add("HasAlert", Convert.ToString(appointment.HasAlert).ToLower());
+            @event.ExtendedProperties.Private__.Add("AlertKey", appointment.AlertKey);
+            @event.ExtendedProperties.Private__.Add("ResetSmsAlert", Convert.ToString(appointment.ResetSmsAlert));
+            @event.ExtendedProperties.Private__.Add("WorkerId", Convert.ToString(appointment.WorkerId));
+            //@event.ExtendedProperties.Private__.Add("AlertKey", appointment.AlertKey);
 
             SetEventRemainder(@event, appointment.RemainderMinutes);
         }

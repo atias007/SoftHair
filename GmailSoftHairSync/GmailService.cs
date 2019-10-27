@@ -173,13 +173,13 @@ namespace GmailSoftHairSync
         public bool ClearHasAlertBeforeUpdate(string appointmentId, DateTime startDate)
         {
             var ev = GetGmailEvent(appointmentId);
-            var hasAlert = Convert.ToBoolean(ev.ExtendedProperties.Private["HasAlert"]);
+            var hasAlert = Convert.ToBoolean(ev.ExtendedProperties.Private__["HasAlert"]);
             if (hasAlert == false) return false;
             if (ev.Start.DateTime == null) return false;
             var diff = startDate.Subtract(ev.Start.DateTime.Value).TotalMinutes;
             if (diff == 0) return false;
-            ev.ExtendedProperties.Private["HasAlert"] = "false";
-            ev.ExtendedProperties.Private["AlertKey"] = string.Empty;
+            ev.ExtendedProperties.Private__["HasAlert"] = "false";
+            ev.ExtendedProperties.Private__["AlertKey"] = string.Empty;
             UpdateEvent(ev);
             return true;
         }
@@ -196,25 +196,25 @@ namespace GmailSoftHairSync
             var ev = GetGmailEvent(id);
             ev.Start = EventMapper.GetEventDateTime(start);
             ev.End = EventMapper.GetEventDateTime(end);
-            ev.ExtendedProperties.Private["HasAlert"] = "false";
-            ev.ExtendedProperties.Private["AlertKey"] = string.Empty;
+            ev.ExtendedProperties.Private__["HasAlert"] = "false";
+            ev.ExtendedProperties.Private__["AlertKey"] = string.Empty;
             UpdateEvent(ev);
         }
 
         public void SetAppoitmentClientId(string id, int clientId)
         {
             var ev = GetGmailEvent(id);
-            var location = GetLocation(clientId, ev.ExtendedProperties.Private["Cares"]);
+            var location = GetLocation(clientId, ev.ExtendedProperties.Private__["Cares"]);
             ev.Location = location;
             ClearAttendees(ev);
 
-            var current = ev.ExtendedProperties.Private["ClientId"];
+            var current = ev.ExtendedProperties.Private__["ClientId"];
 
             if (current != clientId.ToString())
             {
-                ev.ExtendedProperties.Private["ClientId"] = clientId.ToString();
-                ev.ExtendedProperties.Private["HasAlert"] = "false";
-                ev.ExtendedProperties.Private["AlertKey"] = string.Empty;
+                ev.ExtendedProperties.Private__["ClientId"] = clientId.ToString();
+                ev.ExtendedProperties.Private__["HasAlert"] = "false";
+                ev.ExtendedProperties.Private__["AlertKey"] = string.Empty;
                 UpdateEvent(ev);
             }
         }
@@ -230,13 +230,13 @@ namespace GmailSoftHairSync
         public void SetAppoitmentCares(string id, string cares)
         {
             var ev = GetGmailEvent(id);
-            var clientId = Convert.ToInt32(ev.ExtendedProperties.Private["ClientId"]);
+            var clientId = Convert.ToInt32(ev.ExtendedProperties.Private__["ClientId"]);
             var location = GetLocation(clientId, cares);
             ev.Location = location;
-            var current = ev.ExtendedProperties.Private["Cares"];
+            var current = ev.ExtendedProperties.Private__["Cares"];
             if (current != cares)
             {
-                ev.ExtendedProperties.Private["Cares"] = cares;
+                ev.ExtendedProperties.Private__["Cares"] = cares;
                 UpdateEvent(ev);
             }
         }
@@ -256,14 +256,14 @@ namespace GmailSoftHairSync
         public void SetAppoitmentWorkerId(string id, int workerId)
         {
             var ev = GetGmailEvent(id);
-            ev.ExtendedProperties.Private["WorkerId"] = workerId.ToString();
+            ev.ExtendedProperties.Private__["WorkerId"] = workerId.ToString();
             UpdateEvent(ev);
         }
 
         public void SetAppoitmentCategotyId(string id, int categoryId)
         {
             var ev = GetGmailEvent(id);
-            ev.ExtendedProperties.Private["RecurrenceId"] = categoryId.ToString();
+            ev.ExtendedProperties.Private__["RecurrenceId"] = categoryId.ToString();
             UpdateEvent(ev);
         }
 
@@ -277,14 +277,14 @@ namespace GmailSoftHairSync
         public void SetAppoitmentHasAlert(string id, bool hasAlert)
         {
             var ev = GetGmailEvent(id);
-            ev.ExtendedProperties.Private["HasAlert"] = hasAlert.ToString().ToLower();
+            ev.ExtendedProperties.Private__["HasAlert"] = hasAlert.ToString().ToLower();
             if (hasAlert)
             {
-                ev.ExtendedProperties.Private["AlertKey"] = ev.Start.DateTime.GetValueOrDefault().ToString("ddMMyyyyHHmm");
+                ev.ExtendedProperties.Private__["AlertKey"] = ev.Start.DateTime.GetValueOrDefault().ToString("ddMMyyyyHHmm");
             }
             else
             {
-                ev.ExtendedProperties.Private["AlertKey"] = string.Empty;
+                ev.ExtendedProperties.Private__["AlertKey"] = string.Empty;
             }
             UpdateEvent(ev);
         }
@@ -304,8 +304,8 @@ namespace GmailSoftHairSync
             var ev = GetGmailEvent(appointment.Id);
             EventMapper.MapAppoitment(appointment, ev);
 
-            var clientId = Convert.ToInt32(ev.ExtendedProperties.Private["ClientId"]);
-            var cares = ev.ExtendedProperties.Private["Cares"];
+            var clientId = Convert.ToInt32(ev.ExtendedProperties.Private__["ClientId"]);
+            var cares = ev.ExtendedProperties.Private__["Cares"];
             var location = GetLocation(clientId, cares);
             ev.Location = location;
             UpdateEvent(ev);
@@ -511,19 +511,19 @@ namespace GmailSoftHairSync
 
         private void FixExtendedProperties(Event @event)
         {
-            var keys = @event.ExtendedProperties.Private.Keys;
+            var keys = @event.ExtendedProperties.Private__.Keys;
             for (var i = 0; i < keys.Count; i++)
             {
                 var key = keys.ElementAt(i);
-                var value = @event.ExtendedProperties.Private[key];
+                var value = @event.ExtendedProperties.Private__[key];
                 if (value == null)
                 {
-                    @event.ExtendedProperties.Private[key] = string.Empty;
+                    @event.ExtendedProperties.Private__[key] = string.Empty;
                 }
             }
             if (keys.Contains("AlertKey") == false)
             {
-                @event.ExtendedProperties.Private.Add("AlertKey", string.Empty);
+                @event.ExtendedProperties.Private__.Add("AlertKey", string.Empty);
             }
         }
 
