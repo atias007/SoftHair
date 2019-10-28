@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SolutionItems\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -82,14 +86,18 @@
     <Compile Include="Library\ClientNavigator.cs" />
     <Compile Include="Library\CodeExecuter.cs" />
     <Compile Include="Library\ComPort.cs" />
+    <Compile Include="Library\DateTimeUtil.cs" />
     <Compile Include="Library\FtpClient.cs" />
     <Compile Include="Library\HebrewEvent.cs" />
+    <Compile Include="Library\LicenseManager.cs" />
     <Compile Include="Library\Remainder.cs" />
+    <Compile Include="Library\Rest.cs" />
     <Compile Include="Library\ScreenCapture.cs" />
     <Compile Include="Library\StringTokenFormat.cs" />
     <Compile Include="Library\Task.cs" />
     <Compile Include="Library\TaskCollection.cs" />
     <Compile Include="Library\Validation.cs" />
+    <Compile Include="Library\WebServices.cs" />
     <Compile Include="LicenceHelper.cs" />
     <Compile Include="LookupHelper.cs" />
     <Compile Include="MailCampaignHelper.cs" />
@@ -142,6 +150,7 @@
       <Link>key.snk</Link>
     </None>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

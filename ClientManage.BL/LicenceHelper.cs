@@ -41,31 +41,5 @@ namespace ClientManage.BL
             var result = LicenceData.GetLicense();
             return result;
         }
-
-        // Update license key
-        public static bool UpdateLicense(string key)
-        {
-            return (LicenceData.UpdateLicense(key) == 1);
-        }
-
-        public static DataTable GetAllLicences()
-        {
-            return LicenceData.GetAllLicences().Tables[0];
-        }
-
-        public static bool UpdateLicense(int id, string key)
-        {
-            return LicenceData.UpdateLicense(id, key) > 0;
-        }
-
-        public static bool DeleteLicense(int id)
-        {
-            return LicenceData.DeleteLicense(id) > 0;
-        }
-
-        public static void ClearAllLicenses()
-        {
-            LicenceData.ClearAllLicenses();
-        }
     }
 }

@@ -57,7 +57,6 @@ namespace ClientManage.Forms.OptionForms
             txtWSpass.Text = LoadSettingValue<string>("WS_CRED_PASSWORD");
             txtWSuser.Text = LoadSettingValue<string>("WS_CRED_USER");
             txtCommonWS.Text = LoadSettingValue<string>("SMS_WS_COMMON_URL");
-            txtHost.Text = WebServices.HostUrl;
             cmbDialArea.SelectedIndex = cmbDialArea.FindString(LoadSettingValue<string>("PHONE_AREA_CODE"));
             chkShowPrintDialog.Checked = LoadSettingValue<bool>("APP_SHOW_PRINTER_DIALOG");
             chkEnableCallerId.Checked = LoadSettingValue<bool>("MAIN_ENABLE_CALLERID");
@@ -141,14 +140,8 @@ namespace ClientManage.Forms.OptionForms
         {
             try
             {
-                WebServices.CommonWs.IsAlive();
-                var msg = new MyMessageBox("שירות נבדק ונמצא תקין", "שירותי רשת כלליים", MyMessageBox.MyMessageType.Confirm, MyMessageBox.MyMessageButton.None)
-                {
-                    CloseInterval = 3000
-                };
-                msg.Show(this);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 General.ShowErrorMessageDialog(this, "שירותי רשת כלליים", "בדיקת שירותי רשת", ex.Message, ex, null);
             }
@@ -175,9 +168,6 @@ namespace ClientManage.Forms.OptionForms
         {
             try
             {
-                txtUniqueId.Text = @"אנא המתן... טוען";
-                System.Windows.Forms.Application.DoEvents();
-                txtUniqueId.Text = General.GetCustomerUniqueId();
             }
             catch (Exception ex)
             {

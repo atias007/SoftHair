@@ -10,7 +10,6 @@ namespace ClientManage.Interfaces
     {
         private static Exception _lastException;
         private static string _cpuId;
-        public enum ValidationResult { Ok, WrongCpuId, NowBeforeStart, NowAfterEnd, DateTraceError, LicenseNotFound, SoonExpire }
 
         public static Exception LastException
         {
@@ -58,8 +57,8 @@ namespace ClientManage.Interfaces
                         switch (keyType)
                         {
                             default:
-                            //case "CPU":
-                                _cpuId = GetCpuId(); 
+                                //case "CPU":
+                                _cpuId = GetCpuId();
                                 break;
 
                             case "MAC":
@@ -140,7 +139,7 @@ namespace ClientManage.Interfaces
                 Crypt.DecryptXMLDoc(ref doc);
                 lcn.ReadXml(new XmlNodeReader(doc));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _lastException = ex;
                 return null;
@@ -149,7 +148,7 @@ namespace ClientManage.Interfaces
             if (lcn.License.Rows.Count == 0) return null;
             return lcn;
         }
-        
+
         public static ProductLicense GetNewLicense()
         {
             var lcn = new ProductLicense();
@@ -157,7 +156,7 @@ namespace ClientManage.Interfaces
             lcn.License.Rows.Add(row);
             return lcn;
         }
-        
+
         public static string SaveLicence(ProductLicense licence)
         {
             var doc = new XmlDocument();
@@ -165,43 +164,6 @@ namespace ClientManage.Interfaces
             doc.LoadXml(licence.GetXml());
             Crypt.EncryptXMLDoc(ref doc);
             var ret = doc.OuterXml;
-            return ret;
-        }
-
-        public static ValidationResult IsLicenseValid(ProductLicense license)
-        {
-            var row = license.License[0];
-            ValidationResult ret;
-            if (CpuId == row.cpu_id)
-            {
-                if (row.from_date <= DateTime.Now)
-                {
-                    if (row.to_date >= DateTime.Now)
-                    {
-                        if (row.last_used <= DateTime.Now && row.last_used >= row.from_date && row.last_used <= row.to_date)
-                        {
-                            ret = ValidationResult.Ok;
-                        }
-                        else
-                        {
-                            ret = ValidationResult.DateTraceError;
-                        }
-                    }
-                    else
-                    {
-                        ret = ValidationResult.NowAfterEnd;
-                    }
-                }
-                else
-                {
-                    ret = ValidationResult.NowBeforeStart;
-                }
-            }
-            else
-            {
-                ret = ValidationResult.WrongCpuId;
-            }
-
             return ret;
         }
 
@@ -219,7 +181,7 @@ namespace ClientManage.Interfaces
 
         public static string UpdateLicense(ProductLicense license, DateTime fromDate, DateTime toDate)
         {
-            if (license.License[0].to_date != toDate || 
+            if (license.License[0].to_date != toDate ||
                 license.License[0].from_date != fromDate ||
                 license.License[0].last_used != DateTime.Now.Date)
             {
@@ -241,12 +203,6 @@ namespace ClientManage.Interfaces
             }
 
             return null;
-        }
-
-        public static int DaysLeftInLicense(ProductLicense license)
-        {
-            var ts = license.License[0].to_date.Subtract(DateTime.Now);
-            return ts.Days + 1;
         }
 
         public static DataSet EncryptReport(ReportSchema report)
@@ -271,6 +227,5 @@ namespace ClientManage.Interfaces
                 return null;
             }
         }
-
     }
 }

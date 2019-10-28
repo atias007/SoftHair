@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Runtime.InteropServices;
-using ClientManage.SmsFactoryCommon;
 
 namespace ClientManage.Library
 {
@@ -36,7 +37,7 @@ namespace ClientManage.Library
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <returns></returns>
-        private static string GetMimeFromFile(string filename)
+        private static ContentType GetMimeFromFile(string filename)
         {
             if (!File.Exists(filename))
                 throw new FileNotFoundException(filename + " not found");
@@ -56,11 +57,11 @@ namespace ClientManage.Library
                 var mimeTypePtr = new IntPtr(mimetype);
                 var mime = Marshal.PtrToStringUni(mimeTypePtr);
                 Marshal.FreeCoTaskMem(mimeTypePtr);
-                return mime;
+                return new ContentType(mime);
             }
             catch (Exception)
             {
-                return "unknown/unknown";
+                return new ContentType("unknown/unknown");
             }
         }
 
@@ -69,29 +70,28 @@ namespace ClientManage.Library
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <returns></returns>
-        public static EmailAttachment GetAttachment(string filename)
+        public static Attachment GetAttachment(string filename)
         {
             var file = new FileInfo(filename);
-            var result = new EmailAttachment();
+
             try
             {
-                result.Content = File.ReadAllBytes(file.FullName);
+                var result = new Attachment(filename);
+                result.Name = file.Name;
+                result.ContentType = GetMimeFromFile(file.FullName);
+
+                return result;
             }
             catch (Exception ex)
             {
                 throw new ApplicationException("Error reading file: " + file.FullName, ex);
             }
-
-            result.Name = file.Name;
-            result.ContentType = GetMimeFromFile(file.FullName);
-            
-            return result;
         }
     }
 
     public class AttachmentComboItem
     {
-        public EmailAttachment Attachment { get; set; }
+        public Attachment Attachment { get; set; }
 
         public override string ToString()
         {

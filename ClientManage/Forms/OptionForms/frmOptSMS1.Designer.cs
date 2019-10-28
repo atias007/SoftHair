@@ -491,7 +491,6 @@ namespace ClientManage.Forms.OptionForms
             this.btnUniqueId.TabIndex = 74;
             this.btnUniqueId.Tag = "SuperUser";
             this.btnUniqueId.UseVisualStyleBackColor = true;
-            this.btnUniqueId.Click += new System.EventHandler(this.BtnUniqueId_Click);
             // 
             // button1
             // 

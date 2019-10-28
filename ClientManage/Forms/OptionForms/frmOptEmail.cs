@@ -23,7 +23,6 @@ namespace ClientManage.Forms.OptionForms
         public override void LoadSettings()
         {
             txtMailFrom.Text = LoadSettingValue<string>("MAIL_FROM");
-            txtMailWS.Text = WebServices.OnlineUpdateUrl;
 
             var table = MailCampaignHelper.GetAllMailTemplates();
             lstMailTemplates.Items.Clear();

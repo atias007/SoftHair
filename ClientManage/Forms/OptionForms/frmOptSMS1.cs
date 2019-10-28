@@ -96,12 +96,12 @@ namespace ClientManage.Forms.OptionForms
             var smsCalParams = new AutoCalSmsParams(
                 LoadSettingValue<string>("SMS_CALENDAR_PARAMS"),
                 LoadSettingValue<string>("SMS_CALENDAR_MESSAGE"))
-                                   {
-                                       Message = txtCalMessage.Text,
-                                       Enable = chkAutoCalSms.Checked,
-                                       DaysBefore = int.Parse(cmbSmsFrom.Text),
-                                       UpMin = (int)cmbSmsTo.SelectedValue
-                                   };
+            {
+                Message = txtCalMessage.Text,
+                Enable = chkAutoCalSms.Checked,
+                DaysBefore = int.Parse(cmbSmsFrom.Text),
+                UpMin = (int)cmbSmsTo.SelectedValue
+            };
             SaveSettingValue("SMS_CALENDAR_PARAMS", smsCalParams.ToString());
             SaveSettingValue("SMS_CALENDAR_MESSAGE", smsCalParams.Message);
 
@@ -208,28 +208,6 @@ namespace ClientManage.Forms.OptionForms
             lblCheckStatus.Visible = true;
         }
 
-        private void BtnUniqueId_Click(object sender, EventArgs e)
-        {
-            var credentials = new SmsFactoryCommon.CustomerCredentials
-            {
-                ApplicationId = SmsEngine.Credentials.ApplicationId,
-                Username = SmsEngine.Credentials.Username,
-                Password = SmsEngine.Credentials.Password
-            };
-
-            try
-            {
-                var id = WebServices.CommonWs.GetCustomerUniqueId(credentials);
-                txtUniqueId.Text = id;
-            }
-            catch (Exception ex)
-            {
-                General.ShowErrorMessageDialog(this, "בדיקת מזהה לקוח", "בדיקת מזהה לקוח", string.Empty, ex, null);
-            }
-
-            SaveXmlSupportFile();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             txtCheckException.Show();
@@ -240,7 +218,6 @@ namespace ClientManage.Forms.OptionForms
             txtCheckException.AppendText(count + @" אנשי קשר... ");
             try
             {
-                General.SyncContacts(true);
                 txtCheckException.AppendText("הסתיים");
             }
             catch (Exception ex)

@@ -127,8 +127,9 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -505,9 +506,6 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Library\AutoCompleteAppointment.cs" />
-    <Compile Include="Library\ContactSyncDetails.cs" />
-    <Compile Include="Library\CustomerLicense.cs" />
-    <Compile Include="Library\EventSyncDetails.cs" />
     <Compile Include="Library\DataGridViewCalendarColumn.cs" />
     <Compile Include="Library\EmailHelper.cs" />
     <Compile Include="Library\General.cs" />
@@ -518,7 +516,6 @@
     <Compile Include="Library\HasAlertQueue.cs" />
     <Compile Include="Library\HookKeyPress.cs" />
     <Compile Include="Library\HTMLPrinter.cs" />
-    <Compile Include="Library\LicenseManager.cs" />
     <Compile Include="Library\LocalReportPrinter.cs" />
     <Compile Include="Library\LocalReportRenderer.cs" />
     <Compile Include="Library\MyMessageBox.cs" />
@@ -548,7 +545,6 @@
     <Compile Include="Library\SmsEngine.cs" />
     <Compile Include="Library\StickerClient.cs" />
     <Compile Include="Library\TBSavedWords.cs" />
-    <Compile Include="Library\WebServices.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

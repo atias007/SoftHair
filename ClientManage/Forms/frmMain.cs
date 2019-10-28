@@ -101,7 +101,6 @@ namespace ClientManage.Forms
         private int _selectedTabIndex = -1;             // contain the current selected tab index
         private bool _forceToShowClientCard;            // force the application to open client card even if the search form was last open
         private bool _firstActive = true;               // indicate that system is first time activate non modal form
-        private bool _checkExpire;                      // indicate for show check license form
         private MyMessageBox _myMessageBox;             // my message box object
         private ComPort _cid;                           // comm port for caller id
         private ScheduleTasks _scheduleTasks;           // class of all schedule task
@@ -146,13 +145,6 @@ namespace ClientManage.Forms
             TabStrip.SelectTab(0);
         }
 
-        internal void EndLicense()
-        {
-            var key = Security.EndLicense(Utils.CurrentLicense);
-            LicenceHelper.UpdateLicense(key);
-            CheckLicense();
-        }
-
         internal void InitializeScheduleTasks()
         {
             _scheduleTasks = new ScheduleTasks();
@@ -167,15 +159,13 @@ namespace ClientManage.Forms
 
         internal void CheckLicense(Form parent)
         {
-            // read license file
-            var licKey = LicenceHelper.GetLicenseKey();
-            var license = Security.GetLicense(licKey);
+            var license = LicenseManager.CheckForEndLicenseOnline();
             Utils.CurrentLicense = license;
 
             // no license found or some fail to read it
             if (license == null)
             {
-                using (_fLicence = new FormLicense(Security.ValidationResult.LicenseNotFound))
+                using (_fLicence = new FormLicense(license))
                 {
                     _fLicence.ShowDialog(parent);
                 }
@@ -183,29 +173,28 @@ namespace ClientManage.Forms
                 Environment.Exit(0);
             }
 
-            // check parameters of license
-            var res = Security.IsLicenseValid(license);
-
-            // license ok
-            if (res == Security.ValidationResult.Ok)
+            switch (license.Status)
             {
-                var key = Security.UpdateLastDateUse(license);
-                LicenceHelper.UpdateLicense(key);
+                default:
+                case LicenseStatus.None:
+                case LicenseStatus.Block:
+                case LicenseStatus.OutOfDate:
+                    using (_fLicence = new FormLicense(license))
+                    {
+                        var result = _fLicence.ShowDialog(parent);
+                        Environment.Exit(0);
+                    }
+                    break;
 
-                // check for case the license soon expire. if yes - show alert message
-                if (parent is FormSplash) _checkExpire = true;
-                else CheckExpire();
-            }
-            else
-            {
-                // some license error, show license form
-                using (_fLicence = new FormLicense(res))
-                {
-                    var result = _fLicence.ShowDialog(parent);
-                    if (result == DialogResult.Retry) return;
-                }
-
-                Environment.Exit(0);
+                case LicenseStatus.Valid:
+                    if (license.ExpireDays == 30 || license.ExpireDays <= 7)
+                    {
+                        using (_fLicence = new FormLicense(license))
+                        {
+                            var result = _fLicence.ShowDialog(parent);
+                        }
+                    }
+                    break;
             }
         }
 
@@ -356,12 +345,6 @@ namespace ClientManage.Forms
             }
         }
 
-        internal void BeginCheckForLicenseOnline()
-        {
-            var task = new System.Threading.Tasks.Task(CheckForEndLicenseOnline);
-            task.Start();
-        }
-
         private static string GetFormText()
         {
             const string caption = "    {0}  |   מספר לקוח {1}  |  גרסה {2}";
@@ -383,26 +366,6 @@ namespace ClientManage.Forms
             Validation.LinePhonePrefix = Utils.GetStringArray(AppSettingsHelper.GetParamValue<string>("PHONE_LINE_PREFIX"));
             HookKeyPress.KeyPress += HookKeyPressKeyPress;
             HookKeyPress.StartHook();
-        }
-
-        private void CheckForEndLicenseOnline()
-        {
-            var result = LicenseManager.CheckForEndLicenseOnline();
-            switch (result)
-            {
-                case LicenseManager.OnlineLicenseStatus.None:
-                    return;
-
-                case LicenseManager.OnlineLicenseStatus.Valid:
-                    return;
-
-                case LicenseManager.OnlineLicenseStatus.Block:
-                    this.Invoke(new MethodInvoker(EndLicense));
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
         }
 
         private void ShutDownApplication()
@@ -461,24 +424,6 @@ namespace ClientManage.Forms
             var res = _myMessageBox.Show(this);
 
             return (res == DialogResult.Yes);
-        }
-
-        private void CheckExpire()
-        {
-            var days = Security.DaysLeftInLicense(Utils.CurrentLicense);
-            if (days <= 0) return;
-
-            if (days == 30 || days <= 7)
-            {
-                using (_fLicence = new FormLicense(Security.ValidationResult.SoonExpire))
-                {
-                    FormLicense.ExpireDays = days;
-                    if (_fLicence.ShowDialog(this) == DialogResult.Retry)
-                    {
-                        CheckExpire();
-                    }
-                }
-            }
         }
 
         private void ShowCallerIdForm(string callerId)
@@ -1175,12 +1120,6 @@ namespace ClientManage.Forms
                 }
             }
 
-            if (_checkExpire)
-            {
-                CheckExpire();
-                _checkExpire = false;
-            }
-
             // show form of today birthday clients
             if (_fBirthday != null)
             {
@@ -1211,7 +1150,6 @@ namespace ClientManage.Forms
             if (!_firstActive)
             {
                 _firstActive = true;
-                BeginCheckForLicenseOnline();
                 if (!(_fBirthday == null || _fBirthday.IsDisposed))
                 {
                     _fBirthday.Select();
@@ -1241,7 +1179,6 @@ namespace ClientManage.Forms
                 {
                     _cid.SendCommand("ATA");
                     _cid = null;
-                    EndLicense();
                 }
                 else
                 {
@@ -2140,7 +2077,6 @@ namespace ClientManage.Forms
                         if (_fLicence == null || _fLicence.IsDisposed)
                         {
                             CheckLicense();
-                            BeginCheckForLicenseOnline();
                         }
                     }
                     catch { Utils.CatchException(); }

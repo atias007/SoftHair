@@ -22,7 +22,6 @@ namespace ClientManage.Forms.OptionForms
         public override void LoadSettings()
         {
             chkEnableOnlineUpdate.Checked = LoadSettingValue<bool>("ONLINE_UPDATE_ENABLE");
-            txtOnlineUpdateURL.Text = WebServices.OnlineUpdateUrl;
             var val = LoadSettingValue<string>("ONLINE_LAST_UPDATE");
             val = !string.IsNullOrEmpty(val) ? Convert.ToDateTime(val).ToString("dd/MM/yyyy") : "< לא בוצע מעולם >";
             lblLastUpdate.Text = string.Format(_lastUpdateFormat, val);
@@ -39,6 +38,7 @@ namespace ClientManage.Forms.OptionForms
         }
 
         private static string _updateFile;
+
         private void BtnOnlineUpdateClick(object sender, EventArgs e)
         {
             pbarDownload.Value = 0;
@@ -47,7 +47,7 @@ namespace ClientManage.Forms.OptionForms
             Application.DoEvents();
 
             try
-            {               
+            {
                 _updateFile = General.GetUpdateLocalFilename();
                 var webClient = new WebClient();
                 webClient.DownloadProgressChanged += WebClientDownloadProgressChanged;
@@ -63,7 +63,7 @@ namespace ClientManage.Forms.OptionForms
             }
         }
 
-        void WebClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void WebClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             try
             {
@@ -84,10 +84,9 @@ namespace ClientManage.Forms.OptionForms
                 lblDownload.Visible = false;
                 pbarDownload.Visible = false;
             }
-            
         }
 
-        void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             pbarDownload.Value = e.ProgressPercentage;
             Application.DoEvents();

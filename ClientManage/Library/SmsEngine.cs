@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Net;
 using System.IO;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Library
 {
@@ -113,20 +114,7 @@ namespace ClientManage.Library
         /// <returns></returns>
         public int GetCredit()
         {
-            int ret;
-
-            try
-            {
-                var cred = Credentials;
-                ret = Sender.GetCredit(cred);
-            }
-            catch (Exception ex)
-            {
-                ret = -1;
-                this.LastException = ex;
-            }
-
-            return ret;
+            return SmsHelper.GetCredit();
         }
 
         #endregion Methods

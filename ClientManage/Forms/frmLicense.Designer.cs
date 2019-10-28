@@ -195,7 +195,6 @@ namespace ClientManage.Forms
             this.ShowMinimizeControl = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "רשיון שימוש במערכת SoftHair";
-            this.Activated += new System.EventHandler(this.FormLicense_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLicence_FormClosed);
             this.Load += new System.EventHandler(this.FrmLicence_Load);
             this.Controls.SetChildIndex(this.label1, 0);

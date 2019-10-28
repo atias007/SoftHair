@@ -7,7 +7,7 @@ using ClientManage.BL;
 using ClientManage.Library;
 using ClientManage.Interfaces;
 using ClientManage.BL.Library;
-using ClientManage.SmsFactoryCommon;
+using System.Net.Mail;
 
 namespace ClientManage.Forms
 {
@@ -54,57 +54,12 @@ namespace ClientManage.Forms
         private void FrmMailCampaign_Load(object sender, EventArgs e)
         {
             txtFrom.Text = @"<" + AppSettingsHelper.GetParamValue("MAIL_FROM") + @"> " + AppSettingsHelper.GetParamValue("APP_CLIENT_NAME");
-            BeginCheckConnectionToServer();
             lstMailTemplates.DisplayMember = "template_name";
             lstMailTemplates.ValueMember = "id";
             lstMailTemplates.DataSource = _mailTemplates;
             lstMailTemplates.Select();
             //_tbSubject = new TBSavedWords(txtSubject);
             //_tbBody = new TBSavedWords(txtMailBody);
-        }
-
-        private void BeginCheckConnectionToServer()
-        {
-            var mi = new MethodInvoker(CheckConnectionToServer);
-            mi.BeginInvoke(null, null);
-        }
-
-        private void CheckConnectionToServer()
-        {
-            try
-            {
-                _isConnectionOk = WebServices.CommonWs.IsAlive();
-            }
-            catch
-            {
-                Utils.CatchException();
-            }
-            var mi = new MethodInvoker(SetConnectionLabels);
-            try
-            {
-                this.Invoke(mi);
-            }
-            catch
-            {
-                Utils.CatchException();
-            }
-        }
-
-        private void SetConnectionLabels()
-        {
-            if (_isConnectionOk)
-            {
-                lblConnecting.Text = @"      מחובר אל שרת הדואר";
-                lblConnecting.Image = Properties.Resources.ok;
-                lblConnecting.ForeColor = Color.DarkGreen;
-            }
-            else
-            {
-                lblConnecting.Text = @"      החיבור אל השרת נכשל! נסה להתחבר שוב";
-                lblConnecting.Image = Properties.Resources.field_error;
-                lblConnecting.ForeColor = Color.Maroon;
-            }
-            lnkRetry.Visible = !_isConnectionOk;
         }
 
         private bool IsItemExist(string value1, string value2)
@@ -118,7 +73,7 @@ namespace ClientManage.Forms
                     break;
                 }
             }
-            
+
             return ret;
         }
 
@@ -210,7 +165,6 @@ namespace ClientManage.Forms
             lblConnecting.Text = _connectingText;
             lblConnecting.Image = null;
             lblConnecting.Visible = true;
-            BeginCheckConnectionToServer();
         }
 
         private void TextBox_Focus(object sender, EventArgs e)
@@ -460,26 +414,6 @@ namespace ClientManage.Forms
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            /*
-            this.Cursor = Cursors.WaitCursor; 
-            var id = (int)lstMailTemplates.SelectedValue;
-            var html = MailCampaignHelper.GetMailTemplateHtml(id);
-            var text = txtMailBody.Text;
-            
-            html = html.Replace("images/", WebServices.HostUrl + "/mailtemplates/images/");
-            text = text.Replace("\n", "<br />");
-            html = html.Replace("{Place holder for main mail text content}", text );
-    
-            var preview = new FormMailPreview(ref html);
-            preview.ShowDialog(this);
-            this.Cursor = Cursors.Default;
-
-            if (FormMailPreview.SendEmail)
-            {
-                btnSend_Click(null, null);
-            }
-            */
-
             var list = new List<string>();
             var email = AppSettingsHelper.GetParamValue("MAIL_FROM");
             var exist = false;
@@ -527,7 +461,6 @@ namespace ClientManage.Forms
                 return false;
             }
 
-            CheckConnectionToServer();
             if (!_isConnectionOk)
             {
                 msg1 = "לא ניתן לשלוח את הדוא\"ל, שגיאה בהתחברות אל שרת הדואר\n" +
@@ -543,7 +476,7 @@ namespace ClientManage.Forms
             MyMessageBox = new MyMessageBox(msg1, msg2, MyMessageBox.MyMessageType.Question, MyMessageBox.MyMessageButton.YesNo, MyMessageBox.MyMessageDefaultButton.Button2);
             var res = MyMessageBox.Show(this);
             if (res == DialogResult.No) return false;
-            
+
             return true;
         }
 
@@ -558,16 +491,15 @@ namespace ClientManage.Forms
         {
             var ret = false;
 
-            var mail = new EmailMessage
+            var mail = new MailMessage
             {
                 IsBodyHtml = true,
-                From = new EmailAddress { Address = AppSettingsHelper.GetParamValue("MAIL_FROM"), DisplayName = AppSettingsHelper.GetParamValue("APP_CLIENT_NAME") },
+                From = new MailAddress(AppSettingsHelper.GetParamValue("MAIL_FROM"), AppSettingsHelper.GetParamValue("APP_CLIENT_NAME")),
                 Body = html.Replace("{שם הלקוח}", name),
                 Subject = txtSubject.Text.Trim().Replace("\n", "<br />").Replace("{שם הלקוח}", name),
             };
-            var address = new EmailAddress { Address = email, DisplayName = name };
-            mail.To =  new List<EmailAddress> { address };
-            mail.Attachments = new List<EmailAttachment>();
+            var address = new MailAddress(email, name);
+            mail.To.Add(address);
 
             foreach (AttachmentComboItem item in cmbFiles.Items)
             {
@@ -576,7 +508,7 @@ namespace ClientManage.Forms
 
             try
             {
-                WebServices.CommonWs.SendEmailAsync(General.UserCredentials, mail);
+                // TODO: ***
                 ret = true;
             }
             catch (Exception ex)
@@ -584,7 +516,7 @@ namespace ClientManage.Forms
                 _error = ex;
                 EventLogManager.AddErrorMessage("Error sending mail", ex);
             }
-            
+
             return ret;
         }
 
@@ -594,11 +526,11 @@ namespace ClientManage.Forms
             var ret = false;
             var exist = false;
             var email = AppSettingsHelper.GetParamValue("MAIL_FROM");
-            
+
             var template = MailCampaignHelper.GetMailTemplateHtml(_templateId).Replace("images/", "http://smsfactorystorage.blob.core.windows.net/softhair/Admin/images/");
             var body = txtMailBody.Text.Trim().Replace("\n", "<br />");
             var html = template.Replace("{Place holder for main mail text content}", body);
-           
+
             foreach (ListViewItem item in lstClients.Items)
             {
                 exist = (item.SubItems[0].Text == email);
@@ -607,12 +539,12 @@ namespace ClientManage.Forms
                     ret |= SendSingleMail(item.Text, item.SubItems[1].Text, html);
                 }
             }
-            
+
             if (!exist && Validation.IsEmailValid(email, true))
             {
                 ret |= SendSingleMail(AppSettingsHelper.GetParamValue("APP_CLIENT_NAME"), email, html);
             }
-            
+
             this.Cursor = Cursors.Default;
             return ret;
         }
@@ -656,7 +588,7 @@ namespace ClientManage.Forms
             if (_fClientQuickSearch == null || _fClientQuickSearch.IsDisposed)
             {
                 this.Cursor = Cursors.WaitCursor;
-                _fClientQuickSearch = new FormClientQuickSearch {VisibleItems = 6, Left = rect.Left, Top = rect.Bottom};
+                _fClientQuickSearch = new FormClientQuickSearch { VisibleItems = 6, Left = rect.Left, Top = rect.Bottom };
                 _fClientQuickSearch.ClientSelected += fClientQuickSearch_ClientSelected;
                 _fClientQuickSearch.Show();
                 this.Cursor = Cursors.Default;
@@ -669,7 +601,7 @@ namespace ClientManage.Forms
             _fClientQuickSearch.Select();
         }
 
-        void fClientQuickSearch_ClientSelected(object sender, EventArgs e)
+        private void fClientQuickSearch_ClientSelected(object sender, EventArgs e)
         {
             txtPersonName.Text = ClientHelper.GetFullName(FormClientQuickSearch.SelectedClientId);
             txtPersonPhone.Text = ClientHelper.GetClientEmail(FormClientQuickSearch.SelectedClientId);
@@ -710,7 +642,7 @@ namespace ClientManage.Forms
                         try
                         {
                             var file = FileReader.GetAttachment(name);
-                            cmbFiles.Items.Insert(0, new AttachmentComboItem {Attachment = file});
+                            cmbFiles.Items.Insert(0, new AttachmentComboItem { Attachment = file });
                         }
                         catch (Exception ex)
                         {

@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using ClientManage.Interfaces.Schemas;
 using ClientManage.Interfaces;
-using System.IO;
-using ClientManage.BL;
 
 namespace ClientManage.UserControls
 {
@@ -27,21 +19,18 @@ namespace ClientManage.UserControls
             set { _drawBorder = value; }
         }
 
-        public void ShowLicenseInfo(ProductLicense license)
+        public void ShowLicenseInfo(CustomerLicense license)
         {
             if (license != null)
             {
-                var row = license.License[0];
-                lblEndDate.Text = row.to_date.ToString("dd/MM/yyyy");
-                lblId.Text = row.cpu_id;
-                lblLastCheck.Text = row.last_used.ToString("dd/MM/yyyy");
-                lblStartDate.Text = row.from_date.ToString("dd/MM/yyyy");
-                lblType.Text = row.type;
-                lblKey.Text = row.key;
+                lblEndDate.Text = license.To.ToString("dd/MM/yyyy");
+                lblId.Text = "-";
+                lblLastCheck.Text = "-";
+                lblStartDate.Text = license.From.ToString("dd/MM/yyyy");
+                lblType.Text = "-";
+                lblKey.Text = "-";
 
-                lstFeatures.DataSource = license.LicenseFeatures;
-                lstFeatures.DisplayMember = "description";
-                lstFeatures.ValueMember = "id";
+                lstFeatures.DataSource = null;
             }
         }
 

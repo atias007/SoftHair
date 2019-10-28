@@ -93,7 +93,7 @@ namespace ClientManage.Interfaces
 
         #endregion Data Convert
 
-        public static ProductLicense CurrentLicense { get; set; }
+        public static CustomerLicense CurrentLicense { get; set; }
 
         public static void OpenComboBox(IntPtr hWnd)
         {

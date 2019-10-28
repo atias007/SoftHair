@@ -1,7 +1,6 @@
 using ClientManage.BL;
 using ClientManage.Forms;
 using ClientManage.Interfaces;
-using ClientManage.SmsFactoryCommon;
 using LukeSw.Windows.Forms;
 using System;
 using System.Collections.Generic;

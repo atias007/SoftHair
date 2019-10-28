@@ -1,9 +1,9 @@
 using ClientManage.BL.Library;
 using ClientManage.Data;
 using ClientManage.Interfaces;
-using GmailSoftHairSync;
 using System;
 using System.Data;
+using System.Linq;
 
 namespace ClientManage.BL
 {
@@ -34,17 +34,6 @@ namespace ClientManage.BL
             SmsData.UpdateSMSMessage(title, msg);
         }
 
-        //public static void SaveLog(SMSLog log)
-        //{
-        //    bool ok = true;
-        //    if (log.MessageType == SMSLog.SMSMessageType.AutoCalendarRemaind)
-        //    {
-        //        ok = (SmsData.CheckCalendarFailSMS(log.PhoneNo) == 0);
-        //    }
-
-        //    if(ok) SmsData.SaveLog(log);
-        //}
-
         public static string GetSavedMessage(int id)
         {
             return SmsData.GetSavedMessage(id).Trim();
@@ -69,7 +58,6 @@ namespace ClientManage.BL
         {
             CalendarService.Instance.SetAppoitmentHasAlert(id, true);
             CalendarData.AddCalendarAudit(id, 13, "בוצע איפוס לתזכורת SMS של התור");
-            //CalendarHelper.OnSyncEvents(id);
         }
 
         public static bool IsNowValidForAutoSms()
@@ -137,6 +125,38 @@ namespace ClientManage.BL
             }
 
             return msg;
+        }
+
+        public static int GetCredit()
+        {
+            var credit = AppSettingsHelper.GetParamValue<int>("SMS_CREDIT_VALUE");
+            var credits = WebServices.GetOnlineCredit();
+            var current = credits.Where(c => c.DateUpdate.Date.AddDays(3) >= DateTime.Now.Date).ToList();
+
+            foreach (var item in current)
+            {
+                var success = SmsData.LoadCredit(item.Id, item.Credit);
+                if (success)
+                {
+                    credit += item.Credit;
+                    AppSettingsHelper.SetParamValue("SMS_CREDIT_VALUE", credit, true);
+                }
+            }
+
+            AppSettingsHelper.ResetParams();
+
+            return credit;
+        }
+
+        private static void LoadCredit(int id, int credit)
+        {
+            var result = SmsData.LoadCredit(id, credit);
+            if (result)
+            {
+                AppSettingsHelper.ResetParams();
+                var oldCredit = AppSettingsHelper.GetParamValue<int>("SMS_CREDIT_VALUE");
+                AppSettingsHelper.SetParamValue("SMS_CREDIT_VALUE", oldCredit + credit);
+            }
         }
     }
 }
