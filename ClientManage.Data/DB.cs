@@ -16,7 +16,7 @@ namespace ClientManage.Data
             _db = (Database)db;
         }
 
-        public static void ValidateTableExists(string tableName)
+        private static void ValidateTableExists(string tableName)
         {
             if (string.IsNullOrEmpty(tableName)) return;
 
@@ -26,7 +26,7 @@ namespace ClientManage.Data
 
             try
             {
-                cmd.ExecuteNonQuery();
+                _db.ExecuteNonQuery(cmd);
                 exists = true;
             }
             catch (System.Exception)
@@ -44,6 +44,10 @@ namespace ClientManage.Data
                         query = "create table SmsCredit(Id INTEGER CONSTRAINT CPK PRIMARY KEY, Credit INTEGER, UpdateDate DATETIME)";
                         break;
 
+                    case "smssendlog":
+                        query = "create table SmsSendLog(MessageText MEMO, ToPhone VARCHAR(20), FromPhone VARCHAR(20), Credit INTEGER, TotalCredit INTEGER, SendDate DATETIME)";
+                        break;
+
                     default:
                         break;
                 }
@@ -54,6 +58,12 @@ namespace ClientManage.Data
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public static void ValidateTableExists()
+        {
+            ValidateTableExists("SmsCredit");
+            ValidateTableExists("SmsSendLog");
         }
     }
 }

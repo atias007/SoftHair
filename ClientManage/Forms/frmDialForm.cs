@@ -140,7 +140,7 @@ namespace ClientManage.Forms
             {
                 MyMessageBox = new Library.MyMessageBox(ex.Message, this.Text, ClientManage.Library.MyMessageBox.MyMessageType.Error, ClientManage.Library.MyMessageBox.MyMessageButton.Ok);
                 MyMessageBox.Show(this);
-                General.AddExceptionToLogFile(ex);
+                EventLogManager.AddExceptionToLogFile(ex);
             }
             var mi = new MethodInvoker(AddCallLog);
             mi.BeginInvoke(null, null);
@@ -176,7 +176,7 @@ namespace ClientManage.Forms
             catch (Exception ex)
             {
                 EventLogHelper.AddEvent(new LogInfo(LogInfo.LogType.Error, ex.Message, Utils.GetExceptionMessage(ex)));
-                General.AddExceptionToLogFile(ex);
+                EventLogManager.AddExceptionToLogFile(ex);
             }
         }
     }

@@ -1242,6 +1242,8 @@ namespace ClientManage.Forms
 
         private void HookKeyPressKeyPress(Keys key)
         {
+            if(_keyPressPipe == null) { return; }
+
             try
             {
                 _keyPressPipe.Push(GetCharFromKeys(key));

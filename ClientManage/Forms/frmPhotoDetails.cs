@@ -1,6 +1,7 @@
 using BizCare.Calendar.Library;
 using BizCare.WebCam;
 using ClientManage.BL;
+using ClientManage.BL.Library;
 using ClientManage.Interfaces;
 using ClientManage.Library;
 using System;

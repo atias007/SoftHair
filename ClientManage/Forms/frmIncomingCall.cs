@@ -8,6 +8,7 @@ using ClientManage.Interfaces;
 using ClientManage.BL;
 using ClientManage.Library;
 using ClientManage.UserControls;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Forms
 {
@@ -16,18 +17,18 @@ namespace ClientManage.Forms
         #region Events
 
         public event DlgShowClientCardEventHandler ShowClientCard;
+
         public event CreateNewClientEventHandler CreateNewClient;
-        
+
         // open calendar and remember to attach client to the new appointment
         public event CalendarSetAppointmentEventHandler SetAppointment;
 
-        #endregion
+        #endregion Events
 
         #region Private Memebers
 
         private delegate void SaveCallLogHandler(CallerIdPerson[] persons, string callerId);
 
-        
         private readonly ArrayList _callers = new ArrayList();
         private readonly bool _showLinkToClientCard;
         private readonly CallerIdPerson[] _persons;
@@ -36,11 +37,13 @@ namespace ClientManage.Forms
         private readonly DgvLoadImages _imageLoader = new DgvLoadImages();
         private readonly string _callerId;
 
-        #endregion
+        #endregion Private Memebers
 
         #region Constructor
 
-        public FormIncomingCall(string callerId, bool showLinkToClientCard) : this(callerId, showLinkToClientCard, null) {}
+        public FormIncomingCall(string callerId, bool showLinkToClientCard) : this(callerId, showLinkToClientCard, null)
+        {
+        }
 
         // initialize form controls
         public FormIncomingCall(string callerId, bool showLinkToClientCard, DataTable table)
@@ -94,7 +97,7 @@ namespace ClientManage.Forms
         private static void SaveCallLog(CallerIdPerson[] persons, string callerId)
         {
             if (!AppSettingsHelper.GetParamValue<bool>("PHONE_LOG_CALLS")) return;
-                    
+
             try
             {
                 if (callerId.Length == 0) callerId = "לא מזוהה";
@@ -111,13 +114,13 @@ namespace ClientManage.Forms
                     }
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 EventLogManager.AddErrorMessage("Error save call log. caller id=" + callerId, ex);
             }
         }
 
-        #endregion
+        #endregion Constructor
 
         public DataTable GetHistoryTable()
         {
@@ -176,10 +179,10 @@ namespace ClientManage.Forms
                 for (var i = 1; i < clients.Count; i++)
                 {
                     icid = new IncomeCallerId
-                           {
-                               PhoneNumber = phoneNumber, 
-                               Name = "IcId" + (i + 1)
-                           };
+                    {
+                        PhoneNumber = phoneNumber,
+                        Name = "IcId" + (i + 1)
+                    };
                     last = (IncomeCallerId)_callers[_callers.Count - 1];
                     icid.Location = new Point(last.Location.X, last.Location.Y + last.Size.Height + 4);
                     icid.ShowClientCard += IcId1_ShowClientCard;
@@ -190,7 +193,7 @@ namespace ClientManage.Forms
                     pnlCallers.Controls.Add(icid);
                     _callers.Add(icid);
                 }
-                
+
                 if (clients.Count < 2) count = clients.Count - 1;
                 else count = 1;
             }
@@ -213,7 +216,7 @@ namespace ClientManage.Forms
             }
         }
 
-        void IcidCreateNewClient(object sender, NewClientEventArgs e)
+        private void IcidCreateNewClient(object sender, NewClientEventArgs e)
         {
             if (CreateNewClient != null)
             {
@@ -222,7 +225,7 @@ namespace ClientManage.Forms
             }
         }
 
-        void IcidSetAppointment(object sender, SetAppointmentEventArgs e)
+        private void IcidSetAppointment(object sender, SetAppointmentEventArgs e)
         {
             this.Hide();
             var args = new SetAppointmentEventArgs(e.ClientId) { PhoneNumber = _callerId };
@@ -230,16 +233,16 @@ namespace ClientManage.Forms
             this.Close();
         }
 
-        #endregion
+        #endregion Private Functions
 
         #region Controls Event
-                
+
         // close the form
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
         // when user press link, close the form and show client card
         private void IcId1_ShowClientCard(object sender, ShowClientCardEventArgs e)
         {
@@ -250,7 +253,9 @@ namespace ClientManage.Forms
             }
         }
 
-        #endregion 
+        #endregion Controls Event
+
+
 
         //private void grdClients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         //{

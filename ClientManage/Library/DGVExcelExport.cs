@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Library
 {
@@ -21,7 +22,7 @@ namespace ClientManage.Library
             catch (Exception ex)
             {
                 EventLogManager.AddErrorMessage("Error creating export file", ex);
-                return; 
+                return;
             }
 
             foreach (DataGridViewColumn col in grid.Columns)
@@ -34,9 +35,8 @@ namespace ClientManage.Library
             if (line.EndsWith(",")) line = line.Substring(0, line.Length - 1);
             line += "\r\n";
             writer.Write(line);
-            
 
-            foreach(DataGridViewRow row in grid.Rows)
+            foreach (DataGridViewRow row in grid.Rows)
             {
                 line = string.Empty;
                 foreach (DataGridViewCell cell in row.Cells)

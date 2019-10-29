@@ -1,3 +1,4 @@
+using ClientManage.Interfaces;
 using System;
 using System.Data;
 
@@ -55,17 +56,29 @@ namespace ClientManage.Data
 
         public static bool LoadCredit(int id, int credit)
         {
-            My.ValidateTableExists("SmsCredit");
-
             if (IsCreditExists(id)) return false;
 
             var query = "INSERT INTO [SmsCredit] (Id, Credit, UpdateDate) VALUES([?id], [?credit], [?update_date])";
             var cmd = My.Database.GetSqlStringCommand(query);
             My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, id);
             My.Database.AddInParameter(cmd, "[?credit]", DbType.Int32, credit);
-            My.Database.AddInParameter(cmd, "[?update_date]", DbType.Date, DateTime.Now);
+            My.Database.AddInParameter(cmd, "[?update_date]", DbType.DateTime, Utils.GetDateTimeValueForDB(DateTime.Now));
             var count = My.Database.ExecuteNonQuery(cmd);
             return count > 0;
+        }
+
+        public static void AddSmsLog(SmsMessage message, int credit, int totalCredit)
+        {
+            //var totlaCredit = AppSettingsHelper.GetParamValue<int>("SMS_CREDIT_VALUE");
+            var query = "INSERT INTO SmsSendLog(MessageText,ToPhone,FromPhone,Credit,TotalCredit,SendDate) VALUES ([?MessageText],[?ToPhone],[?FromPhone],[?Credit],[?TotalCredit],[?SendDate])";
+            var cmd = My.Database.GetSqlStringCommand(query);
+            My.Database.AddInParameter(cmd, "[?MessageText]", DbType.String, message.MessageText);
+            My.Database.AddInParameter(cmd, "[?ToPhone]", DbType.String, message.ToPhone);
+            My.Database.AddInParameter(cmd, "[?FromPhone]", DbType.String, message.FromPhone);
+            My.Database.AddInParameter(cmd, "[?Credit]", DbType.Int32, credit);
+            My.Database.AddInParameter(cmd, "[?TotalCredit]", DbType.Int32, totalCredit);
+            My.Database.AddInParameter(cmd, "[?SendDate]", DbType.DateTime, Utils.GetDateTimeValueForDB(DateTime.Now));
+            My.Database.ExecuteNonQuery(cmd);
         }
 
         private static bool IsCreditExists(int id)

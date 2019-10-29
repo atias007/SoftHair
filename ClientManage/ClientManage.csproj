@@ -512,7 +512,6 @@
     <Compile Include="Library\DataGridViewCellStyleParser.cs" />
     <Compile Include="Library\DGVExcelExport.cs" />
     <Compile Include="Library\DGVLoadImages.cs" />
-    <Compile Include="Library\EventLogManager.cs" />
     <Compile Include="Library\HasAlertQueue.cs" />
     <Compile Include="Library\HookKeyPress.cs" />
     <Compile Include="Library\HTMLPrinter.cs" />
@@ -542,18 +541,12 @@
     <Compile Include="Library\SearchEngine.cs" />
     <Compile Include="Library\SettingsFileHelper.cs" />
     <Compile Include="Library\SingleApplication.cs" />
-    <Compile Include="Library\SmsEngine.cs" />
     <Compile Include="Library\StickerClient.cs" />
     <Compile Include="Library\TBSavedWords.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\SmsService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CarePicker.cs">
       <SubType>UserControl</SubType>
@@ -1024,16 +1017,6 @@
     <Compile Include="UserControls\XPFlatButton.Designer.cs">
       <DependentUpon>XPFlatButton.cs</DependentUpon>
     </Compile>
-    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsDetailedResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsService\ClientManage.SmsService.SendSmsXmlResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SmsService\SendMessage.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BizCare.CalendarView\BizCare.CalendarView.csproj">
@@ -1188,13 +1171,6 @@
     <None Include="Resources\search_panel_bgblue.gif" />
     <None Include="Resources\teamviewer.png" />
     <None Include="Resources\tbbRemote.Image.png" />
-    <None Include="Service References\SmsService\SendMessage.disco" />
-    <None Include="Service References\SmsService\configuration91.svcinfo" />
-    <None Include="Service References\SmsService\configuration.svcinfo" />
-    <None Include="Service References\SmsService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="SoftHairLogo.ico" />
     <None Include="Resources\report.png" />
     <None Include="Resources\privacy.png" />
@@ -1345,9 +1321,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\SmsService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

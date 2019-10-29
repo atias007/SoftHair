@@ -1,4 +1,5 @@
 using ClientManage.BL;
+using ClientManage.BL.Library;
 using ClientManage.Forms;
 using ClientManage.Interfaces;
 using LukeSw.Windows.Forms;
@@ -30,14 +31,12 @@ namespace ClientManage.Library
 
         public static KeyPressPattern WorkerCardPattern { get; set; }
 
-        private static string _startupPath;
-
         public static string StartupPath
         {
-            get { return _startupPath; }
+            get { return Utils.StartupPath; }
             set
             {
-                _startupPath = value;
+                Utils.StartupPath = value;
                 CreateFolder("AlbumImages");
                 CreateFolder("ClientImages");
                 CreateFolder("Backup");
@@ -57,7 +56,7 @@ namespace ClientManage.Library
 
         public static void CreateFolder(string folder, bool throwException = false)
         {
-            var source = Path.Combine(_startupPath, folder);
+            var source = Path.Combine(Utils.StartupPath, folder);
             if (!Directory.Exists(source))
             {
                 try { Directory.CreateDirectory(source); }
@@ -354,7 +353,7 @@ namespace ClientManage.Library
         {
             try
             {
-                AddExceptionToLogFile(ex);
+                EventLogManager.AddExceptionToLogFile(ex);
             }
             catch { Utils.CatchException(); }
 
@@ -392,7 +391,7 @@ namespace ClientManage.Library
 
             try
             {
-                AddExceptionToLogFile(ex);
+                EventLogManager.AddExceptionToLogFile(ex);
             }
             catch { Utils.CatchException(); }
 
@@ -555,34 +554,6 @@ namespace ClientManage.Library
             }
             _fBackup = new frmBackup();
             _fBackup.Show(parent);
-        }
-
-        public static void WriteExceptionToFile(Exception ex)
-        {
-            var filename = Path.Combine(StartupPath, "LastException.txt");
-            var message = Utils.GetExceptionMessage(ex);
-            using (var writer = new StreamWriter(filename, false, Encoding.Default))
-            {
-                writer.Write(message);
-                writer.Close();
-            }
-        }
-
-        public static void AddExceptionToLogFile(Exception ex)
-        {
-            if (ex == null) return;
-
-            try
-            {
-                var filename = Path.Combine(StartupPath, "ExceptionLog.txt");
-                var message = Utils.GetExceptionMessage(ex);
-                using (var writer = new StreamWriter(filename, false, Encoding.Default))
-                {
-                    writer.Write(message);
-                    writer.Close();
-                }
-            }
-            catch { Utils.CatchException(); }
         }
     }
 }

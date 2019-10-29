@@ -1,4 +1,5 @@
 using ClientManage.BL;
+using ClientManage.BL.Library;
 using ClientManage.Interfaces;
 using ClientManage.Library;
 using System;
@@ -189,7 +190,7 @@ namespace ClientManage.Forms.OptionForms
 
             this.Cursor = Cursors.WaitCursor;
             var smsEngine = new SmsEngine();
-            var credit = smsEngine.GetCredit();
+            var credit = SmsHelper.GetCredit();
 
             if (credit == -1)
             {

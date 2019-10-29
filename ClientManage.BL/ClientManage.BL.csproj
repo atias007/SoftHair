@@ -71,7 +71,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SolutionItems\GlobalAssemblyInfo.cs">
@@ -81,18 +84,22 @@
     <Compile Include="CalendarHelper.cs" />
     <Compile Include="ClientHelper.cs" />
     <Compile Include="EventLogHelper.cs" />
+    <Compile Include="GeneralHelper.cs" />
     <Compile Include="Library\BackupPlan.cs" />
     <Compile Include="Library\CalendarService.cs" />
     <Compile Include="Library\ClientNavigator.cs" />
     <Compile Include="Library\CodeExecuter.cs" />
     <Compile Include="Library\ComPort.cs" />
     <Compile Include="Library\DateTimeUtil.cs" />
+    <Compile Include="Library\EventLogManager.cs" />
     <Compile Include="Library\FtpClient.cs" />
     <Compile Include="Library\HebrewEvent.cs" />
     <Compile Include="Library\LicenseManager.cs" />
     <Compile Include="Library\Remainder.cs" />
     <Compile Include="Library\Rest.cs" />
     <Compile Include="Library\ScreenCapture.cs" />
+    <Compile Include="Library\SendSmsResponse.cs" />
+    <Compile Include="Library\SmsEngine.cs" />
     <Compile Include="Library\StringTokenFormat.cs" />
     <Compile Include="Library\Task.cs" />
     <Compile Include="Library\TaskCollection.cs" />
@@ -106,6 +113,11 @@
     <Compile Include="PhotoAlbumHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportHelper.cs" />
+    <Compile Include="Service References\SmsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="SMSHelper.cs" />
     <Compile Include="Library\StickersReportGenerator.cs" />
     <Compile Include="SubscriberHelper.cs" />
@@ -151,6 +163,37 @@
     </None>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Service References\SmsService\ClientManage.BL.SmsService.SendSmsDetailedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsService\ClientManage.BL.SmsService.SendSmsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsService\ClientManage.BL.SmsService.SendSmsXmlResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SmsService\SendMessage.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SmsService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsService\SendMessage.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

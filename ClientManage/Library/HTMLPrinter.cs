@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ClientManage.BL;
 using ClientManage.Interfaces;
 using System.IO;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Library
 {
@@ -134,7 +135,7 @@ namespace ClientManage.Library
             var cellStyle = cell.HasStyle ? cell.Style : cell.OwningColumn.DefaultCellStyle;
 
             #region Alignment
-            
+
             switch (cellStyle.Alignment)
             {
                 case DataGridViewContentAlignment.BottomCenter:
@@ -176,14 +177,14 @@ namespace ClientManage.Library
                     style += "text-align:right; vertical-align:top;";
                     break;
             }
-            
-            #endregion
+
+            #endregion Alignment
 
             #region Color
 
             style += "color:" + ColorTranslator.ToHtml(cellStyle.ForeColor) + ";";
 
-            #endregion
+            #endregion Color
 
             if (style.Length > 0) style = " style=\"" + style + "\"";
             return style;
@@ -267,7 +268,8 @@ namespace ClientManage.Library
     public class HtmlImageColumnMapper
     {
         public enum HtmlMapType { ByImageValue, ByColumnRef };
-        //public enum 
+
+        //public enum
 
         private readonly HtmlMapType _mapType = HtmlMapType.ByColumnRef;
         private readonly string _columnName = string.Empty;
@@ -290,10 +292,12 @@ namespace ClientManage.Library
         {
             get { return _mapType; }
         }
+
         public string ColumnName
         {
             get { return _columnName; }
         }
+
         public string ColumnRefName
         {
             get
@@ -301,6 +305,7 @@ namespace ClientManage.Library
                 return _columnRefName;
             }
         }
+
         public DataGridViewImageCellLayout Layout
         {
             get { return _layout; }
@@ -341,7 +346,7 @@ namespace ClientManage.Library
             }
         }
 
-        #endregion
+        #endregion IList<ImageColumnMapper> Members
 
         #region ICollection<ImageColumnMapper> Members
 
@@ -380,7 +385,7 @@ namespace ClientManage.Library
             return List.Remove(item);
         }
 
-        #endregion
+        #endregion ICollection<ImageColumnMapper> Members
 
         #region IEnumerable<ImageColumnMapper> Members
 
@@ -389,7 +394,7 @@ namespace ClientManage.Library
             return List.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable<ImageColumnMapper> Members
 
         #region IEnumerable Members
 
@@ -398,6 +403,6 @@ namespace ClientManage.Library
             return List.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
     }
 }

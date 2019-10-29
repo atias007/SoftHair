@@ -4,6 +4,7 @@ using System.Linq;
 using ClientManage.Library;
 using ClientManage.Interfaces;
 using HardwareHelperLib;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Forms.OptionForms
 {
@@ -163,7 +164,6 @@ namespace ClientManage.Forms.OptionForms
                     }
                 }
             }
-
         }
     }
 }

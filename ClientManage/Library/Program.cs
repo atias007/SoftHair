@@ -6,6 +6,7 @@ using ClientManage.Interfaces;
 using System.Configuration;
 using System.IO;
 using System.Text;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Library
 {
@@ -42,7 +43,7 @@ namespace ClientManage.Library
         {
             var ex = new Exception();
             try { ex = (e.ExceptionObject is Exception ? (Exception)e.ExceptionObject : new Exception(e.ExceptionObject.ToString())); } catch (Exception) { }
-            try { General.WriteExceptionToFile(ex); } catch (Exception) { }
+            try { EventLogManager.WriteExceptionToFile(ex); } catch (Exception) { }
             try { EventLogManager.AddErrorMessage("[UnhandledException] " + ex.Message, ex); } catch (Exception) { }
         }
 

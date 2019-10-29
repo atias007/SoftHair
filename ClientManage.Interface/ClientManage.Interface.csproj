@@ -66,6 +66,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -135,7 +136,10 @@
       <DependentUpon>ReportSchema.xsd</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="SmsCredit.cs" />
+    <Compile Include="SerializeHelper.cs" />
+    <Compile Include="Sms\SmsCredit.cs" />
+    <Compile Include="Sms\SmsMessage.cs" />
+    <Compile Include="Sms\SmsPackage.cs" />
     <Compile Include="SqlExecute.cs" />
     <Compile Include="Subscriber.cs" />
     <Compile Include="Utils.cs" />

@@ -1,4 +1,5 @@
 using ClientManage.BL;
+using ClientManage.BL.Library;
 using ClientManage.Interfaces;
 using ClientManage.Library;
 using HardwareHelperLib;
@@ -78,6 +79,8 @@ namespace ClientManage.Forms
 
         private void FrmSplashLoad(object sender, EventArgs e)
         {
+            GeneralHelper.ValidateTableExists();
+
             //Trace.WriteLine("9");
             CheckDbConnection();
             //Trace.WriteLine("10");

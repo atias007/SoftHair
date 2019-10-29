@@ -147,16 +147,5 @@ namespace ClientManage.BL
 
             return credit;
         }
-
-        private static void LoadCredit(int id, int credit)
-        {
-            var result = SmsData.LoadCredit(id, credit);
-            if (result)
-            {
-                AppSettingsHelper.ResetParams();
-                var oldCredit = AppSettingsHelper.GetParamValue<int>("SMS_CREDIT_VALUE");
-                AppSettingsHelper.SetParamValue("SMS_CREDIT_VALUE", oldCredit + credit);
-            }
-        }
     }
 }

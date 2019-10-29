@@ -45,7 +45,6 @@ namespace BizCare.SoftHair.UpdateVersion.Library
                 if (fi.Directory != null)
                 {
                     folder = Path.Combine(fi.Directory.FullName, Properties.Resources.files_location);
-                    
                 }
             }
             return folder;
@@ -64,10 +63,10 @@ namespace BizCare.SoftHair.UpdateVersion.Library
         public void StartQuickLaunch()
         {
             var si = new ProcessStartInfo
-                         {
-                             FileName = Path.Combine(Properties.Resources.app_folder, "QuickLaunch.exe"),
-                             WorkingDirectory = Properties.Resources.app_folder
-                         };
+            {
+                FileName = Path.Combine(Properties.Resources.app_folder, "QuickLaunch.exe"),
+                WorkingDirectory = Properties.Resources.app_folder
+            };
             Process.Start(si);
         }
 
@@ -84,10 +83,10 @@ namespace BizCare.SoftHair.UpdateVersion.Library
         public void StartSoftHair()
         {
             var si = new ProcessStartInfo
-                         {
-                             FileName = Path.Combine(Properties.Resources.app_folder, "SoftHair.exe"),
-                             WorkingDirectory = Properties.Resources.app_folder
-                         };
+            {
+                FileName = Path.Combine(Properties.Resources.app_folder, "SoftHair.exe"),
+                WorkingDirectory = Properties.Resources.app_folder
+            };
             Process.Start(si);
         }
 
@@ -173,4 +172,3 @@ namespace BizCare.SoftHair.UpdateVersion.Library
         }
     }
 }
-

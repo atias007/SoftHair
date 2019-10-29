@@ -286,7 +286,7 @@ namespace ClientManage.Forms
 
         private void SetCredits()
         {
-            _credits = _smsEngine.GetCredit();
+            _credits = SmsHelper.GetCredit();
             MethodInvoker th = SetCreditsTh;
             try
             {
@@ -314,11 +314,11 @@ namespace ClientManage.Forms
 
         private void CmbMessagesSelectedIndexChanged(object sender, EventArgs e)
         {
-            var val = cmbMessages.SelectedValue.ToString();
+            var val = cmbMessages.SelectedValue as DataRowView;
             var msg = string.Empty;
             try
             {
-                msg = Utils.GetDBValue<string>(_messages.Select("id=" + val)[0]["msg_body"]);
+                msg = Utils.GetDBValue<string>(_messages.Select("id=" + val.Row[0])[0]["msg_body"]);
             }
             catch { Utils.CatchException(); }
 
@@ -569,11 +569,19 @@ namespace ClientManage.Forms
                 }
             }
 
-            if (_smsEngine.SendMessage(package, SmsEngine.SmsMessageType.ManualForm))
+            try
             {
-                this.Hide();
-                this.Close();
+                if (_smsEngine.SendMessage(package, SmsEngine.SmsMessageType.ManualForm))
+                {
+                    this.Hide();
+                    this.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                General.ShowErrorMessageDialog(null, "שליחת SMS", "שליחת הודעות SMS", "שליחת ההודעה/ות לשרת נכשלו אנא נסה שוב מאוחר יותר", ex, "SMS");
+            }
+
             this.Cursor = Cursors.Default;
         }
 

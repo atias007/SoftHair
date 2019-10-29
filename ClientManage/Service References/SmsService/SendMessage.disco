@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="https://uapi.inforu.co.il/v2/SendMessage.asmx?wsdl" docRef="https://uapi.inforu.co.il/v2/SendMessage.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="https://uapi.inforu.co.il/v2/SendMessage.asmx" xmlns:q1="http://inforu.co.il/api/v2/asmx/SendMessage/" binding="q1:SendMessageSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="https://uapi.inforu.co.il/v2/SendMessage.asmx" xmlns:q2="http://inforu.co.il/api/v2/asmx/SendMessage/" binding="q2:SendMessageSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>
