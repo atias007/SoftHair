@@ -9,7 +9,7 @@ namespace ClientManage.Interfaces
         public CustomerLicense(string fileLine)
         {
             var items = fileLine.Split(',');
-            if (items.Length == 5)
+            if (items.Length >= 5)
             {
                 int clientId;
                 int.TryParse(items[0], out clientId);

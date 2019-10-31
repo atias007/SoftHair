@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 
 namespace ClientManage.BL.Library
 {
@@ -10,13 +11,11 @@ namespace ClientManage.BL.Library
     {
         public static CustomerLicense GetOnlineLicense()
         {
-            // TODO: ***
-
             var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
 
             try
             {
-                var all = File.ReadAllText(@"C:\Temp\CM\softhair_license.txt");
+                var all = ReadFile(@"C:\Temp\CM\softhair_license.txt");
                 var lines = all.Trim().Split('\n').ToList();
 
                 var licensces = lines.Select(l => new CustomerLicense(l.Trim()));
@@ -40,17 +39,27 @@ namespace ClientManage.BL.Library
 
             try
             {
-                var all = File.ReadAllText(@"C:\Temp\CM\softhair_credit.txt");
+                var all = ReadFile($@"C:\Temp\CM\softhair_credit_{clientId}.txt");
                 var lines = all.Trim().Split('\n').ToList();
 
                 var credits = lines.Select(l => new SmsCredit(l.Trim())).ToList();
-                var result = credits.Where(l => l.ClientId == clientId).ToList();
 
-                return result;
+                return credits;
             }
             catch (Exception)
             {
                 return new List<SmsCredit>();
+            }
+        }
+
+        private static string ReadFile(string path)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+
+                var content = client.GetStringAsync(path);
+                return content.Result;
             }
         }
     }
