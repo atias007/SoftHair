@@ -95,12 +95,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceData", "ServiceData"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{65A8FE53-76D6-46C9-9D72-F70CED60E1A6}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Temp\CM\softhair_license.txt = ..\..\..\..\..\..\Temp\CM\softhair_license.txt
+		softhair_license.txt = softhair_license.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Credit", "Credit", "{6D879C94-25DD-44CE-A0B0-E3290089B780}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Temp\CM\softhair_credit_80000.txt = ..\..\..\..\..\..\Temp\CM\softhair_credit_80000.txt
+		softhair_credit_80000.txt = softhair_credit_80000.txt
 	EndProjectSection
 EndProject
 Global
