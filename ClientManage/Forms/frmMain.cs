@@ -93,7 +93,6 @@ namespace ClientManage.Forms
         private FormDialForm _fDialForm;
         private FormPhotoAlbum _fPhotoAlbum;
         private FormPhotoDetails _fPhotoDetails;
-        private FormStickers _fStickers;
         private FormSubscription _fSubscription;
 
         #endregion Main Forms
@@ -400,7 +399,6 @@ namespace ClientManage.Forms
             _fDialForm = null;
             _fPhotoAlbum = null;
             _fPhotoDetails = null;
-            _fStickers = null;
             _fSubscription = null;
 
             if (!(_fClientsPopUp == null || _fClientsPopUp.IsDisposed)) _fClientsPopUp.TerminateForm();
@@ -1242,7 +1240,7 @@ namespace ClientManage.Forms
 
         private void HookKeyPressKeyPress(Keys key)
         {
-            if(_keyPressPipe == null) { return; }
+            if (_keyPressPipe == null) { return; }
 
             try
             {
@@ -1629,42 +1627,9 @@ namespace ClientManage.Forms
 
                 case "frmStickers":
 
-                    #region frmStickers
-
-                    table = (DataTable)e.DataSource;
-
-                    if (_fStickers == null || _fStickers.IsDisposed)
-                    {
-                        _fStickers = new FormStickers(table) { Icon = this.Icon };
-                        _fStickers.Show();
-                    }
-                    else
-                    {
-                        if (table.Rows.Count == 1)
-                        {
-                            _fStickers.AddPerson(table.Rows[0]);
-                        }
-                        else if (table.Rows.Count > 1)
-                        {
-                            var res = DialogResult.No;
-                            if (_fStickers.TotalClients > 0)
-                            {
-                                const string msg1 = "האם ברצונך להוסיף את הנמענים לאלה הנמצאים בחלון המדבקות?\n\nלחץ כן להוספה.\nלחץ לא לסגירת החלון הקיים ופתיחת חלון חדש.\nלחץ ביטול לביטול הפעולה.";
-                                const string msg2 = "הדפסת מדבקות...";
-                                _myMessageBox = new MyMessageBox(msg1, msg2, MyMessageBox.MyMessageType.Question, MyMessageBox.MyMessageButton.YesNoCancel);
-                                res = _myMessageBox.Show(this);
-                            }
-                            if (res == DialogResult.No) _fStickers.RefreshClients(table);
-                            else if (res == DialogResult.Yes) _fStickers.AddPersonsRange(table);
-                            else return;
-                        }
-
-                        Utils.FocusWindow(_fStickers.Handle, true, Utils.FocusWindowState.Normal);
-                    }
-
+                    var msg = new MyMessageBox("חלון לא נתמך", "שגיאה...");
+                    msg.Show();
                     break;
-
-                #endregion frmStickers
 
                 case "frmSubscription":
 

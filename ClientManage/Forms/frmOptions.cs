@@ -19,7 +19,7 @@ namespace ClientManage.Forms
 
         private string _formKey = string.Empty;
         private BaseMdiOptionForm _form;
-        
+
         private readonly Hashtable _settings = new Hashtable();
         private DataSet _dsClientTypes;
         private DataSet _dsRemainderValues;
@@ -27,7 +27,7 @@ namespace ClientManage.Forms
         private DataSet _dsMagneticCards;
         private DataSet _dsComponents;
         private LogOnType _loginType = LogOnType.LogOff;
-            
+
         public FormOptions()
         {
             InitializeComponent();
@@ -57,8 +57,8 @@ namespace ClientManage.Forms
 
             if (node != null)
             {
-                text = node.Parent == null ? 
-                    node.Text : 
+                text = node.Parent == null ?
+                    node.Text :
                     string.Format("{0} ({1})", node.Parent.Text, node.Text);
             }
 
@@ -99,7 +99,7 @@ namespace ClientManage.Forms
         {
             _loginType = isSuperUser ? LogOnType.SuperUser : LogOnType.Admin;
             if (IsFormExist()) _form.LogOn(isSuperUser);
-            
+
             txtPassword.Enabled = false;
             tbbLogin.Enabled = false;
             tbbLogout.Enabled = true;
@@ -113,7 +113,7 @@ namespace ClientManage.Forms
 
             txtPassword.Enabled = true;
             tbbLogin.Enabled = true;
-            tbbLogout.Enabled = false; 
+            tbbLogout.Enabled = false;
             tbbLogout.Enabled = false;
         }
 
@@ -145,7 +145,7 @@ namespace ClientManage.Forms
 
         public bool IsListenToModem
         {
-            get 
+            get
             {
                 var ret = false;
                 if (IsFormExist())
@@ -158,6 +158,7 @@ namespace ClientManage.Forms
                 return ret;
             }
         }
+
         public void AddModemEvent(string value)
         {
             if (IsFormExist())
@@ -205,7 +206,7 @@ namespace ClientManage.Forms
                     _form = new FormOptSystem2();
                     InitForm("frmOptSystem2");
                     break;
-                
+
                 case "Node1_1":
                     if (_formKey == "frmOptClients1") break;
                     CloseForm();
@@ -311,10 +312,8 @@ namespace ClientManage.Forms
                     break;
 
                 case "Node11":
-                    if (_formKey == "frmOptStickers") break;
-                    CloseForm();
-                    _form = new FormOptStickers();
-                    InitForm("frmOptStickers");
+                    var msg = new MyMessageBox("חלון לא נתמך", "שגיאה...");
+                    msg.Show();
                     break;
 
                 case "Node12":
@@ -348,7 +347,7 @@ namespace ClientManage.Forms
             treeView1.Select();
         }
 
-        void FrmOptions_ClientsDsChanged(object sender, EventArgs e)
+        private void FrmOptions_ClientsDsChanged(object sender, EventArgs e)
         {
             _dsComponents = (DataSet)sender;
             var maxId = ClientHelper.GetComponentsMaxOrder();
@@ -362,27 +361,27 @@ namespace ClientManage.Forms
             }
         }
 
-        void FrmOptions_ModemCommitCommand(object sender, ModemEventArgs e)
+        private void FrmOptions_ModemCommitCommand(object sender, ModemEventArgs e)
         {
             if (ModemCommitCommand != null) ModemCommitCommand(this, e);
         }
 
-        void FrmOptWorkers_ClientsDsChanged(object sender, EventArgs e)
+        private void FrmOptWorkers_ClientsDsChanged(object sender, EventArgs e)
         {
             _dsMagneticCards = (DataSet)sender;
         }
 
-        void FrmOptCalendar3_ClientsDsChanged(object sender, EventArgs e)
+        private void FrmOptCalendar3_ClientsDsChanged(object sender, EventArgs e)
         {
             _dsCares = (DataSet)sender;
         }
 
-        void FrmOptCalendar2_ClientsDsChanged(object sender, EventArgs e)
+        private void FrmOptCalendar2_ClientsDsChanged(object sender, EventArgs e)
         {
             _dsRemainderValues = (DataSet)sender;
         }
 
-        void FrmOptClients1_ClientsDsChanged(object sender, EventArgs e)
+        private void FrmOptClients1_ClientsDsChanged(object sender, EventArgs e)
         {
             _dsClientTypes = (DataSet)sender;
         }
@@ -399,7 +398,7 @@ namespace ClientManage.Forms
             const string msg1 = "ההגדרות נשמרו בהצלחה";
             const string msg2 = "הגדרות מערכת...";
             MsgBox = new MyMessageBox(msg1, msg2, MyMessageBox.MyMessageType.Confirm, MyMessageBox.MyMessageButton.None)
-                           {CloseInterval = 1500};
+            { CloseInterval = 1500 };
             MsgBox.Show();
             treeView1.Select();
 
@@ -525,7 +524,7 @@ namespace ClientManage.Forms
             {
                 Process.Start("QuickLaunch.exe", "-support");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 const string msg = "קובץ קריאת השירות לא נמצא\n";
                 const string title = "שגיאה...";

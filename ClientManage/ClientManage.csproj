@@ -360,12 +360,6 @@
     <Compile Include="Forms\frmSplash.Designer.cs">
       <DependentUpon>frmSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmStickers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmStickers.Designer.cs">
-      <DependentUpon>frmStickers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmSubscription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,12 +389,6 @@
     </Compile>
     <Compile Include="Forms\frmMailPreview.Designer.cs">
       <DependentUpon>frmMailPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\OptionForms\frmOptSticker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\OptionForms\frmOptSticker.designer.cs">
-      <DependentUpon>frmOptSticker.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OptionForms\frmOptBackup.cs">
       <SubType>Form</SubType>
@@ -761,10 +749,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmSplash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmStickers.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmStickers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSubscription.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmSubscription.cs</DependentUpon>
@@ -780,9 +764,6 @@
     <EmbeddedResource Include="Forms\frmWorkersManage.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmWorkersManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OptionForms\frmOptSticker.resx">
-      <DependentUpon>frmOptSticker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OptionForms\frmOptBackup.resx">
       <SubType>Designer</SubType>

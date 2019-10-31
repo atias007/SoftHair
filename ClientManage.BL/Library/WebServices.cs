@@ -15,7 +15,7 @@ namespace ClientManage.BL.Library
 
             try
             {
-                var all = ReadFile(@"C:\Temp\CM\softhair_license.txt");
+                var all = ReadFile(@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_license.txt");
                 var lines = all.Trim().Split('\n').ToList();
 
                 var licensces = lines.Select(l => new CustomerLicense(l.Trim()));
@@ -39,7 +39,7 @@ namespace ClientManage.BL.Library
 
             try
             {
-                var all = ReadFile($@"C:\Temp\CM\softhair_credit_{clientId}.txt");
+                var all = ReadFile($@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_credit_{clientId}.txt");
                 var lines = all.Trim().Split('\n').ToList();
 
                 var credits = lines.Select(l => new SmsCredit(l.Trim())).ToList();
