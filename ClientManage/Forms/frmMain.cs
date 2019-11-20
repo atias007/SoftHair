@@ -159,7 +159,6 @@ namespace ClientManage.Forms
         internal void CheckLicense(Form parent)
         {
             var license = LicenseManager.CheckForEndLicenseOnline();
-            Utils.CurrentLicense = license;
 
             // no license found or some fail to read it
             if (license == null)

@@ -1028,7 +1028,6 @@
   <ItemGroup>
     <None Include="..\SolutionItems\Content.dat">
       <Link>Content.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>

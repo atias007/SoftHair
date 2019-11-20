@@ -1,7 +1,7 @@
 using System;
-using ClientManage.BL;
 using ClientManage.Interfaces;
-using ClientManage.Library;
+using ClientManage.BL;
+using Newtonsoft.Json;
 
 namespace ClientManage.Forms.OptionForms
 {
@@ -14,7 +14,9 @@ namespace ClientManage.Forms.OptionForms
 
         public override void LoadSettings()
         {
-            licenseInfo1.ShowLicenseInfo(Utils.CurrentLicense);
+            var json = AppSettingsHelper.GetParamValue("APP_LICENSE");
+            var result = JsonConvert.DeserializeObject<CustomerLicense>(json);
+            licenseInfo1.ShowLicenseInfo(result);
         }
 
         private void BtnStop_Click(object sender, EventArgs e)

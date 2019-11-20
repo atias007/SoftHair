@@ -1,7 +1,7 @@
 using ClientManage.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 
@@ -11,25 +11,38 @@ namespace ClientManage.BL.Library
     {
         public static CustomerLicense GetOnlineLicense()
         {
-            var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
+            CustomerLicense result;
 
             try
             {
-                var all = ReadFile(@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_license.txt");
-                var lines = all.Trim().Split('\n').ToList();
-
-                var licensces = lines.Select(l => new CustomerLicense(l.Trim()));
-                var current = licensces.FirstOrDefault(l => l.ClientId == clientId);
-                if (current == null)
-                {
-                    current = new CustomerLicense();
-                }
-
-                return current;
+                var json = AppSettingsHelper.GetParamValue("APP_LICENSE");
+                if (string.IsNullOrEmpty(json)) { throw new NullReferenceException("json is null"); }
+                result = JsonConvert.DeserializeObject<CustomerLicense>(json);
             }
             catch (Exception)
             {
-                return new CustomerLicense { Allow = true, From = DateTime.Now.AddDays(-1), To = DateTime.Now.AddMonths(3) };
+                result = new CustomerLicense { Allow = true, From = DateTime.Now.AddDays(-1), To = DateTime.Now.AddDays(7) };
+                var json = JsonConvert.SerializeObject(result);
+                AppSettingsHelper.SetParamValue("APP_LICENSE", json, true);
+            }
+
+            System.Threading.Tasks.Task.Run(new Action(SetLicense));
+
+            return result;
+        }
+
+        public static void SetLicense()
+        {
+            var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
+            var all = ReadFile(@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_license.txt");
+            var lines = all.Trim().Split('\n').ToList();
+
+            var licensces = lines.Select(l => new CustomerLicense(l.Trim()));
+            var current = licensces.FirstOrDefault(l => l.ClientId == clientId);
+            if (current != null)
+            {
+                var json = JsonConvert.SerializeObject(current);
+                AppSettingsHelper.SetParamValue("APP_LICENSE", json, true);
             }
         }
 
@@ -56,7 +69,7 @@ namespace ClientManage.BL.Library
         {
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+                client.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
 
                 var content = client.GetStringAsync(path);
                 return content.Result;

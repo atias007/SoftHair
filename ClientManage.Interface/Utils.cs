@@ -41,7 +41,6 @@ namespace ClientManage.Interfaces
 
         static Utils()
         {
-            CurrentLicense = null;
         }
 
         //public const bool STRING_DEFAULT_EMPTY = true;
@@ -94,8 +93,6 @@ namespace ClientManage.Interfaces
         #endregion Data Convert
 
         public static string StartupPath { get; set; }
-
-        public static CustomerLicense CurrentLicense { get; set; }
 
         public static void OpenComboBox(IntPtr hWnd)
         {
