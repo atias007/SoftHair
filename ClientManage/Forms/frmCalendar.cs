@@ -547,8 +547,8 @@ namespace ClientManage.Forms
                 WorkerId = Convert.ToInt32(row["worker_id"]),
                 ClientId = Convert.ToInt32(row["client_id"]),
                 HasAlert = Utils.GetDBValue<bool>(row, "has_alert"),
-                AlertKey = Convert.ToString(row["alert_key"]),
-                Attendee = Convert.ToString(row["attendee"])
+                AlertKey = row.Table.Columns.Contains("alert_key") ? Convert.ToString(row["alert_key"]) : string.Empty,
+                Attendee = row.Table.Columns.Contains("attendee") ? Convert.ToString(row["attendee"]) : string.Empty
             };
             app.ClientName = ClientHelper.GetFullName(app.ClientId);
             app.Cares = Utils.GetDBValue<string>(row, "cares");

@@ -99,6 +99,14 @@ namespace ClientManage.Interfaces
             SendMessage(hWnd.ToInt32(), CbShowdropdown, 1, 0);
         }
 
+        public static bool IsGoogleCalendar
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public static void AddFormDropShadow(IntPtr hWnd)
         {
             SetClassLongA(hWnd.ToInt32(), GclStyle, GetClassLongA(hWnd.ToInt32(), GclStyle) | CsDropshadow);

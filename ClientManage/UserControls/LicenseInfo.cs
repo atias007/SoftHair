@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using ClientManage.Interfaces;
+using ClientManage.BL.Library;
 
 namespace ClientManage.UserControls
 {
@@ -30,7 +31,7 @@ namespace ClientManage.UserControls
                 lblType.Text = "-";
                 lblKey.Text = "-";
 
-                lstFeatures.DataSource = null;
+                textBox1.Text = WebServices.GetLicenseFile();
             }
         }
 
@@ -42,8 +43,7 @@ namespace ClientManage.UserControls
             lblStartDate.Text = string.Empty;
             lblType.Text = string.Empty;
             lblKey.Text = string.Empty;
-            lstFeatures.DataSource = null;
-            lstFeatures.Items.Clear();
+            textBox1.Clear();
         }
 
         private void LicenseInfo_Paint(object sender, PaintEventArgs e)

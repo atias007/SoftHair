@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using ClientManage.BL;
 using ClientManage.Interfaces;
+using ClientManage.BL.Library;
 
 namespace ClientManage.Forms
 {
@@ -54,6 +55,7 @@ namespace ClientManage.Forms
             lblInfo.Text = msg;
             lblManager.Text = AppSettingsHelper.GetParamValue("APP_SYSTEM_MGR");
             txtCpuId.Text = Security.CpuId;
+
             licenseInfo1.ShowLicenseInfo(_license);
         }
 
