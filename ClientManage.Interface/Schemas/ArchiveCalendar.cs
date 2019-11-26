@@ -1,6 +1,8 @@
-﻿namespace ClientManage.Interfaces.Schemas {
-    
-    
-    public partial class ArchiveCalendar {
+﻿namespace ClientManage.Interfaces.Schemas
+{
+
+
+    public partial class ArchiveCalendar
+    {
     }
 }
