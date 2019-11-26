@@ -13,36 +13,34 @@ namespace ClientManage.Data
         //private static OleDbDataAdapter adapter;
         //private static DataSet remDs;
 
-        //private static void SetAppointmentParameters(DbCommand cmd, BizCareAppointment app)
-        //{
-        //    var clientId = app.ClientId;
+        private static void SetAppointmentParameters(DbCommand cmd, BizCareAppointment app)
+        {
+            var clientId = app.ClientId;
 
-        //    My.Database.AddInParameter(cmd, "subject", DbType.String, app.Text);
-        //    My.Database.AddInParameter(cmd, "date_start", DbType.DateTime, app.StartDate);
-        //    My.Database.AddInParameter(cmd, "date_end", DbType.DateTime, app.EndDate);
-        //    My.Database.AddInParameter(cmd, "all_day_event", DbType.Boolean, app.IsAllDayEvent);
-        //    My.Database.AddInParameter(cmd, "importance", DbType.Int32, Convert.ToInt32(app.Importance));
-        //    My.Database.AddInParameter(cmd, "remainer_min", DbType.Int32, app.RemainderMinutes);
-        //    My.Database.AddInParameter(cmd, "remark", DbType.String, app.Remark);
-        //    My.Database.AddInParameter(cmd, "recurrence_id", DbType.Int32, app.RecurrenceId);
-        //    My.Database.AddInParameter(cmd, "worker_id", DbType.Int32, app.WorkerId);
-        //    My.Database.AddInParameter(cmd, "client_id", DbType.Int32, clientId);
-        //    My.Database.AddInParameter(cmd, "cares", DbType.String, app.Cares);
-        //    My.Database.AddInParameter(cmd, "has_alert", DbType.Boolean, app.HasAlert);
-        //}
+            My.Database.AddInParameter(cmd, "subject", DbType.String, app.Text);
+            My.Database.AddInParameter(cmd, "date_start", DbType.DateTime, app.StartDate);
+            My.Database.AddInParameter(cmd, "date_end", DbType.DateTime, app.EndDate);
+            My.Database.AddInParameter(cmd, "all_day_event", DbType.Boolean, app.IsAllDayEvent);
+            My.Database.AddInParameter(cmd, "importance", DbType.Int32, Convert.ToInt32(app.Importance));
+            My.Database.AddInParameter(cmd, "remainer_min", DbType.Int32, app.RemainderMinutes);
+            My.Database.AddInParameter(cmd, "remark", DbType.String, app.Remark);
+            My.Database.AddInParameter(cmd, "recurrence_id", DbType.Int32, app.RecurrenceId);
+            My.Database.AddInParameter(cmd, "worker_id", DbType.Int32, app.WorkerId);
+            My.Database.AddInParameter(cmd, "client_id", DbType.Int32, clientId);
+            My.Database.AddInParameter(cmd, "cares", DbType.String, app.Cares);
+            My.Database.AddInParameter(cmd, "has_alert", DbType.Boolean, app.HasAlert);
+        }
 
-        //public static DataRow GetAppointment(string id)
-        //{
-        //var cmd = My.Database.GetStoredProcCommand("spGetAppointment");
-        //My.Database.AddInParameter(cmd, "id", DbType.Int32, Convert.ToInt32(id));
-        //var ds = My.Database.ExecuteDataSet(cmd);
-        //var row = ds.Tables[0].Rows.Count == 0 ? null : ds.Tables[0].Rows[0];
+        public static DataRow GetAppointment(string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spGetAppointment");
+            My.Database.AddInParameter(cmd, "id", DbType.Int32, Convert.ToInt32(id));
+            var ds = My.Database.ExecuteDataSet(cmd);
+            var row = ds.Tables[0].Rows.Count == 0 ? null : ds.Tables[0].Rows[0];
+            return row;
+        }
 
-        //     var row = GmailService.Instance.GetAppointment(id);
-        //     return row;
-        // }
-
-        public static DataSet OldGetDayCalendarEvents(DateTime currentDate)
+        public static DataSet GetDayCalendarEvents(DateTime currentDate)
         {
             var cmd = My.Database.GetStoredProcCommand("spGetDayCalendarEvents");
             My.Database.AddInParameter(cmd, "current_date", DbType.Date, currentDate);
@@ -50,38 +48,33 @@ namespace ClientManage.Data
             return ds;
         }
 
-        //public static DataSet GetDayCalendarEventsByWorker(DateTime currentDate, int workerId)
-        //{
-        //var cmd = My.Database.GetStoredProcCommand("spGetDayCalendarEventsByWorker");
-        //My.Database.AddInParameter(cmd, "current_date", DbType.Date, currentDate);
-        //My.Database.AddInParameter(cmd, "worker_id", DbType.Int32, workerId);
-        //var ds = My.Database.ExecuteDataSet(cmd);
+        public static DataSet GetDayCalendarEventsByWorker(DateTime currentDate, int workerId)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spGetDayCalendarEventsByWorker");
+            My.Database.AddInParameter(cmd, "current_date", DbType.Date, currentDate);
+            My.Database.AddInParameter(cmd, "worker_id", DbType.Int32, workerId);
+            var ds = My.Database.ExecuteDataSet(cmd);
+            return ds;
+        }
 
-        //var ds = GmailService.Instance.GetAppointmentsToWorker(currentDate, workerId);
-        //return ds;
-        //}
+        public static void UpdateAppointment(BizCareAppointment app)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spUpdateAppointment");
+            SetAppointmentParameters(cmd, app);
+            My.Database.AddInParameter(cmd, "id", DbType.Int32, app.Id);
+            My.Database.ExecuteNonQuery(cmd);
+        }
 
-        //public static void UpdateAppointment(BizCareAppointment app)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spUpdateAppointment");
-        //    //SetAppointmentParameters(cmd, app);
-        //    //My.Database.AddInParameter(cmd, "id", DbType.Int32, app.Id);
-        //    //My.Database.ExecuteNonQuery(cmd);
+        public static void AddAppointment(BizCareAppointment app)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spAddAppointment");
+            SetAppointmentParameters(cmd, app);
 
-        //    GmailService.Instance.UpdateAppointment(app);
-        //}
+            var cnt = My.Database.ExecuteNonQuery(cmd);
 
-        //public static void AddAppointment(BizCareAppointment app)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spAddAppointment");
-        //    //SetAppointmentParameters(cmd, app);
-
-        //    //var cnt = My.Database.ExecuteNonQuery(cmd);
-
-        //    //cmd = My.Database.GetStoredProcCommand("spGetMaxCalendarId");
-        //    //app.Id = My.Database.ExecuteScalar(cmd).ToString();
-        //    GmailService.Instance.AddApointment(app);
-        //}
+            cmd = My.Database.GetStoredProcCommand("spGetMaxCalendarId");
+            app.Id = My.Database.ExecuteScalar(cmd).ToString();
+        }
 
         public static void OldDeleteAppointment(string id)
         {
@@ -100,11 +93,9 @@ namespace ClientManage.Data
 
         public static void DeleteAppointment(string id)
         {
-            //var cmd = My.Database.GetStoredProcCommand("spDeleteAppointment");
-            //My.Database.AddInParameter(cmd, "id", DbType.Int32, Convert.ToInt32(id));
-            //My.Database.ExecuteNonQuery(cmd);
-
-            //GmailService.Instance.DeleteAppointment(id);
+            var cmd = My.Database.GetStoredProcCommand("spDeleteAppointment");
+            My.Database.AddInParameter(cmd, "id", DbType.Int32, Convert.ToInt32(id));
+            My.Database.ExecuteNonQuery(cmd);
 
             try
             {
@@ -134,14 +125,13 @@ namespace ClientManage.Data
             //return ds;
         }
 
-        //public static void SetClientToAppointment(string id, int clientId)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spSetClientToAppointment");
-        //    //My.Database.AddInParameter(cmd, "client_id", DbType.Int32, clientId);
-        //    //My.Database.AddInParameter(cmd, "id", DbType.Int32, id);
-        //    //My.Database.ExecuteNonQuery(cmd);
-        //    GmailService.Instance.SetAppoitmentClientId(id, clientId);
-        //}
+        public static void SetClientToAppointment(string id, int clientId)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spSetClientToAppointment");
+            My.Database.AddInParameter(cmd, "client_id", DbType.Int32, clientId);
+            My.Database.AddInParameter(cmd, "id", DbType.Int32, id);
+            My.Database.ExecuteNonQuery(cmd);
+        }
 
         //public static DataSet GetRemainderLines()
         //{
@@ -257,44 +247,44 @@ namespace ClientManage.Data
             My.Database.UpdateDataSet(ds, "tblRemainderValues", cmdInsert, cmdUpdate, cmdDelete, UpdateBehavior.Standard);
         }
 
-        //public static void SetAppointmentText(string text, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spSetAppointmentText");
-        //    //My.Database.AddInParameter(cmd, "[?subject]", DbType.String, text);
-        //    //My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
-        //    //My.Database.ExecuteNonQuery(cmd);
-        //    GmailService.Instance.SetAppoitmentText(id, text);
-        //}
+        public static void SetAppointmentText(string text, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spSetAppointmentText");
+            My.Database.AddInParameter(cmd, "[?subject]", DbType.String, text);
+            My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
+            My.Database.ExecuteNonQuery(cmd);
+            //GmailService.Instance.SetAppoitmentText(id, text);
+        }
 
-        //public static void SetAppointmentWorker(int workerId, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spSetAppointmentWorker");
-        //    //My.Database.AddInParameter(cmd, "[?worker_id]", DbType.Int32, workerId);
-        //    //My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
-        //    //My.Database.ExecuteNonQuery(cmd);
-        //    GmailService.Instance.SetAppoitmentWorkerId(id, workerId);
-        //}
+        public static void SetAppointmentWorker(int workerId, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spSetAppointmentWorker");
+            My.Database.AddInParameter(cmd, "[?worker_id]", DbType.Int32, workerId);
+            My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
+            My.Database.ExecuteNonQuery(cmd);
+            //GmailService.Instance.SetAppoitmentWorkerId(id, workerId);
+        }
 
-        //public static void UpdateAppointmentTime(DateTime start, DateTime end, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spUpdateAppointmentTime");
-        //    //My.Database.AddInParameter(cmd, "[?date_start]", DbType.DateTime, start);
-        //    //My.Database.AddInParameter(cmd, "[?date_end]", DbType.DateTime, end);
-        //    //My.Database.AddInParameter(cmd, "[id]", DbType.Int32, Convert.ToInt32(id));
-        //    //My.Database.ExecuteNonQuery(cmd);
+        public static void UpdateAppointmentTime(DateTime start, DateTime end, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spUpdateAppointmentTime");
+            My.Database.AddInParameter(cmd, "[?date_start]", DbType.DateTime, start);
+            My.Database.AddInParameter(cmd, "[?date_end]", DbType.DateTime, end);
+            My.Database.AddInParameter(cmd, "[id]", DbType.Int32, Convert.ToInt32(id));
+            My.Database.ExecuteNonQuery(cmd);
 
-        //    GmailService.Instance.SetAppoitmentTime(id, start, end);
-        //}
+            //GmailService.Instance.SetAppoitmentTime(id, start, end);
+        }
 
-        //public static void UpdateAppointmentRemainder(int minutes, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spUpdateAppointmentRemainder");
-        //    //My.Database.AddInParameter(cmd, "[?remainer_min]", DbType.Int32, minutes);
-        //    //My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
-        //    //My.Database.ExecuteNonQuery(cmd);
+        public static void UpdateAppointmentRemainder(int minutes, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spUpdateAppointmentRemainder");
+            My.Database.AddInParameter(cmd, "[?remainer_min]", DbType.Int32, minutes);
+            My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
+            My.Database.ExecuteNonQuery(cmd);
 
-        //    GmailService.Instance.SetAppoitmentReminderMin(id, minutes);
-        //}
+            //    GmailService.Instance.SetAppoitmentReminderMin(id, minutes);
+        }
 
         public static DataSet GetCares()
         {
@@ -332,15 +322,15 @@ namespace ClientManage.Data
             My.Database.UpdateDataSet(ds, "tblCares", insertCommand, updateCommand, deleteCommand, UpdateBehavior.Standard);
         }
 
-        //public static void SetCaresToAppointment(string cares, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("spSetCaresToAppointment");
-        //    //My.Database.AddInParameter(cmd, "[?cares]", DbType.String, cares);
-        //    //My.Database.AddInParameter(cmd, "[id]", DbType.Int32, Convert.ToInt32(id));
+        public static void SetCaresToAppointment(string cares, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("spSetCaresToAppointment");
+            My.Database.AddInParameter(cmd, "[?cares]", DbType.String, cares);
+            My.Database.AddInParameter(cmd, "[id]", DbType.Int32, Convert.ToInt32(id));
 
-        //    //My.Database.ExecuteNonQuery(cmd);
-        //    GmailService.Instance.SetAppoitmentCares(id, cares);
-        //}
+            My.Database.ExecuteNonQuery(cmd);
+            //GmailService.Instance.SetAppoitmentCares(id, cares);
+        }
 
         //public static DataSet GetTopClientsVisits(int clientId)
         //{
@@ -451,17 +441,17 @@ namespace ClientManage.Data
         //    return ds;
         //}
 
-        //public static void SetCategory(int category, string id)
-        //{
-        //    //var cmd = My.Database.GetStoredProcCommand("Calendar_SetCategory");
+        public static void SetCategory(int category, string id)
+        {
+            var cmd = My.Database.GetStoredProcCommand("Calendar_SetCategory");
 
-        //    //My.Database.AddInParameter(cmd, "[?category]", DbType.Int32, category);
-        //    //My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
+            My.Database.AddInParameter(cmd, "[?category]", DbType.Int32, category);
+            My.Database.AddInParameter(cmd, "[?id]", DbType.Int32, Convert.ToInt32(id));
 
-        //    //My.Database.ExecuteNonQuery(cmd);
+            My.Database.ExecuteNonQuery(cmd);
 
-        //    GmailService.Instance.SetAppoitmentCategotyId(id, category);
-        //}
+            //    GmailService.Instance.SetAppoitmentCategotyId(id, category);
+        }
 
         public static int AddCalendarAudit(string appointmentId, int auditType, string title)
         {

@@ -9,6 +9,31 @@ namespace ClientManage.BL.Library
 {
     public static class WebServices
     {
+        public static string GetLicenseFile()
+        {
+            var all = ReadFile(@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_license.txt");
+            return all;
+        }
+
+        public static List<SmsCredit> GetOnlineCredit()
+        {
+            var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
+
+            try
+            {
+                var all = ReadFile($@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_credit_{clientId}.txt");
+                var lines = all.Trim().Split('\n').ToList();
+
+                var credits = lines.Select(l => new SmsCredit(l.Trim())).ToList();
+
+                return credits;
+            }
+            catch (Exception)
+            {
+                return new List<SmsCredit>();
+            }
+        }
+
         public static CustomerLicense GetOnlineLicense()
         {
             CustomerLicense result;
@@ -34,7 +59,7 @@ namespace ClientManage.BL.Library
         public static void SetLicense()
         {
             var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
-            var all = ReadFile(@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_license.txt");
+            var all = GetLicenseFile();
             var lines = all.Trim().Split('\n').ToList();
 
             var licensces = lines.Select(l => new CustomerLicense(l.Trim()));
@@ -43,25 +68,6 @@ namespace ClientManage.BL.Library
             {
                 var json = JsonConvert.SerializeObject(current);
                 AppSettingsHelper.SetParamValue("APP_LICENSE", json, true);
-            }
-        }
-
-        public static List<SmsCredit> GetOnlineCredit()
-        {
-            var clientId = AppSettingsHelper.GetParamValue<int>("APP_CLIENT_ID");
-
-            try
-            {
-                var all = ReadFile($@"https://raw.githubusercontent.com/atias007/SoftHair/master/softhair_credit_{clientId}.txt");
-                var lines = all.Trim().Split('\n').ToList();
-
-                var credits = lines.Select(l => new SmsCredit(l.Trim())).ToList();
-
-                return credits;
-            }
-            catch (Exception)
-            {
-                return new List<SmsCredit>();
             }
         }
 
