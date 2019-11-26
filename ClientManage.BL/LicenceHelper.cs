@@ -13,33 +13,5 @@ namespace ClientManage.BL
             return (LicenceData.AddLicense(key) == 1);
         }
 
-        // read the last license from licenses table
-        public static string GetLicenseKey()
-        {
-            var ret = LicenceData.GetLicense();
-            if (string.IsNullOrEmpty(ret))
-            {
-                ret = CreateTempLicense();
-            }
-            return ret;
-        }
-
-        private static string CreateTempLicense()
-        {
-            var licence = Security.GetNewLicense();
-            var row = licence.License[0];
-
-            row.cpu_id = Security.CpuId;
-            row.from_date = DateTime.Now.Date.AddDays(-1);
-            row.to_date = DateTime.Now.Date.AddDays(7);
-            row.last_used = DateTime.Now.Date;
-            row.type = "Standard";
-            row.key = "1";
-
-            var key = Security.SaveLicence(licence);
-            AddLicense(key);
-            var result = LicenceData.GetLicense();
-            return result;
-        }
     }
 }

@@ -117,7 +117,6 @@ namespace ClientManage.Forms
         public FormMain()
         {
             // initialize database password
-            RegistryFactory.SubKeyName = Properties.Resources.reg_subKeyName;
             InitializeComponent();
             SubInitialize();
         }

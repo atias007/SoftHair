@@ -16,65 +16,6 @@ namespace ClientManage.Interfaces
             get { return _lastException; }
         }
 
-        public static string CpuId
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_cpuId))
-                {
-                    var keyType = RegistryFactory.Read("KEYTYPE");
-
-                    if (string.IsNullOrEmpty(keyType))
-                    {
-                        _cpuId = GetCpuId();
-                        if (_cpuId.Length == 0)
-                        {
-                            _cpuId = GetVolumeSerial();
-                            if (_cpuId.Length == 0)
-                            {
-                                _cpuId = GetNetworkMacAddress();
-                                if (_cpuId.Length == 0)
-                                {
-                                    _cpuId = string.Empty;
-                                }
-                                else
-                                {
-                                    RegistryFactory.Write("KEYTYPE", "MAC");
-                                }
-                            }
-                            else
-                            {
-                                RegistryFactory.Write("KEYTYPE", "VOL");
-                            }
-                        }
-                        else
-                        {
-                            RegistryFactory.Write("KEYTYPE", "CPU");
-                        }
-                    }
-                    else
-                    {
-                        switch (keyType)
-                        {
-                            default:
-                                //case "CPU":
-                                _cpuId = GetCpuId();
-                                break;
-
-                            case "MAC":
-                                _cpuId = GetNetworkMacAddress();
-                                break;
-
-                            case "VOL":
-                                _cpuId = GetVolumeSerial();
-                                break;
-                        }
-                    }
-                }
-                return _cpuId;
-            }
-        }
-
         public static void ClearCpuId()
         {
             _cpuId = null;

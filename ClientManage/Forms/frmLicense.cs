@@ -53,7 +53,6 @@ namespace ClientManage.Forms
 
             lblInfo.Text = msg;
             lblManager.Text = AppSettingsHelper.GetParamValue("APP_SYSTEM_MGR");
-            txtCpuId.Text = Security.CpuId;
             licenseInfo1.ShowLicenseInfo(_license);
         }
 
