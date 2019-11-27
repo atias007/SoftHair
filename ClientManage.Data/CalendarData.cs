@@ -455,6 +455,7 @@ namespace ClientManage.Data
 
         public static int AddCalendarAudit(string appointmentId, int auditType, string title)
         {
+            return 0;
             var cmd = My.Database.GetStoredProcCommand("AddCalendarAudit");
             My.Database.AddInParameter(cmd, "[?audit_type]", DbType.Int32, auditType);
             My.Database.AddInParameter(cmd, "[?appointmentId]", DbType.String, appointmentId);

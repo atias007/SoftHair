@@ -38,7 +38,7 @@ namespace ClientManage.Data
 
             if (exists == false)
             {
-                switch (tableName.Trim())
+                switch (tableName.Trim().ToLower())
                 {
                     case "smscredit":
                         query = "create table SmsCredit(Id INTEGER CONSTRAINT CPK PRIMARY KEY, Credit INTEGER, UpdateDate DATETIME)";
@@ -55,7 +55,7 @@ namespace ClientManage.Data
                 if (string.IsNullOrEmpty(query) == false)
                 {
                     cmd = Database.GetSqlStringCommand(query);
-                    cmd.ExecuteNonQuery();
+                    Database.ExecuteNonQuery(cmd);
                 }
             }
         }

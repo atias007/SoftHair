@@ -361,7 +361,7 @@ namespace ClientManage.Forms
             Image ret;
             try
             {
-                ret = Image.FromFile(filename);
+                 ret = Image.FromFile(filename);
             }
             catch
             {
