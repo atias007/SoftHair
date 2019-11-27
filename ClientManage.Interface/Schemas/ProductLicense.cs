@@ -1,6 +1,8 @@
-﻿namespace ClientManage.Interfaces.Schemas {
-    
-    
-    public partial class ProductLicense {
+﻿namespace ClientManage.Interfaces.Schemas
+{
+
+
+    public partial class ProductLicense
+    {
     }
 }
