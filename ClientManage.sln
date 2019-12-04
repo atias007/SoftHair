@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{EA4F0246-AB80-4658-948C-44FAE98E989F}"
 	ProjectSection(SolutionItems) = preProject
@@ -99,6 +99,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Credit", "Credit", "{6D879C94-25DD-44CE-A0B0-E3290089B780}"
 	ProjectSection(SolutionItems) = preProject
 		softhair_credit_80000.txt = softhair_credit_80000.txt
+		softhair_credit_90001.txt = softhair_credit_90001.txt
 	EndProjectSection
 EndProject
 Global
@@ -249,7 +250,7 @@ Global
 		{6D879C94-25DD-44CE-A0B0-E3290089B780} = {5ACD588A-044E-4948-832B-89FD2518993E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {62BA2910-8C0F-4995-9A02-F4780432CCA7}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {62BA2910-8C0F-4995-9A02-F4780432CCA7}
 	EndGlobalSection
 EndGlobal

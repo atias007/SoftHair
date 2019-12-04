@@ -713,7 +713,7 @@ namespace ClientManage.Forms
             var workerName = WorkersHelper.GetWorker(app.WorkerId).FullName;
 
             var result = string.Format("StartDate: {0:dd/MM/yyyy} {0:HH:mm}, EndDate: {1:dd/MM/yyyy} {1:HH:mm}, ClientId: {2} - {11}, Attendee: {3}, ClientEmail: {4}, Text: {5}, Remark: {6}, IsAllDayEvent: {7}, RemainderMinutes: {8}, WorkerId: {9} - {12}, Cares: {10} - {13}",
-                app.StartDate, app.EndDate, app.ClientId, app.Attendee, client.Email, app.Text, app.Remark, app.IsAllDayEvent, app.RemainderMinutes, app.WorkerId, app.Cares, client.FullName, workerName, caresTitle);
+                app.StartDate, app.EndDate, app.ClientId, app.Attendee, client?.Email, app.Text, app.Remark, app.IsAllDayEvent, app.RemainderMinutes, app.WorkerId, app.Cares, client?.FullName, workerName, caresTitle);
 
             return result;
         }
