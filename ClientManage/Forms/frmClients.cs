@@ -1436,7 +1436,7 @@ namespace ClientManage.Forms
             var max = AppSettingsHelper.GetParamValue<int>("CLIENT_MAX_CLIENT");
             var current = ClientHelper.GetTotalClients();
 
-            if (current >= max)
+            if (current >= max && max > 0)
             {
                 MsgBox = new MyMessageBox("רשיון התוכנה שלך אינו מאפשר להקים לקוח חדש\nמגבלת לקוחות חדשים היא: " + max, "מגבלת לקוחות חדשים...", MyMessageBox.MyMessageType.Warning, MyMessageBox.MyMessageButton.Ok);
                 MsgBox.Show();

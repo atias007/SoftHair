@@ -159,7 +159,7 @@ namespace ClientManage.Forms.OptionForms
             // 
             this.txtMaxClients.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtMaxClients.Location = new System.Drawing.Point(172, 540);
-            this.txtMaxClients.MaxLength = 3;
+            this.txtMaxClients.MaxLength = 5;
             this.txtMaxClients.Name = "txtMaxClients";
             this.txtMaxClients.ReadOnly = true;
             this.txtMaxClients.Size = new System.Drawing.Size(55, 22);
