@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using ClientManage.BL;
 using ClientManage.Interfaces;
 
@@ -23,15 +19,16 @@ namespace ClientManage.Forms.OptionForms
         }
 
         private DataSet _dsClientTypes;
+
         public DataSet DSClientTypes
         {
             get { return _dsClientTypes; }
             set { _dsClientTypes = value; }
         }
 
-
         public override void LoadSettings()
         {
+            txtMaxClients.Text = LoadSettingValue<string>("CLIENT_MAX_CLIENT");
             var dbfields = Utils.GetStringArray(LoadSettingValue<string>("CLIENT_FILTER_BY"));
             var pos = 0;
             lstClientOrder.SuspendLayout();
@@ -52,17 +49,18 @@ namespace ClientManage.Forms.OptionForms
 
             chkEnableQuickSearch.Checked = LoadSettingValue<bool>("CLIENT_ENABLE_SEARCH_SHORTCUT");
 
-            if(_dsClientTypes == null) _dsClientTypes = ClientHelper.GetClientTypeTable();
+            if (_dsClientTypes == null) _dsClientTypes = ClientHelper.GetClientTypeTable();
             grdClientTypes.DataSource = _dsClientTypes.Tables[0];
         }
 
         public override void SaveSettings()
         {
+            SaveSettingValue("CLIENT_MAX_CLIENT", txtMaxClients.Text);
             SaveSettingValue("CLIENT_FILTER_BY", EncodeFilterFields(lstClientOrder));
             SaveSettingValue("CLIENT_ENABLE_SEARCH_SHORTCUT", chkEnableQuickSearch.Checked);
             if (_dsClientTypes.HasChanges())
             {
-                if (ClientsDSChanged != null) ClientsDSChanged(_dsClientTypes, new EventArgs());
+                ClientsDSChanged(_dsClientTypes, new EventArgs());
             }
         }
 

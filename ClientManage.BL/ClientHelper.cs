@@ -67,34 +67,34 @@ namespace ClientManage.BL
             if (row != null)
             {
                 c = new Client(id)
-                        {
-                            Address = Utils.GetDBValue<string>(row, "address"),
-                            BirthDate = Utils.GetDBValue<DateTime?>(row, "birth_date"),
-                            CellPhone1 = Utils.GetDBValue<string>(row, "cell_phone_1"),
-                            CellPhone2 = Utils.GetDBValue<string>(row, "cell_phone_2"),
-                            City = Utils.GetDBValue<string>(row, "city"),
-                            CreateDate = Utils.GetDBValue<DateTime>(row["create_date"]),
-                            Email = Utils.GetDBValue<string>(row, "email"),
-                            FirstName = Utils.GetDBValue<string>(row, "first_name"),
-                            Gender =
+                {
+                    Address = Utils.GetDBValue<string>(row, "address"),
+                    BirthDate = Utils.GetDBValue<DateTime?>(row, "birth_date"),
+                    CellPhone1 = Utils.GetDBValue<string>(row, "cell_phone_1"),
+                    CellPhone2 = Utils.GetDBValue<string>(row, "cell_phone_2"),
+                    City = Utils.GetDBValue<string>(row, "city"),
+                    CreateDate = Utils.GetDBValue<DateTime>(row["create_date"]),
+                    Email = Utils.GetDBValue<string>(row, "email"),
+                    FirstName = Utils.GetDBValue<string>(row, "first_name"),
+                    Gender =
                                 DBNull.Value.Equals(row["gender"])
                                     ? Client.ClientGender.Male
                                     : (Client.ClientGender)(Convert.ToInt32(row["gender"])),
-                            HomePhone = Utils.GetDBValue<string>(row, "home_phone"),
-                            LastName = Utils.GetDBValue<string>(row, "last_name"),
-                            MarriedDate = Utils.GetDBValue<DateTime?>(row["married_date"]),
-                            Picture = Utils.GetDBValue<string>(row, "picture"),
-                            Remark = Utils.GetDBValue<string>(row, "remark"),
-                            WorkPhone = Utils.GetDBValue<string>(row, "work_phone"),
-                            ZipCode = Utils.GetDBValue<string>(row, "zipcode"),
-                            EnableEmail = Utils.GetDBValue<bool>(row["enable_email"]),
-                            EnableSMS = Utils.GetDBValue<bool>(row["enable_sms"]),
-                            ClientTypeId = Utils.GetDBValue<int>(row["client_type"]),
-                            ClientTypeName = Utils.GetDBValue<string>(row, "client_type_name"),
-                            WorkerId = Utils.GetDBValue<int>(row["worker_id"]),
-                            WorkerName = Utils.GetDBValue<string>(row, "worker_name"),
-                            CardId = Utils.GetDBValue<string>(row, "card_id")
-                        };
+                    HomePhone = Utils.GetDBValue<string>(row, "home_phone"),
+                    LastName = Utils.GetDBValue<string>(row, "last_name"),
+                    MarriedDate = Utils.GetDBValue<DateTime?>(row["married_date"]),
+                    Picture = Utils.GetDBValue<string>(row, "picture"),
+                    Remark = Utils.GetDBValue<string>(row, "remark"),
+                    WorkPhone = Utils.GetDBValue<string>(row, "work_phone"),
+                    ZipCode = Utils.GetDBValue<string>(row, "zipcode"),
+                    EnableEmail = Utils.GetDBValue<bool>(row["enable_email"]),
+                    EnableSMS = Utils.GetDBValue<bool>(row["enable_sms"]),
+                    ClientTypeId = Utils.GetDBValue<int>(row["client_type"]),
+                    ClientTypeName = Utils.GetDBValue<string>(row, "client_type_name"),
+                    WorkerId = Utils.GetDBValue<int>(row["worker_id"]),
+                    WorkerName = Utils.GetDBValue<string>(row, "worker_name"),
+                    CardId = Utils.GetDBValue<string>(row, "card_id")
+                };
             }
 
             return c;
@@ -264,6 +264,11 @@ namespace ClientManage.BL
         public static bool IsEnableSms(int id)
         {
             return ClientData.IsEnableSms(id);
+        }
+
+        public static int GetTotalClients()
+        {
+            return ClientData.GetTotalClients();
         }
 
         public static DataTable GetAutoBirthdaySms()

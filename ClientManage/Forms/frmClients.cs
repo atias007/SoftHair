@@ -1196,13 +1196,13 @@ namespace ClientManage.Forms
                 try
                 {
                     CalendarHelper.AddAppointment(new BizCareAppointment
-                            {
-                                ClientId = id,
-                                EndDate = endDate,
-                                StartDate = endDate.AddMinutes(-30),
-                                Text = "מקור: כרטיס מגנטי",
-                                WorkerId = workerId
-                            });
+                    {
+                        ClientId = id,
+                        EndDate = endDate,
+                        StartDate = endDate.AddMinutes(-30),
+                        Text = "מקור: כרטיס מגנטי",
+                        WorkerId = workerId
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -1419,6 +1419,8 @@ namespace ClientManage.Forms
         // change the form to new mode
         private void TbbAddNew_Click(object sender, EventArgs e)
         {
+            if (CheckMaxClients() == false) { return; }
+
             MyStatus = FormStatus.New;
             ClearForm();
             informationBar1.PanelText = "הוספת לקוח חדש";
@@ -1427,6 +1429,21 @@ namespace ClientManage.Forms
             TextBoxFocus(txtFirstName, null);
 
             if (_c == null || ClientHelper.CachedClientsTable.Rows.Count == 0) tbbCancel.Visible = false;
+        }
+
+        private bool CheckMaxClients()
+        {
+            var max = AppSettingsHelper.GetParamValue<int>("CLIENT_MAX_CLIENT");
+            var current = ClientHelper.GetTotalClients();
+
+            if (current >= max)
+            {
+                MsgBox = new MyMessageBox("רשיון התוכנה שלך אינו מאפשר להקים לקוח חדש\nמגבלת לקוחות חדשים היא: " + max, "מגבלת לקוחות חדשים...", MyMessageBox.MyMessageType.Warning, MyMessageBox.MyMessageButton.Ok);
+                MsgBox.Show();
+                return false;
+            }
+
+            return true;
         }
 
         // delete user

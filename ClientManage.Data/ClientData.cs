@@ -371,6 +371,14 @@ namespace ClientManage.Data
             return en;
         }
 
+        public static int GetTotalClients()
+        {
+            var sql = "SELECT COUNT(*) FROM tblClients";
+            var cmd = My.Database.GetSqlStringCommand(sql);
+            var en = (int)My.Database.ExecuteScalar(cmd);
+            return en;
+        }
+
         public static DataSet GetBirthdayClientIds(DateTime date)
         {
             var cmd = My.Database.GetStoredProcCommand("SMS_GetBirthdayClientIds");

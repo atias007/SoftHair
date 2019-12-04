@@ -71,7 +71,7 @@ namespace ClientManage.Forms
 
             foreach (string key in _settings.Keys)
             {
-                AppSettingsHelper.SetParamValue(key, _settings[key], false);
+                AppSettingsHelper.SetParamValue(key, _settings[key], true);
             }
             _settings.Clear();
 

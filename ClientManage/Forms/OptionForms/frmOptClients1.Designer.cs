@@ -38,6 +38,8 @@ namespace ClientManage.Forms.OptionForms
             this.btnDownClient = new System.Windows.Forms.Button();
             this.btnUpClient = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtMaxClients = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdClientTypes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,11 +155,33 @@ namespace ClientManage.Forms.OptionForms
             this.label2.TabIndex = 38;
             this.label2.Text = "חפש לקוחות לפי השדות הבאים ולפי סדר הצגתן:";
             // 
+            // txtMaxClients
+            // 
+            this.txtMaxClients.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.txtMaxClients.Location = new System.Drawing.Point(172, 540);
+            this.txtMaxClients.MaxLength = 3;
+            this.txtMaxClients.Name = "txtMaxClients";
+            this.txtMaxClients.ReadOnly = true;
+            this.txtMaxClients.Size = new System.Drawing.Size(55, 22);
+            this.txtMaxClients.TabIndex = 48;
+            this.txtMaxClients.Tag = "SuperUser";
+            // 
+            // label38
+            // 
+            this.label38.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label38.Location = new System.Drawing.Point(12, 543);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(211, 19);
+            this.label38.TabIndex = 47;
+            this.label38.Text = "מקסימום לקוחות במערכת:";
+            // 
             // FormOptClients1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 620);
+            this.Controls.Add(this.txtMaxClients);
+            this.Controls.Add(this.label38);
             this.Controls.Add(this.grdClientTypes);
             this.Controls.Add(this.label72);
             this.Controls.Add(this.chkEnableQuickSearch);
@@ -175,8 +199,11 @@ namespace ClientManage.Forms.OptionForms
             this.Controls.SetChildIndex(this.chkEnableQuickSearch, 0);
             this.Controls.SetChildIndex(this.label72, 0);
             this.Controls.SetChildIndex(this.grdClientTypes, 0);
+            this.Controls.SetChildIndex(this.label38, 0);
+            this.Controls.SetChildIndex(this.txtMaxClients, 0);
             ((System.ComponentModel.ISupportInitialize)(this.grdClientTypes)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -192,5 +219,7 @@ namespace ClientManage.Forms.OptionForms
         private System.Windows.Forms.Button btnDownClient;
         private System.Windows.Forms.Button btnUpClient;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtMaxClients;
+        private System.Windows.Forms.Label label38;
     }
 }

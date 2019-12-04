@@ -11,10 +11,12 @@ namespace ClientManage.Forms
     public partial class FormSearchClient : BaseMdiChild
     {
         public event DlgShowClientCardEventHandler ShowClientCard;
+
         public event DialRequestEventHandler DialRequest;
+
         public event OpenFormEventHandler OpenForm;
 
-        readonly DgvLoadImages _dgvLoadImages = new DgvLoadImages();
+        private readonly DgvLoadImages _dgvLoadImages = new DgvLoadImages();
         private bool _isLastActive;
         private readonly SearchEngine _se = new SearchEngine(SearchEngine.SearchType.FullSearch);
         private readonly Color _selectColor = Color.FromArgb(247, 230, 164);
@@ -22,7 +24,9 @@ namespace ClientManage.Forms
         private readonly string _status;
 
         public event OpenFormEventHandler HideForm;
+
         public event CalendarSetAppointmentEventHandler SetAppointment;
+
         public event EventHandler DeleteClient;
 
         public FormSearchClient()
@@ -54,9 +58,9 @@ namespace ClientManage.Forms
                 grdClients.DataSource = col;
             }
             catch { Utils.CatchException(); }
-// ReSharper disable PossibleNullReferenceException
+            // ReSharper disable PossibleNullReferenceException
             grdClients.Columns["clmSelect"].DisplayIndex = 0;
-// ReSharper restore PossibleNullReferenceException
+            // ReSharper restore PossibleNullReferenceException
             SetCountLabel();
         }
 
@@ -104,8 +108,8 @@ namespace ClientManage.Forms
 
         private void GrdClients_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == Convert.ToChar(27) || e.KeyChar == '\r' ) {}
-            else if(e.KeyChar == Convert.ToChar(8))
+            if (e.KeyChar == Convert.ToChar(27) || e.KeyChar == '\r') { }
+            else if (e.KeyChar == Convert.ToChar(8))
             {
                 if (searchPanel1.SearchString.Length > 0)
                 {
@@ -197,7 +201,7 @@ namespace ClientManage.Forms
 
         private void GrdClients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.RowIndex >= 0 && e.ColumnIndex > 0) DoShowClientCard();
+            if (e.RowIndex >= 0 && e.ColumnIndex > 0) DoShowClientCard();
         }
 
         private void DoShowClientCard()
@@ -266,7 +270,7 @@ namespace ClientManage.Forms
             if (HideForm != null)
             {
                 _isLastActive = false;
-                    HideForm(this, new OpenFormEventArgs("frmSearchClient", 0, "NewClient"));
+                HideForm(this, new OpenFormEventArgs("frmSearchClient", 0, "NewClient"));
             }
         }
 
@@ -389,7 +393,7 @@ namespace ClientManage.Forms
                 var phone = Utils.DistilPhone(((ToolStripDropDownItem)(sender)).Text);
                 var name = GetSelectedClientName();
                 var id = GetSelectedClientId();
-                var arg = new DialRequestEventArgs(phone, name, id) {Entity = 0};
+                var arg = new DialRequestEventArgs(phone, name, id) { Entity = 0 };
                 DialRequest(this, arg);
             }
         }
@@ -407,7 +411,7 @@ namespace ClientManage.Forms
             var htmlTable = HtmlPrinter.ConvertDataGridToHtml(grdClients, imgCol, lblStatus.Visible);
 
             // create report parameters
-            var parameters =  new string[3];
+            var parameters = new string[3];
             parameters[0] = "חיפוש לקוחות";
             parameters[1] = "תוצאות חיפוש עבור: " + (searchPanel1.SearchString.Length == 0 ? "כל הלקוחות" : searchPanel1.SearchString);
             parameters[2] = htmlTable;
@@ -430,8 +434,8 @@ namespace ClientManage.Forms
             if (OpenForm == null) return;
             this.Cursor = Cursors.WaitCursor;
 
-            var table = lblStatus.Visible ? 
-                        ReportHelper.GetClientsEmails(GetSelectedIds()) : 
+            var table = lblStatus.Visible ?
+                        ReportHelper.GetClientsEmails(GetSelectedIds()) :
                         General.GetEmailEntity(GetSelectedClientId(), General.EntityType.Client);
 
             if (table != null) OpenForm(this, new OpenFormEventArgs("frmMailCampaign", table));
@@ -463,7 +467,7 @@ namespace ClientManage.Forms
 
         public void OpenClientCard()
         {
-            if(tbbFind.Enabled) TbbFind_Click(null, null);
+            if (tbbFind.Enabled) TbbFind_Click(null, null);
         }
 
         private void GrdClients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -473,7 +477,7 @@ namespace ClientManage.Forms
 
         private void TbbPhotoAlbum_Click(object sender, EventArgs e)
         {
-            if(OpenForm != null) OpenForm(this, new OpenFormEventArgs("frmPhotoAlbum", GetSelectedClientId()));
+            if (OpenForm != null) OpenForm(this, new OpenFormEventArgs("frmPhotoAlbum", GetSelectedClientId()));
         }
 
         private void TbbStickers_Click(object sender, EventArgs e)
@@ -491,7 +495,7 @@ namespace ClientManage.Forms
                 var id = GetSelectedClientId();
                 table = General.GetStickerEntity(id, General.EntityType.Client);
             }
-             
+
             if (table != null) OpenForm(this, new OpenFormEventArgs("frmStickers", table));
 
             this.Cursor = Cursors.Default;
@@ -503,7 +507,7 @@ namespace ClientManage.Forms
 
             if (grdClients.SelectedRows.Count > 0) rowId = grdClients.SelectedRows[0].Index;
             if (rowId >= grdClients.Rows.Count - 1) rowId = -1;
-            
+
             rowId++;
             grdClients.Rows[rowId].Selected = true;
             if (!grdClients.Rows[rowId].Displayed) grdClients.FirstDisplayedScrollingRowIndex = rowId;
@@ -539,7 +543,6 @@ namespace ClientManage.Forms
 
         private void MnuCall_Click(object sender, EventArgs e)
         {
-
         }
 
         private void MnuCard_Click(object sender, EventArgs e)
@@ -609,7 +612,6 @@ namespace ClientManage.Forms
                 case Keys.P:
                     if (ctrl) TbbPrint_Click(null, null);
                     break;
-
             }
         }
 
@@ -652,7 +654,7 @@ namespace ClientManage.Forms
             catch
             {
                 cnt = 0;
-            }  
+            }
             return cnt;
         }
 
