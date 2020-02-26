@@ -125,6 +125,9 @@ namespace ClientManage.Forms
         private void RefreshSmsMessages(int selectedItem = 0)
         {
             _messages = SmsHelper.GetSmsMessages();
+            var row = _messages.NewRow();
+            row["msg_title"] = "בחר הודעה...";
+            _messages.Rows.InsertAt(row, 0);
             cmbMessages.DataSource = _messages;
             cmbMessages.DisplayMember = "msg_title";
             cmbMessages.ValueMember = "id";
@@ -314,11 +317,11 @@ namespace ClientManage.Forms
 
         private void CmbMessagesSelectedIndexChanged(object sender, EventArgs e)
         {
-            var val = cmbMessages.SelectedValue as DataRowView;
+            var val = cmbMessages.SelectedItem as DataRowView;
             var msg = string.Empty;
             try
             {
-                msg = Utils.GetDBValue<string>(_messages.Select("id=" + val.Row[0])[0]["msg_body"]);
+                msg = Convert.ToString( val.Row["msg_body"]);
             }
             catch { Utils.CatchException(); }
 

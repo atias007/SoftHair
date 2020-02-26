@@ -20,7 +20,9 @@ namespace ClientManage.Forms.OptionForms
 
             _lastSmsSend = lblBdayLast.Text;
             var msgTable = SmsHelper.GetSmsMessages();
-            if (msgTable.Rows.Count > 0) msgTable.Rows[0]["msg_title"] = "בחר הודעה...";
+            var row = msgTable.NewRow();
+            row["msg_title"] = "בחר הודעה...";
+            msgTable.Rows.InsertAt(row,0);
 
             cmbBdaySMSMsg.DataSource = msgTable;
             cmbBdaySMSMsg.DisplayMember = "msg_title";
@@ -50,7 +52,7 @@ namespace ClientManage.Forms.OptionForms
 
             var smsParams = new AutoSmsParameters(LoadSettingValue<string>("SMS_BIRTHDAY_PARAMS"));
             cmbBdaySMSMsg.SelectedValue = smsParams.MessageId;
-            if (cmbMarrSMSMsg.SelectedIndex < 0) cmbMarrSMSMsg.SelectedIndex = 0;
+            if (cmbBdaySMSMsg.SelectedIndex < 0) cmbBdaySMSMsg.SelectedIndex = 0;
             chkAutoBdaySMS.Checked = smsParams.Enable;
             lblBdayLast.Text = string.Format(_lastSmsSend, smsParams.GetLastSubmitCaption());
 
@@ -85,13 +87,13 @@ namespace ClientManage.Forms.OptionForms
             var smsParams = new AutoSmsParameters(LoadSettingValue<string>("SMS_BIRTHDAY_PARAMS"));
             if (cmbBdaySMSMsg.SelectedIndex <= 0) chkAutoBdaySMS.Checked = false;
             smsParams.Enable = chkAutoBdaySMS.Checked;
-            smsParams.MessageId = cmbBdaySMSMsg.SelectedValue == null ? 0 : Convert.ToInt32(cmbBdaySMSMsg.SelectedValue);
+            smsParams.MessageId = string.IsNullOrEmpty(Convert.ToString(cmbBdaySMSMsg.SelectedValue)) ? 0 : Convert.ToInt32(cmbBdaySMSMsg.SelectedValue);
             SaveSettingValue("SMS_BIRTHDAY_PARAMS", smsParams.ToString());
 
             smsParams = new AutoSmsParameters(LoadSettingValue<string>("SMS_MARRIED_PARAMS"));
             if (cmbMarrSMSMsg.SelectedIndex <= 0) chkAutoMarrSMS.Checked = false;
             smsParams.Enable = chkAutoMarrSMS.Checked;
-            smsParams.MessageId = cmbMarrSMSMsg.SelectedValue == null ? 0 : Convert.ToInt32(cmbMarrSMSMsg.SelectedValue);
+            smsParams.MessageId = string.IsNullOrEmpty(Convert.ToString(cmbMarrSMSMsg.SelectedValue)) ? 0 : Convert.ToInt32(cmbMarrSMSMsg.SelectedValue);
             SaveSettingValue("SMS_MARRIED_PARAMS", smsParams.ToString());
 
             var smsCalParams = new AutoCalSmsParams(
