@@ -176,7 +176,7 @@ namespace GmailSoftHairSync
                 row["time_end"] = GetDateTime(e.End);
                 row["cares_tofill"] = e.ExtendedProperties.Private__["Cares"];
                 row["subject"] = e.Summary;
-                row["date_created"] = e.Created;
+                row["date_created"] = e.CreatedDateTimeOffset.GetValueOrDefault().LocalDateTime;
 
                 var clientId = e.ExtendedProperties.Private__["ClientId"];
                 if (clientId != "0" && !string.IsNullOrEmpty(clientId))
@@ -215,13 +215,13 @@ namespace GmailSoftHairSync
 
             foreach (var e in events)
             {
-                if (e.Start.DateTime == null) continue;
-                if (!skipValidation && e.Created == null)
+                if (e.Start.DateTimeDateTimeOffset == null) continue;
+                if (!skipValidation && e.CreatedDateTimeOffset == null)
                 {
-                    e.Created = DateTime.MinValue;
+                    e.CreatedDateTimeOffset = DateTime.MinValue;
                 }
 
-                var diff = DateTime.Now.Subtract(e.Created.Value).TotalMinutes;
+                var diff = DateTimeOffset.UtcNow.Subtract(e.CreatedDateTimeOffset.Value.UtcDateTime).TotalMinutes;
                 if (!skipValidation && diff < 30) continue;
 
                 var clientId = Convert.ToInt32(e.ExtendedProperties.Private__["ClientId"]);
@@ -241,7 +241,7 @@ namespace GmailSoftHairSync
                     e.ExtendedProperties.Private__.Keys.Contains("AlertKey") ?
                     Convert.ToString(e.ExtendedProperties.Private__["AlertKey"]) :
                     string.Empty;
-                var key = e.Start.DateTime.GetValueOrDefault().ToString("ddMMyyyyHHmm");
+                var key = e.Start.DateTimeDateTimeOffset.GetValueOrDefault().LocalDateTime.ToString("ddMMyyyyHHmm");
                 var predicate = (hasAlert == true) && (alertKey == key);
                 if (!skipValidation && predicate) continue;
 
@@ -360,7 +360,7 @@ namespace GmailSoftHairSync
 
         public static EventDateTime GetEventDateTime(DateTime date)
         {
-            var result = new EventDateTime { DateTime = date, TimeZone = "Israel" };
+            var result = new EventDateTime { DateTimeDateTimeOffset = date, TimeZone = "Israel" };
             return result;
         }
 
@@ -372,7 +372,7 @@ namespace GmailSoftHairSync
 
         public static DateTime GetDateTime(EventDateTime date)
         {
-            var result = date.DateTime == null ? DateTime.ParseExact(date.Date, "yyyy-MM-dd", CultureInfo.CurrentCulture) : date.DateTime.GetValueOrDefault();
+            var result = date.DateTimeDateTimeOffset == null ? DateTime.ParseExact(date.Date, "yyyy-MM-dd", CultureInfo.CurrentCulture) : date.DateTimeDateTimeOffset.GetValueOrDefault().LocalDateTime;
             return result;
         }
 
